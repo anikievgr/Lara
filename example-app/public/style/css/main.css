@@ -1,0 +1,58 @@
+.sliderMainOff{
+
+    width: 80%;
+    margin-bottom: 30px;
+}
+.slidesList{
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    overflow: hidden;
+    margin:  0 20px 0 20px ;
+}
+
+li{
+     list-style-type: none;
+}
+ .mainSlids{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    margin-left: 3px;
+    margin-right: 3px;
+    text-align: center;
+
+}
+.none{
+    display: none;
+}
+ .none{
+    display: block;
+}
+.mainBtn{
+    width: auto;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.sliderMainOff{
+    display: none;
+}
+.mainFOTO{
+    max-width: 200px;
+}
+.maingallerea{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+}
+.mainNews{
+    max-height: 250px;
+
+}
+.mainCardNews{
+    cursor: pointer;
+    color: red;
+}
