@@ -84,12 +84,11 @@ class AddUserController extends Controller
             $password .= $arr[random_int(0, count($arr) - 1)];
         }
         $userAdd['password'] =  Hash::make($password );
-
+       // dd($userAdd, $userAdd['telephone']);
         $user = User::create([
             'name' =>  $userAdd['name'],
             'email' =>  $userAdd['mail'],
             'password' => Hash::make($password),
-
 
         ]);
 

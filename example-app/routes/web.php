@@ -38,7 +38,11 @@ Route::resource('mailAdd', \App\Http\Controllers\AddUserController::class);
 //Form
 Route::middleware('auth')->group(function () {
     Route::resource('shop', \App\Http\Controllers\ShopController::class);
+    Route::resource('order', \App\Http\Controllers\OrderController::class);
     Route::get('/adminPanel','MainController@adminPanel');
+    Route::resource('/tableusers',  \App\Http\Controllers\AdminPanel\TableuaserController::class);
+    Route::resource('/tableproducts',  \App\Http\Controllers\ProductController::class);
+
 Route::prefix('admin')->group(function () {
     Route::prefix('/pageHome')->group(function () {
         Route::get('/openAdminSlider', 'App\Http\Controllers\AdminPanel\SliderController@slider')->name('adminSlider');

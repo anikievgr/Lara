@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,8 @@ class ShopController extends Controller
     public function index()
     {
         $products = Product::all();
-        return  view('shop/pageShop/products', compact('products'));
+        return view('adminPanel/page/pageForm/pagehome/product', compact('products'));
+
     }
 
     /**
@@ -38,7 +37,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -49,7 +48,9 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->back();
     }
 
     /**
@@ -60,7 +61,7 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -72,18 +73,9 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $product = Product::find($id);
-        $user = User::find(auth()->id());
-         $ored = Order::create([
-            'price' => $product['price'],
-             'quantity' => $request['quantity'],
-             'user_id' =>$user['id'],
-             'product' => $product['product']
-
-        ]);
-        return redirect()->action([OrderController::class, 'index']);
-
+        $product->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -94,6 +86,6 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

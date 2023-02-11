@@ -129,7 +129,8 @@ class MainController extends Controller
     }
     public function adminPanel()
     {
-        return view('adminPanel/page/adminPanel');
+       $userID = auth()->id();
+        return view('adminPanel/page/adminPanel', compact('userID'));
     }
 
     public function adminSales()
@@ -156,4 +157,5 @@ class MainController extends Controller
     {
         return view('adminPanel/page/pageForm/pageHome/ContactFrom');
     }
+
 }

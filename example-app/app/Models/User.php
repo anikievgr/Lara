@@ -28,6 +28,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id');
+    }
     protected $hidden = [
         'password',
         'remember_token',

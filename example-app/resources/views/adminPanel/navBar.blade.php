@@ -38,7 +38,7 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-   
+
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -48,7 +48,7 @@
         <div class="cs-overlay"></div>
         <div class="search-overlay"></div>
   {{-- <div class="sidebar-wrapper sidebar-theme">
-            
+
             <nav id="sidebar">
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
@@ -162,7 +162,7 @@
                             </li>
                             <li>
                                 <a href="apps_invoice-edit.html"> Edit </a>
-                            </li>                            
+                            </li>
                         </ul>
                     </li>
 
@@ -189,14 +189,14 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        
+
                     </li>
 
-                  
 
-                   
-                   
-                       
+
+
+
+
 
                     <li class="menu">
                         <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -235,10 +235,10 @@
                             </li>
                             <li>
                                 <a href="form_maxlength.html"> Maxlength </a>
-                            </li>                          
+                            </li>
                             <li>
                                 <a href="form_checkbox_radio.html"> Checkbox &amp; Radio </a>
-                            </li>                            
+                            </li>
                             <li>
                                 <a href="form_switches.html"> Switches </a>
                             </li>
@@ -265,20 +265,21 @@
                             </li>
                         </ul>
                     </li>
-                    
-                                  
 
-                   
 
-                    
 
-                    
-                    
+
+
+
+
+
+
                 </ul>
-                
+
             </nav>
 
         </div> --}}
+
         <!--  BEGIN SIDEBAR  -->
        <div class="sidebar-wrapper sidebar-theme">
 
@@ -286,7 +287,7 @@
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-text">
-                        <a href="/" class="nav-link"> CORK </a>
+                        <a href="/" class="nav-link"> Админ-панель </a>
                     </li>
                     <li class="nav-item toggle-sidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather sidebarCollapse feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
@@ -299,27 +300,51 @@
                           <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                                <span>Магазин</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+
+                       <ul class="submenu list-unstyled collapse" id="dashboard" data-parent="#accordionExample">
+                            <li class=
+                            @section('Analytics')
+                            @show>
+                                <a href="/adminPanel"> Продукты </a>
+                            </li>
+                            <li class=
+                            @section('Sales')
+                            @show>
+                                <a href="/sales"> заказы </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu">
+
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                                 <span>Dashboard</span>
                             </div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                   
-                       <ul class="submenu list-unstyled collapse" id="dashboard" data-parent="#accordionExample">
+
+                        <ul class="submenu list-unstyled collapse" id="dashboard" data-parent="#accordionExample">
                             <li class=
                             @section('Analytics')
-                            @show>
-                                <a href="/adminPanel"> Analytics </a>
+                                @show>
+                                <a href=""> Analytics </a>
                             </li>
                             <li class=
                             @section('Sales')
-                            @show>
+                                @show>
                                 <a href="/sales"> Sales </a>
                             </li>
                         </ul>
                     </li>
-
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span>APPS</span></div>
                     </li>
@@ -340,6 +365,21 @@
                             </div>
                         </a>
                     </li>
+                    @section('users')  <li class='menu' > @show
+                        <a href="{{route('tableusers.index')}}" aria-expanded="false" class="dropdown-toggle">
+                             <div class="">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                <span>Пользователи</span>
+                            </div>
+                        </a>
+                    </li>
+                    @section('product')  <li class='menu' > @show
+                        <a href="{{route('tableproducts.index')}}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>                                <span>Продукты</span>
+                            </div>
+                        </a>
+                    </li>
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span>TABLES AND FORMS</span></div>
                     </li>
@@ -353,7 +393,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        
+
                     </li>
                     <li class='menu ' >
 
@@ -376,16 +416,16 @@
                             <li class = @section('news')@show>
                                 <a href="/admin/pageHome/openAdminNews"> Новости</a>
                             </li>
-                         
+
                                <li class = @section('contact')@show>
                                 <a href="adminContact"> Контакты</a>
                             </li>
-                            
+
 
                                <li class = @section('ocompany')@show>
                                 <a href="{{route('ocompany.index')}}"> О компании</a>
                             </li>
-                            
+
                             <li class = @section('process')@show>
                                 <a href="{{route('process.index')}}"> Процессы </a>
                             </li>
@@ -399,9 +439,9 @@
                                 <a href="{{route('image.index')}}">Картинка </a>
                             </li>
                         </ul>
-                        
+
                     </li>
-                    <li    class='menu ' >
+                    <li    class='menu' >
 
                         <a href="#incubirovane" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -417,13 +457,21 @@
                                 <a href="adminIncubirovane"> Инкубирование</a>
                             </li>
                         </ul>
-                        
+
                     </li>
 
+                    <form method="POST" action="{{ route('logout') }}" class="pl-25">
+                        @csrf
+
+                        <button type="submit" class="btn btn-primary h-1">
+                            {{ __('Выход') }}
+                        </button>
+                    </form>
 
                 </ul>
 
             </nav>
 
         </div>
+
         <!--  END SIDEBAR  -->

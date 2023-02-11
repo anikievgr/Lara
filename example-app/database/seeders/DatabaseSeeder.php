@@ -11,6 +11,7 @@ use App\Models\Mail;
 use App\Models\News;
 use App\Models\Post;
 use App\Models\Process;
+use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Statisic;
 use App\Models\TextIncubirovane;
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
         Category::factory(4)->create();
         Post::factory(7)->create();
         User::factory(1)->create();
+        Product::factory(20)->create();
 
     }
 }
