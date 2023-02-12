@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\User\Massage;
+use App\Mail\User\MassageOrder;
+use App\Models\Mail;
 use App\Models\Order;
+use App\Models\TrueOrders;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -63,7 +67,24 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $user = User::find($order['user_id']);
+        //dd($user);
+        $bd = [
+            'product'=>$order['product'],
+            'price'=>$order['price'],
+            'quantity'=>$order['quantity'],
+            'user_id'=>$order['user_id'],
+
+        ];
+        //dd($bd);
+         $order->update($bd);
+         TrueOrders::create($bd);
+        $order->delete();
+        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new MassageOrder($bd));
+
+        return redirect()->back();
+
     }
 
     /**
@@ -75,7 +96,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

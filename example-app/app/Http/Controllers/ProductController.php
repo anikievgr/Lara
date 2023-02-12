@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +17,59 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('adminPanel/page/pageForm/pagehome/product', compact('products'));
+        $users = User::all();
+        unset($users[0]);
+
+        $orders = Order::all();
+        $orderTable = [];
+
+//        foreach ($users as $key => $user){
+//
+//
+//                foreach ($user->orders as $key =>$order){
+//                    $orderTable[$key]['id'] = $order['id'];
+//                    $orderTable[$key]['product'] = $order['product'];
+//                    $orderTable[$key]['quantity'] = $order['quantity'];
+//                    $orderTable[$key]['date_create'] = $order['created_at'];
+//                }
+//            $orders[$key]['name'] = $user['name'];
+//            $orders[$key]['email'] = $user['email'];
+//            $orders[$key]['orders'] = $orderTable;
+//
+//            $orderTable =[];
+//        }
+        $f = [];
+//        foreach ($users as  $key =>$user){
+//
+//            foreach ($user->orders as $order){
+//                $orders[$key]['name']= $user['name'];
+//                $orders[$key]['email']= $user['email'];
+//                $orders[$key]['orderID']= $order['id'];
+//                $orders[$key]['product']= $order['product'];
+//                $orders[$key]['quantity']= $order['product'];
+//
+//            }
+//            dd($orders);
+//            $f = $orders;
+//
+//        }
+        foreach ($users as $key => $user){
+
+            foreach($user->orders as $key=> $order){
+                $UserOrders[] = $order;
+            }
+            $orderTable[] =[
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'order' =>$UserOrders ,
+
+            ];
+
+            $UserOrders = [];
+        }
+        $orders = $orderTable;
+
+        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders'));
 
     }
 
@@ -37,7 +91,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+        return  redirect()->back();
     }
 
     /**
@@ -48,8 +103,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        if ($id == 'all') {
+            Product::query()->delete();
+        } else {
+            $product = Product::find($id);
+            $product->delete();
+
+        }
         return redirect()->back();
     }
 

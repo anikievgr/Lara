@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\User\Massage;
+use App\Mail\User\MassageOrder;
+use App\Models\Mail;
 use App\Models\Order;
-use App\Models\Product;
+use App\Models\TrueOrders;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class TrueOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +19,17 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return  view('shop/pageShop/products', compact('products'));
+        $user = User::find(auth()->id());
+        $mainOrders = $user->trueOrders;
+        $order = TrueOrders::all();
+        if (count($mainOrders)>= 10){
+            $delete = $mainOrders[9];
+            $order->delete($delete['id']);
+
+        }
+        $mainOrders = $user->trueOrders;
+        return view('shop/pageShop/trueorder' , compact('mainOrders'));
+
     }
 
     /**
@@ -38,7 +50,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -49,7 +61,9 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+        $order-> delete();
+        return redirect()->back();
     }
 
     /**
@@ -60,7 +74,24 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $user = User::find($order['user_id']);
+        //dd($user);
+        $bd = [
+            'product'=>$order['product'],
+            'price'=>$order['price'],
+            'quantity'=>$order['quantity'],
+            'user_id'=>$order['user_id'],
+
+        ];
+        //dd($bd);
+         $order->update($bd);
+         TrueOrders::create($bd);
+        $order->delete();
+        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new MassageOrder($bd));
+
+        return redirect()->back();
+
     }
 
     /**
@@ -72,20 +103,6 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $product = Product::find($id);
-        $user = User::find(auth()->id());
-         $ored = [
-            'price' => $product['price'],
-             'quantity' => $request['quantity'],
-             'user_id' =>$user['id'],
-             'product' => $product['product'],
-             'status' => '0'
-
-        ];
-         //dd($ored);
-         Order::create($ored);
-        return redirect()->action([OrderController::class, 'index']);
 
     }
 

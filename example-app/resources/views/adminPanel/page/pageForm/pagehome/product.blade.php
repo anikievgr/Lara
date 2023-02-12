@@ -10,10 +10,9 @@
                     "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
                 "oLanguage": {
                     "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                    "sInfo": "Showing page _PAGE_ of _PAGES_",
-                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                    "sSearchPlaceholder": "Search...",
-                    "sLengthMenu": "Results :  _MENU_",
+                    "sInfo": "Showing page _PAGE_ of _PAGES_",                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Найти...",
+                    "sLengthMenu": "Найдено :  _MENU_",
                 },
                 "stripeClasses": [],
                 "lengthMenu": [7, 10, 20, 50],
@@ -28,16 +27,25 @@
     @endsection
 @section('content')
         <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
 
                 <div class="row layout-top-spacing" id="cancel-row">
 
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Товары</h4>
+                                </div>
+                            </div>
+                        </div>
                         <div class="widget-content widget-content-area br-6">
+
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th>Продукты</th>
+                                    <th>Продукты/описание</th>
                                     <th>Цена</th>
                                     <th class="no-content">Редактирование</th>
                                 </tr>
@@ -46,17 +54,108 @@
                                 @foreach($products as $product)
                                 <tr>
                                     <td>{{$product['product']}}</td>
-                                    <td>{{$product['price']}} рублей</td>
+                                    @if($product['price'] <= 1)
+                                    <td>{{$product['price']}} рубль</td>
+                                    @elseif($product['price'] > 1 && $product['price']<5)
+                                        <td>{{$product['price']}} рубля</td>
+                                    @else
+                                        <td>{{$product['price']}} рублей</td>
+                                    @endif
                                     <td><a href="" data-toggle="modal" data-target="#d{{$product['id']}} "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>
+
+                            <button class="btn btn-primary ml-3 mb-3" data-toggle="modal" data-target="#add" >Добавить</button>
+                            <button class="btn btn-primary ml-3 mb-3" data-toggle="modal" data-target="#deletAll" >Удалить все товары</button>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Заказы</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area br-6">
+
+                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Заказчик</th>
+                                    <th>Почта заказчика</th>
+                                    <th>Продукты/описание</th>
+                                    <th class="no-content">Количество</th>
+                                    <th class="no-content">Завершить заказ</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $key =>$order)
+                                    @foreach($order['order'] as $item)
+                                    <tr>
+                                        <td>{{$order['name']}}</td>
+                                        <td>{{$order['email']}}</td>
+                                        <td>{{ $item['product']}}</td>
+                                        <td>{{$item['quantity']}} шт.</td>
+
+                                        <td>
+
+                                            <a href="{{route('order.edit',$item['id'])}}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-fast-forward"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg></a>
+                                        </td>
+
+                                    </tr>
+                                    @endforeach
+                                @endforeach
+                                </tbody>
+                            </table>
+
+                           </div>
+
+                    </div>
+
+                    <!-- Button trigger modal -->
+                    <div id="deletAll" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content p-1">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Вы точно хотите удалить все товары?</h4>
+                                </div>
+                                <a href="{{route('tableproducts.show', 'all')}}" class="btn btn-primary mb-2">Да</a>
+                            </div>
                         </div>
                     </div>
-                    <!-- Button trigger modal -->
+                    <div class="modal fade login-modal" id="add" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
 
+                                <div class="modal-header" id="loginModalLabel">
+                                    <h4 class="modal-title">Редактирование</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form method="post" action="{{route('tableproducts.store')}}" class="mt-0">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label>Название</label>
+                                                <input name="product"  class="form-control mb-4" id="exampleInputPassword1" placeholder="Товар">
+                                            </div>
+                                            <label>Цена</label>
+                                            <input name="price" class="form-control mb-2" id="exampleInputEmail1" placeholder="Цена за штуку">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary mt-2 mb-2 btn-block">Добавить</button>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Modal -->
                     @foreach($products as $product)

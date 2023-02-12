@@ -87,6 +87,11 @@
                             @show>
                                 <a href="{{route('order.index')}}"> Заказы </a>
                             </li>
+                           <li class=
+                            @section('trueOrder')
+                            @show>
+                                <a href="{{route('trueOrder.index')}}">Доставленные </a>
+                            </li>
                         </ul>
                     </li>
 

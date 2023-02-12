@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
+use App\Models\TrueOrders;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class TruemainOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return  view('shop/pageShop/products', compact('products'));
+        //
     }
 
     /**
@@ -38,7 +35,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -49,7 +46,9 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = TrueOrders::find($id);
+        $order->delete();
+        return redirect()->back();
     }
 
     /**
@@ -72,21 +71,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $product = Product::find($id);
-        $user = User::find(auth()->id());
-         $ored = [
-            'price' => $product['price'],
-             'quantity' => $request['quantity'],
-             'user_id' =>$user['id'],
-             'product' => $product['product'],
-             'status' => '0'
-
-        ];
-         //dd($ored);
-         Order::create($ored);
-        return redirect()->action([OrderController::class, 'index']);
-
+        //
     }
 
     /**

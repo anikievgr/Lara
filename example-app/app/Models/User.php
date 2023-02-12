@@ -31,6 +31,9 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany(Order::class, 'user_id');
     }
+    public function trueOrders(){
+        return $this->hasMany(TrueOrders::class, 'user_id');
+    }
     protected $hidden = [
         'password',
         'remember_token',

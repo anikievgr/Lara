@@ -1,5 +1,5 @@
 @extends('../../../shop/app')
-@section('orders')
+@section('trueOrder')
     active
 @endsection
 @section('scriptAdd')
@@ -37,15 +37,16 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Заказы</h4>
+                                <h4>Доставленные заказы</h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area br-6">
+
                         <table id="zero-config" class="table dt-table-hover" style="width:100%">
                             <thead>
                             <tr>
-                                <th>Мои заказы</th>
+                                <th>Заказы</th>
                                 <th>Количество</th>
                                 <th>Цена за одну</th>
                                 <th class="no-content">Удалить</th>
@@ -74,9 +75,9 @@
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content p-1">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Вы точно хотите удалить заказ?</h4>
+                                    <h4>Вы точно хотите удалить поле?</h4>
                                 </div>
-                                <a href="{{route('order.show',$product['id'])}}" class="btn btn-primary mb-2">Да</a>
+                                <a href="{{route('truemainOrderController.show',$product['id'])}}" class="btn btn-primary mb-2">Да</a>
                             </div>
                         </div>
                     </div>
