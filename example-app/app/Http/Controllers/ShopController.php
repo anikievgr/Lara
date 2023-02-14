@@ -80,11 +80,13 @@ class ShopController extends Controller
              'quantity' => $request['quantity'],
              'user_id' =>$user['id'],
              'product' => $product['product'],
-             'status' => '0'
+             'status' => '0',
+             'date' => date('Y-m-d')
 
         ];
-         //dd($ored);
+
          Order::create($ored);
+       // dd($ored);
         return redirect()->action([OrderController::class, 'index']);
 
     }

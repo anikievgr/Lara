@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use function Pest\Laravel\get;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $products = Product::all();
         $users = User::all();
         unset($users[0]);
@@ -23,36 +25,7 @@ class ProductController extends Controller
         $orders = Order::all();
         $orderTable = [];
 
-//        foreach ($users as $key => $user){
-//
-//
-//                foreach ($user->orders as $key =>$order){
-//                    $orderTable[$key]['id'] = $order['id'];
-//                    $orderTable[$key]['product'] = $order['product'];
-//                    $orderTable[$key]['quantity'] = $order['quantity'];
-//                    $orderTable[$key]['date_create'] = $order['created_at'];
-//                }
-//            $orders[$key]['name'] = $user['name'];
-//            $orders[$key]['email'] = $user['email'];
-//            $orders[$key]['orders'] = $orderTable;
-//
-//            $orderTable =[];
-//        }
-        $f = [];
-//        foreach ($users as  $key =>$user){
-//
-//            foreach ($user->orders as $order){
-//                $orders[$key]['name']= $user['name'];
-//                $orders[$key]['email']= $user['email'];
-//                $orders[$key]['orderID']= $order['id'];
-//                $orders[$key]['product']= $order['product'];
-//                $orders[$key]['quantity']= $order['product'];
-//
-//            }
-//            dd($orders);
-//            $f = $orders;
-//
-//        }
+
         foreach ($users as $key => $user){
 
             foreach($user->orders as $key=> $order){
@@ -68,8 +41,9 @@ class ProductController extends Controller
             $UserOrders = [];
         }
         $orders = $orderTable;
+        $serch['status'] = 'off';
 
-        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders'));
+        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'serch'));
 
     }
 
@@ -133,6 +107,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $product = Product::find($id);
         $product->update($request->all());
         return redirect()->back();
@@ -146,6 +121,80 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
+    }
+    public function search(Request $request){
+        $orders = [];
+        $serch = [];
+        $serch['status'] = 'on';
+        $chek = strpos($request['serch'], '@');
+       //dd($request->all());
+        if ($request->serch == null ){
+            $users = User::all();
+            if ($request->serchT != null) {
+
+
+                foreach ($users as $user){
+                        foreach ($user->orders->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']) as $order){
+                            $orders[] = $order;
+                        }
+                }
+
+            }else{
+                foreach ($users as $user){
+                    foreach ($user->orders->where('date', '>=', $request['serchO']) as $order){
+                        $orders[] = $order;
+                    }
+                }
+            }
+
+        }else{
+            if (($request->serchO != null) && ($request->serchT == null)){
+                $request->serchT  = date('Y')+1;
+                $request['serchT']  =$request->serchT .'-'.date("m-d");
+
+            }
+        if ($chek == true){
+
+            $d = Order::where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT'])->with(['user' => function($query) use ($request){
+                $query->where('email', 'like', '%'.$request['serch'].'%');
+            }])->get();
+            foreach($d as $dd){
+                if ($dd->user != null) {
+                    $id = $dd->user->id;
+                }
+            }
+
+        }else{
+            $chek =  preg_replace('![A-Z|А-Я]!u','-',$request['serch']);
+            $chek = substr_count($chek, '-');
+            //dd($request['serch']);
+            if ($chek >= 2){
+                $d = Order::where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT'])->with(['user' => function($query) use ($request){
+                    $query->where('name', 'like', '%'.$request['serch'].'%');
+                }])->get();
+
+                foreach($d as $dd){
+                    if ($dd->user != null) {
+                        $id = $dd->user->id;
+                    }
+                }
+
+            }
+        }
+            $user = User::find($id);
+            $orders = $user->orders;
+        }
+
+//dd($orders);
+
+        $serch['serch'] =  $request->all();
+
+        $products = [];
+//dd($products);
+        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'serch'));
+
+
 
     }
 }

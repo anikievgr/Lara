@@ -9,6 +9,7 @@ use App\Models\HeaderIncubirovane;
 use App\Models\Image;
 use App\Models\Mail;
 use App\Models\News;
+use App\Models\Order;
 use App\Models\Post;
 use App\Models\Process;
 use App\Models\Product;

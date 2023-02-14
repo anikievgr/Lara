@@ -3,6 +3,7 @@
 @section('scriptAdd')
 
         <script src="{{asset('style/pageAdmin/plugins/table/datatable/datatables.js')}}"></script>
+        @if($serch['status'] != 'on')
         <script>
             $('#zero-config').DataTable({
                 "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
@@ -18,7 +19,9 @@
                 "lengthMenu": [7, 10, 20, 50],
                 "pageLength": 7
             });
-        </script>    @endsection
+        </script>
+        @endif
+    @endsection
 @section('headerAddLink')
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/datatables.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/dt-global_style.css')}}">
@@ -26,7 +29,8 @@
         <link href="{{asset('style/pageAdmin/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
     @endsection
 @section('content')
-        <div id="content" class="main-content">
+      @if( $serch['status'] != 'on')
+            <div id="content" class="main-content">
 
             <div class="layout-px-spacing">
 
@@ -80,9 +84,31 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="widget-content widget-content-area br-6">
 
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                <form method="post" action="{{route('orderA.search')}}">
+                                    @csrf
+                                    <div class="form-row align-items-center">
+                                        <div class="col-sm-3 my-1">
+                                            <input type="text" name="serch" class="form-control" id="inlineFormInputName" placeholder="Найти по им./заказу">
+                                        </div>
+                                        <span>Искать с</span>
+                                        <div class="col-sm-3 my-1">
+
+                                            <input type="text" name="serchO" class="form-control " id="inlineFormInputName"  placeholder="Год-Месяц-День" >
+                                        </div>
+                                        <span>до</span>
+                                        <div class="col-sm-3 my-1">
+                                            <input type="text" name="serchT" class="form-control " id="inlineFormInputName" placeholder="Год-Месяц-День" >
+                                        </div>
+
+                                        <div class="col-auto my-1">
+                                            <button type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+                                        </div>
+                                    </div>
+                                </form>
                                 <thead>
                                 <tr>
                                     <th>Заказчик</th>
@@ -216,4 +242,71 @@
             </div>
 
         </div>
+        @else
+            <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="row layout-top-spacing" id="cancel-row">
+
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Заказы</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area br-6">
+                            <div class="dt--top-section ">
+                                <form method="post" action="{{route('order.search')}}">
+                                    @csrf
+                                    <div class="form-row align-items-center">
+                                        <div class="col-sm-3 my-1">
+                                            <input type="text" name="serch" class="form-control " id="inlineFormInputName" value={{$serch['serch']['serch']}}>
+                                        </div>
+                                        <div class="col-sm-3 my-1">
+                                            <input type="text" name="serchO" class="form-control " id="inlineFormInputName" placeholder="Год-Месяц-День"  value={{$serch['serch']['serchO']}}>
+                                        </div>
+                                        <div class="col-sm-3 my-1">
+                                            <input type="text" name="serchT" class="form-control " id="inlineFormInputName" placeholder="Год-Месяц-День"  value={{$serch['serch']['serchT']}}>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+
+                            </div>
+                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Мои заказы</th>
+                                    <th>Количество</th>
+                                    <th>Цена за одну</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $product)
+                                    <tr>
+                                        <td>{{$product['product']}}</td>
+                                        <td>{{$product['quantity']}}</td>
+                                        <td>{{$product['price']}} рублей</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <!-- Button trigger modal -->
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+        @endif
 @endsection

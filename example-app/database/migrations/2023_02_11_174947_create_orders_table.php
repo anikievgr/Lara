@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('status');
             $table->integer('user_id')->references('id')->on('users');
+            $table->string('date');
         });
     }
 
@@ -32,5 +33,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('orders');
+
     }
 };

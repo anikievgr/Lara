@@ -83,6 +83,7 @@ class AddUserController extends Controller
         for ($i = 0; $i < 8; $i++) {
             $password .= $arr[random_int(0, count($arr) - 1)];
         }
+        $password= 551151;
         $userAdd['password'] =  Hash::make($password );
        // dd($userAdd, $userAdd['telephone']);
         $user = User::create([

@@ -21,6 +21,7 @@ class OrderController extends Controller
     {
         $user = User::find(auth()->id());
         $mainOrders = $user->orders;
+        //dd(1);
         return view('shop/pageShop/order' , compact('mainOrders'));
 
     }
@@ -109,4 +110,36 @@ class OrderController extends Controller
     {
         //
     }
+     public function search(Request $request){
+
+        $longstring = strlen($request['serch']);
+        if (ctype_digit($request['serch'][0])  == true  ){
+            switch ($longstring){
+                case '1':
+                case '2':
+                   if ($longstring == 1){
+                       $longstring = "0$longstring";
+
+                   }
+                   $order = Order::latest()
+                       ->where('created_at', 'like', "%$longstring");
+                   dd($order);
+                    break;
+                case '4':
+                case '5':
+                    echo 'день,месяц';
+                    break;
+                case '7':
+                case '8':
+                case '9':
+                case '10':
+                    echo 'день,месяц,год';
+                    break;
+
+            }
+        }
+        dd($request->all());
+
+
+     }
 }
