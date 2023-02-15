@@ -1,3 +1,4 @@
 <x-mail::message>
-    Ваш  заказ "{{$bd['quantity']}} {{$bd['product']}}" доставлен
+
+    Здравстуйте, ваш  заказ "{{$bd['product']}}" на сумму "{{$bd['price']*$bd['quantity']}}" доставлен
 </x-mail::message>
