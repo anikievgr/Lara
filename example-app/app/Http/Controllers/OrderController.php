@@ -21,8 +21,13 @@ class OrderController extends Controller
     {
         $user = User::find(auth()->id());
         $mainOrders = $user->orders;
+        $serch = [];
+        $serch['serch']['serchO'] = '';
+        $serch['serch']['serchT'] = '';
+        $serch['serch']['serch'] = '';
+        $serch['status'] = 'off';
         //dd(1);
-        return view('shop/pageShop/order' , compact('mainOrders'));
+        return view('shop/pageShop/order' , compact('mainOrders', 'serch'));
 
     }
 
@@ -110,36 +115,50 @@ class OrderController extends Controller
     {
         //
     }
-     public function search(Request $request){
+    public function search(Request $request){
+        $orders = [];
+        //dd($request->all());
+        $user = User::find(auth()->id());
 
-        $longstring = strlen($request['serch']);
-        if (ctype_digit($request['serch'][0])  == true  ){
-            switch ($longstring){
-                case '1':
-                case '2':
-                   if ($longstring == 1){
-                       $longstring = "0$longstring";
+        $serch['status'] = 'on';
+        $serch['serch'] = $request->all();
+        //dd($request->all());
+        if ($request->serch == null ){
 
-                   }
-                   $order = Order::latest()
-                       ->where('created_at', 'like', "%$longstring");
-                   dd($order);
-                    break;
-                case '4':
-                case '5':
-                    echo 'день,месяц';
-                    break;
-                case '7':
-                case '8':
-                case '9':
-                case '10':
-                    echo 'день,месяц,год';
-                    break;
+            if ($request->serchT != null) {
+                $orders = $user->orders->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']);
 
+                //dd($orders);
+
+            }else{
+
+                $orders = $user->orders->where('date', '>=', $request['serchO']);
+                //dd($orders);
             }
+
+        }else{
+
+            if (($request->serchO == null) && ($request->serchT == null)){
+                $orders = $user->orders->where('product', '=', $request['serch']);
+                //dd($orders);
+            }else{
+            if ($request->serchT == null){
+                $orders = $user->orders->where('product', '=', $request['serch'])->where('date', '>=', $request['serchO']);
+                //dd($orders);
+            }else{
+                $orders = $user->orders->where('product', '=', $request['serch'])->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']);
+                //dd($orders);
+            }
+            }
+
         }
-        dd($request->all());
+
+        $mainOrders = $orders;
+        //dd($mainOrders);
+        return view('shop/pageShop/order' , compact('mainOrders', 'serch'));
 
 
-     }
+
+
+    }
 }

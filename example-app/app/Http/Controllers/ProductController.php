@@ -20,8 +20,8 @@ class ProductController extends Controller
 
         $products = Product::all();
         $users = User::all();
-        unset($users[0]);
-
+        //unset($users[0]);
+        $UserOrders = [];
         $orders = Order::all();
         $orderTable = [];
 
@@ -31,6 +31,7 @@ class ProductController extends Controller
             foreach($user->orders as $key=> $order){
                 $UserOrders[] = $order;
             }
+
             $orderTable[] =[
                 'name' => $user['name'],
                 'email' => $user['email'],
@@ -170,9 +171,12 @@ class ProductController extends Controller
             $chek = substr_count($chek, '-');
             //dd($request['serch']);
             if ($chek >= 2){
-                $d = Order::where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT'])->with(['user' => function($query) use ($request){
-                    $query->where('name', 'like', '%'.$request['serch'].'%');
-                }])->get();
+                $d = Order::where('date', '>=', $request['serchO'])
+                    ->where('date', '<=', $request['serchT'])
+                    ->with(['user' => function($query) use ($request){
+                        $query->where('name', 'like', '%'.$request['serch'].'%');
+                    }])
+                    ->get();
 
                 foreach($d as $dd){
                     if ($dd->user != null) {

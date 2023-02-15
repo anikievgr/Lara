@@ -258,7 +258,7 @@
                         </div>
                         <div class="widget-content widget-content-area br-6">
                             <div class="dt--top-section ">
-                                <form method="post" action="{{route('order.search')}}">
+                                <form method="post" action="{{route('orderA.search')}}">
                                     @csrf
                                     <div class="form-row align-items-center">
                                         <div class="col-sm-3 my-1">
