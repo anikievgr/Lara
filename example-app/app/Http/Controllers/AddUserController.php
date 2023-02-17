@@ -6,6 +6,7 @@ use App\Mail\User\Massage;
 use App\Models\Mail;
 use App\Models\News;
 use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,16 +87,17 @@ class AddUserController extends Controller
         $password= 551151;
         $userAdd['password'] =  Hash::make($password );
        // dd($userAdd, $userAdd['telephone']);
+
         $user = User::create([
             'name' =>  $userAdd['name'],
             'email' =>  $userAdd['mail'],
             'password' => Hash::make($password),
 
         ]);
+        $userAdd->delete();
 
-        $items = Mail::query()->find($id);
-        $items->delete();
-        \Illuminate\Support\Facades\Mail::to($userAdd['mail'])->send(new Massage($password));
+
+
         return redirect()->back();
 
     }

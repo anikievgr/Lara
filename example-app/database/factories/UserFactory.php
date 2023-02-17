@@ -20,10 +20,9 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Глеб Аникиев',
-            'email' => 'anikiev.gleb2005@yandex.ru',
+            'email' => 'anikiev.gleb.2005@yandex.ru',
             'email_verified_at' => now(),
             'password' => Hash::make('551151' ), // password
-            'remember_token' => Str::random(10),
             'role' => '1',
         ];
     }

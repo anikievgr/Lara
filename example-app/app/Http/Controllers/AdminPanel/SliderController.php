@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\CreatNewSlideFich;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -58,18 +59,9 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CreatNewSlideFich $fich)
     {
-      $path = $request->file('image')->store('uploads', 'public');
-        //return view('form', ['path' => $path]);
-        //$items = $request->input('title');
-        $items = [
-            'title' => $request->input('title'),
-            'subtitle' => $request->input('subtitle'),
-            'image' => $path,
-        ];
-
-        Slide::create($items);
+       $fich->CreatNewSlide($request);
         return redirect()->back();
     }
 
@@ -133,7 +125,6 @@ class SliderController extends Controller
       public function delete($id)
     {
                 $items = Slide::query()->find($id);
-                Storage::disk('public')->delete($items['image']);
                 $items->delete();
                 return redirect()->back();
     }

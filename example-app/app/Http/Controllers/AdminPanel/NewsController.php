@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\CreateNewNews;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -51,23 +52,11 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CreateNewNews $news)
     {
+        $news->newNews($request);
         //dd($request->file('image'));
-        if (empty($request['image'])) {
-            $path = 'null';
 
-        }
-        else{
-             $path = $request->file('image')->store('uploads', 'public');
-        }
-        $db =[
-            'title'=> $request['title'],
-            'text'=> $request['text'],
-            'image'=> $path
-        ];
-       dd($db);
-        News::create($db);
         return redirect()->back();
     }
 
