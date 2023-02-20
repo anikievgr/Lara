@@ -3,7 +3,7 @@ var addCategory = document.querySelector('#addCategory');
 var buutonAddCategory = document.getElementById("select");
 
 buutonAddCategory.addEventListener('change', (event) => {
-  
+
  if (event.target.value != 'buutonAddCategory') {
    document.getElementById("inputNewCategory").value = '';
 
@@ -27,13 +27,13 @@ for(slids of sliders){
 }
 
 function sliderOff() {
-  
+
   var sliderMainHeght = sliderMain.offsetHeight;
   console.log(sliderMainHeght) ;
   if (sliderMainHeght >= 90) {
       sliderMain.style.display = 'none';
       contenerSlider.style.display = 'block';
-      
+
   }
 }
 sliderOff();
@@ -52,19 +52,19 @@ buttonPrev.addEventListener('click', (event) => {
     prevItem=0;
   }
     if (nextItem <= colElements) {
-      
-    
+
+
    elements[nextItem].style.display = 'none'
      if (elements[nextItem].classList.contains('add')) {
       elements[nextItem].classList.remove('add');
     }
-   
+
     if (nextItem != colElements ) {
           nextItem++;
     }
-     
-  
-   
+
+
+
      prevItemCheck = 0;
      }
   });
@@ -86,12 +86,6 @@ buttonNext.addEventListener('click', (event) => {
   }
   });
 
-
- 
-
-
-
-
 $(function() {
   var selectedClass = "";
   $(".filter").click(function(){
@@ -104,3 +98,4 @@ $(function() {
     }, 300);
   });
 });
+

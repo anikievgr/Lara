@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use function Pest\Laravel\get;
 
 class ProductController extends Controller
@@ -17,8 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        $products = Product::all();
+dd(Route::currentRouteName());
+        $products = Product::paginate(100);
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];

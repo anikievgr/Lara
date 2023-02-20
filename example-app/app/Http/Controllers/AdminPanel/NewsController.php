@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\CreateNewNews;
 use App\Models\News;
+use App\Services\News\CreateNewNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

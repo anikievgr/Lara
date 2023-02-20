@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\News;
 
 use App\Models\News;
-use App\Interfaces\CreateNewNews;
 
 class NewNews implements CreateNewNews
 {
 
     public function newNews($request)
     {
-        dd(123);
+
         if (empty($request['image'])) {
             $path = 'null';
 

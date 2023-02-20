@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces;
+namespace App\Services\News;
 
 interface CreateNewNews {
     public function newNews($request);

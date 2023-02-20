@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\CreatNewSlideFich;
 use App\Models\Slide;
+use App\Services\DateBase\databaseInreface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class SliderController extends Controller
 {
      public function slider(){
+
     $items = Slide::all();
     //dd($items );
     if($items->count()  == 0){
@@ -59,9 +60,11 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CreatNewSlideFich $fich)
+    public function store(Request $request, databaseInreface $fitch)
     {
-       $fich->CreatNewSlide($request);
+
+        $model = Slide::all();
+      $fitch->add($request, $model);
         return redirect()->back();
     }
 

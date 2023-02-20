@@ -22,6 +22,7 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="{{asset('style/pageAdmin/assets/js/scrollspyNav.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/counter/jquery.countTo.js')}}"></script>
+    <script src="{{asset('style/js/menu.js')}}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
