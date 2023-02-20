@@ -18,7 +18,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-dd(Route::currentRouteName());
         $products = Product::paginate(100);
         $users = User::all();
         //unset($users[0]);

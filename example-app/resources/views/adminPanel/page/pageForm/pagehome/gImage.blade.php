@@ -1,4 +1,5 @@
 @extends('../../../adminPanel/app')
+
 @section('image')
       active
     @endsection
@@ -17,8 +18,8 @@
 @section('headerAddLink')
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-    
-    
+
+
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
@@ -31,13 +32,13 @@
             <div class="container">
                 <div class="container">
 
-                    
-                    
+
+
                     <div class="row layout-top-spacing">
 <div id="slider-create" class="col-lg-12 layout-spacing" >
                                         <div class="col-lg-12 col-12 layout-spacing">
                                             <div class="statbox widget box box-shadow"  style="width: 500px">
-                                               
+
                                                 <div class="widget-header">
                                                     <div class="row">
                                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -48,7 +49,7 @@
                                                 <img class="rounded d-block w-100" src="{{asset('/storage/'.$image[0]['image'])}}">
 
                                                 <div class="widget-content widget-content-area">
-                                                    <form method="post" action="{{route('image.update', 1)}} "enctype="multipart/form-data" >    
+                                                    <form method="post" action="{{route('image.update', 1)}} "enctype="multipart/form-data" >
                                                         {{ csrf_field() }}
                                                           @method('PUT')
                                                         <div class="form-group mb-4">
@@ -83,11 +84,11 @@
                                             </div>
                                         </div>
                                     </div>
-                      
-                    
+
+
                     </div>
                 </div>
-                
+
                 </div>
                 <!--  END CONTENT AREA  -->
 

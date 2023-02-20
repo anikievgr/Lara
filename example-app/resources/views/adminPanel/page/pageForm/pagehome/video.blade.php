@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    Видео
+@endsection
 @section('process')
       active
     @endsection

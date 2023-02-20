@@ -1,4 +1,7 @@
 @extends('../adminPanel/app')
+@section('name')
+    Почта
+@endsection
  @section('mail')  <li class='menu active' > @endsection
 @section('headerAddLink')
 <link href="{{asset('assets/css/components/cards/card.css')}}" rel="stylesheet" type="text/css" />

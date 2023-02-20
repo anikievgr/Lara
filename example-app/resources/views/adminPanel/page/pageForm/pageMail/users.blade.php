@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    Пользователи
+@endsection
 @section('users')  <li class='menu active' > @endsection
 @section('scriptAdd')
 

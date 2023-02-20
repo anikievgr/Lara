@@ -1,5 +1,7 @@
 @extends('../../../adminPanel/app')
-
+@section('name')
+    Галлерея
+@endsection
 @section('galerea')
       active
     @endsection

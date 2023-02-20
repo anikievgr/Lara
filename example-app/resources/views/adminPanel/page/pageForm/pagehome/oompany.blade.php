@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    О компании
+@endsection
 @section('ocompany')
       active
     @endsection
@@ -17,7 +20,7 @@
 @section('headerAddLink')
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-    
+
     <link href="{{asset('style/pageAdmin/plugins/flatpickr/custom-flatpickr.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('style/pageAdmin/plugins/noUiSlider/custom-nouiSlider.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('style/pageAdmin/plugins/bootstrap-range-Slider/bootstrap-slider.css')}}" rel="stylesheet" type="text/css">
@@ -34,7 +37,7 @@
                             <a href="#slider-update" class="active nav-link">Изменить</a>
                         </div>
                     </div>
-                    
+
                          <div class="row">
                             <div class="col-lg-12 col-12 layout-spacing">
                                 <div class="statbox widget box box-shadow">
@@ -55,7 +58,7 @@
                                         <div class="range-count"><span class="range-count-unit">Словения </span><span class="range-count-number" data-rangecountnumber="0">0</span> <span class="range-count-unit">%</span></div>
                                     </div>
                                     </div>
-                                 
+
                                     @else
                                         <div class="widget-content widget-content-area ">
                                     <div class="custom-progress bottom-right progress-down" style="width: 100%">
@@ -64,7 +67,7 @@
                                         <div class="range-count"><span class="range-count-unit">Словения </span><span class="range-count-number" data-rangecountnumber="{{$procent[0]['procent']}}">{{$procent[0]['procent']}}</span> <span class="range-count-unit">%</span></div>
                                     </div>
                                     </div>
-                                  
+
                                     @endif
                                       <button class="btn btn-primary mb-2">Отправить</button>
                                 </form>
@@ -84,17 +87,17 @@
                                     <div class="widget-content widget-content-area">
                                     <img class="rounded d-block w-100" src="{{asset('/storage/'.$ocompany[0]['image'])}}">
                                     <form method="post" action="{{route('company.store')}}" enctype="multipart/form-data">
-                                        {{ csrf_field() }} 
+                                        {{ csrf_field() }}
                                         <div class="form-group mb-4">
                                         <label for="exampleFormControlInput2">Заголовок</label>
                                         <input type="text" name="title" class="form-control" id="h-text1" aria-describedby="h-text1" value="{{$ocompany[0]['title']}}">
                                         </div>
-                                        
+
                                         <div class="form-group mb-4 mt-3">
                                         <label for="exampleFormControlFile1">Текст</label>
                                         <textarea name="text" style="min-height: 100px" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$ocompany[0]['titleLtext']}}</textarea>
                                         </div>
-                                     
+
                                         <div class="form-group mb-4 mt-3">
                                                                 <label for="exampleFormControlFile1">Загрузите картинку</label>
                                                                 <input type="file" name="image" value="" class="form-control-file"  id="exampleFormControlFile1">
@@ -109,14 +112,14 @@
                             </div>
                             </div>
                 </div>
-                
+
             </div>
 
-            
+
     </div>
-                
-               
-      
-        
-  
+
+
+
+
+
  @endsection

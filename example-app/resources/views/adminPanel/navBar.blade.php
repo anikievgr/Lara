@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
 
          <link href="{{asset('style/pageAdmin/assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
+
     <script src="{{asset('style/pageAdmin/assets/js/loader.js')}}"></script>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -23,7 +24,7 @@
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/components/custom-counter.css')}}" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
-
+    <link href="{{asset('style/css/mainLog.css')}}" rel="stylesheet" type="text/css" />
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     @section('headerAddLink')
@@ -38,7 +39,29 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
+    <div class="header-container fixed-top ">
+        <header class="header navbar navbar-expand-sm d-flex justify-content-between" >
+            <a  href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
 
+            <ul class="navbar-item flex-row">
+                <li class="nav-item align-self-center page-heading">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h3>@section('name')
+                                    Аналитика
+                                @show</h3>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <form method="POST" action="{{ route('logout') }}" class="formLog">
+                @csrf
+                    <button type="submit" class="log_out">
+                        {{ __('Выход') }}
+                    </button>
+            </form>
+        </header>
+    </div>
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -47,7 +70,6 @@
           <div class="overlay"></div>
         <div class="cs-overlay"></div>
         <div class="search-overlay"></div>
-
 
         <!--  BEGIN SIDEBAR  -->
        <div class="sidebar-wrapper sidebar-theme">
@@ -65,35 +87,13 @@
                 <div class="shadow-bottom"></div>
 
                 <ul class="list-unstyled menu-categories" id="accordionExample">
-                    <li class="menu">
-                          <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                <span>Магазин</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
-                       <ul class="submenu list-unstyled collapse" id="dashboard" data-parent="#accordionExample">
-                            <li class=
-                            @section('Analytics')
-                            @show>
-                                <a href="/adminPanel"> Продукты </a>
-                            </li>
-                            <li class=
-                            @section('Sales')
-                            @show>
-                                <a href="/sales"> заказы </a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li class="menu">
 
-                        <a href="#dashboar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                <span>Dashboard</span>
+                                <span>corck</span>
                             </div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -104,7 +104,7 @@
                             <li class=
                             @section('Analytics')
                                 @show>
-                                <a href=""> Analytics </a>
+                                <a href="/adminPanel"> Analytics </a>
                             </li>
                             <li class=
                             @section('Sales')
@@ -151,18 +151,7 @@
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span>TABLES AND FORMS</span></div>
                     </li>
-                    <li class="menu d-none">
-                        <a href="#components" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                                <span>Components</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
 
-                    </li>
                     <li class='menu ' >
 
                         <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -222,19 +211,13 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="incubirovane" data-parent="#accordionExample">
                              <li class = @section('incubitovanie')@show>
-                                <a href="adminIncubirovane"> Инкубирование</a>
+                                <a href="{{route('adminIncubirovane.index')}}"> Инкубирование</a>
                             </li>
                         </ul>
 
                     </li>
 
-                    <form method="POST" action="{{ route('logout') }}" class="pl-25">
-                        @csrf
 
-                        <button type="submit" class="btn btn-primary h-1">
-                            {{ __('Выход') }}
-                        </button>
-                    </form>
 
                 </ul>
 

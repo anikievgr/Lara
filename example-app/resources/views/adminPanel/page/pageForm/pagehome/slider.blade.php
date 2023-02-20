@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    Слайдер
+@endsection
 @section('sliderForm')
       active
     @endsection

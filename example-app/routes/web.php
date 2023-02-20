@@ -31,7 +31,7 @@ Route::resource('title', 'App\Http\Controllers\AdminPanel\FirstTitleTetxControll
 Route::resource('text', 'App\Http\Controllers\AdminPanel\TetxController');
 Route::resource('video', 'App\Http\Controllers\AdminPanel\VideoController');
 Route::resource('image', 'App\Http\Controllers\AdminPanel\ImageController');
-Route::resource('adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
+
 Route::resource('adminIncubirovanetext', 'App\Http\Controllers\AdminPanel\IncubirovaneTextController');
 Route::resource('mailAdd', \App\Http\Controllers\AddUserController::class);
 
@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::prefix('/pageHome')->group(function () {
+        Route::resource('/adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
         Route::get('/openAdminSlider', 'App\Http\Controllers\AdminPanel\SliderController@slider')->name('adminSlider');
         Route::prefix('adminSlider')->group(function () {
             Route::get('bd/delete{id}', 'App\Http\Controllers\AdminPanel\SliderController@delete')->name('bd.delete');
@@ -77,7 +78,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 });
-Route::get('/adminIncubirovanie', 'MainController@adminIncubirovane');
+Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
 Route::get('/adminContact', 'MainController@adminContact');
 //формы
 Route::post('/form', 'FormController@store')->name('form');

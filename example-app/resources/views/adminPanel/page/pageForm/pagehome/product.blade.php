@@ -1,5 +1,8 @@
 @extends('../../../adminPanel/app')
 @section('product')  <li class='menu active' > @endsection
+    @section('name')
+        Продукты
+    @endsection
 @section('scriptAdd')
 
         <script src="{{asset('style/pageAdmin/plugins/table/datatable/datatables.js')}}"></script>

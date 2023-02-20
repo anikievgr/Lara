@@ -1,0 +1,21 @@
+.log_out{
+    position: absolute;
+    width: 85px;
+    height: 37px;
+        border: 0;
+    background-color: #4361ee;
+    color: white;
+    border-radius: 5px;
+    transition-duration: 500ms;
+    top: 6.5px;
+
+}
+.log_out:hover{
+    transition-duration: 500ms;
+    background-color: rgba(67, 97, 238, 0.6);
+}
+.formLog{
+position: relative;
+    width: 85px;
+    height: 37px;
+}

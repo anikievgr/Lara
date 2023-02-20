@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    Новости
+@endsection
 @section('news')
       active
     @endsection

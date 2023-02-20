@@ -1,5 +1,11 @@
-.menu
+.log_out{
+    width: 40px;
+    height: 56px;
 
+}
+body{
+    color: red;
+}
 .sliderMainOff{
 
     width: 80%;

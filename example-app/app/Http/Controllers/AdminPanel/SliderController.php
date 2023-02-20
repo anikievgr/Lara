@@ -60,11 +60,17 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, databaseInreface $fitch)
+    public function store(Request $request)
     {
-
-        $model = Slide::all();
-      $fitch->add($request, $model);
+        $path = $request->file('image')->store('uploads', 'public');
+        //return view('form', ['path' => $path]);
+        //$items = $request->input('title');
+        $items = [
+            'title' => $request->input('title'),
+            'subtitle' => $request->input('subtitle'),
+            'image' => $path,
+        ];
+        Slide::create($items);
         return redirect()->back();
     }
 

@@ -1,4 +1,7 @@
 @extends('../../../adminPanel/app')
+@section('name')
+    Галлерея
+@endsection
 @section('sliderForm')
       active
     @endsection
@@ -30,7 +33,7 @@
                         <div id="slider" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Слайдер</h4>
@@ -57,15 +60,15 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                           </div>
 
-   
+
                         <div id="text1" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Текст №1</h4>
@@ -87,13 +90,13 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                          </div>
                         <div id="text2" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Текст №2</h4>
@@ -115,13 +118,13 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                          </div>
                         <div id="card1" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Карточка №1</h4>
@@ -144,12 +147,12 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                          </div>
                         <div id="gallery" class="col-lg-12 col-12  layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Галлерея</h4>
@@ -178,7 +181,7 @@
                         <div id="card2" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Карточка №2</h4>
@@ -201,13 +204,13 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                          </div>
                         <div id="news" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>Новости</h4>
@@ -233,13 +236,13 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                           </div>
                         <div id="company" class="col-lg-12 layout-spacing">
                            <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
-                                <div class="widget-header">                                
+                                <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                             <h4>О компании</h4>
@@ -269,8 +272,8 @@
                                 </div>
                             </div>
                          </div>
-                            
-                            
+
+
                           </div>
                     </div>
                 </div>
