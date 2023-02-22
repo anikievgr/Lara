@@ -4,16 +4,6 @@ var liActive = document.querySelectorAll('.active');
 
 
 
-// submenu.forEach((element) => {
-//     element.forEach((element) => {
-//         console.log(element)
-//     });
-//
-//
-//
-//     // console.log(element.children)
-//
-// });
 function navbar(){
 
 
