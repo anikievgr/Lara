@@ -124,6 +124,9 @@
       <path value="$PROJECT_DIR$/example-app/vendor/laravel/pint" />
       <path value="$PROJECT_DIR$/example-app/vendor/laravel/breeze" />
       <path value="$PROJECT_DIR$/example-app/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/example-app/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/example-app/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/example-app/vendor/laravel/telescope" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

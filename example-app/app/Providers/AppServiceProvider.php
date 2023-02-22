@@ -8,6 +8,7 @@ use App\Services\DateBase\database;
 use App\Services\DateBase\databaseInreface;
 use App\Services\News\CreateNewNews;
 use App\Services\News\NewNews;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +34,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrapFive('vendor.pagination.bootstrap-5');
     }
 }

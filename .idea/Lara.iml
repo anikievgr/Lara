@@ -120,6 +120,9 @@
       <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/laravel/pint" />
       <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/laravel/breeze" />
       <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/laravel/serializable-closure" />
+      <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/maximebf/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/barryvdh/laravel-debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/example-app/vendor/laravel/telescope" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

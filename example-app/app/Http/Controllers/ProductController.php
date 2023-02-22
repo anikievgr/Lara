@@ -18,12 +18,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(100);
+        $products = Product::paginate(10);
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];
-        $orders = Order::all();
+        $orders = Order::paginate(10);
+
         $orderTable = [];
+
 
 
         foreach ($users as $key => $user){

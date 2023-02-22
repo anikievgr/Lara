@@ -16,31 +16,16 @@ class GalleryController extends Controller
       $img =[];
 
         $gallerea = array();
-          $catygories = Category::all();
+          $catygories = Category::with('posts')->get();
            $items = $catygories;
-             //dd($gallerea);
-        if ($catygories->count() == 0) {
-            $gallerea = [];
-            $items = [];
-            //dd($gallerea);
-        }else{
 
-        foreach ($catygories as $key => $catygories){
-
-            foreach($catygories->posts as $key=> $image){
-
-                $img[$image['id']] = $image['image'];
-            }
-
-            $gallerea[$catygories['title']]['id'] = $catygories['id'];
-            $gallerea[$catygories['title']]['id'] = $catygories['id'];
-            $gallerea[$catygories['title']]['image'] = $img;
-            $img = [];
-        }
-
-    //dd($gallerea);
-    }
-      return view('adminPanel/page/pageForm/pagehome/galerea', compact('items', 'gallerea'));
+//        if ($catygories->count() == 0) {
+//            $gallerea = [];
+//            $items = [];
+//            //dd($gallerea);
+//        }
+     // dd($catygories);
+      return view('adminPanel/page/pageForm/pagehome/galerea', compact('items', 'catygories'));
     }
     /**
      * Display a listing of the resource.
