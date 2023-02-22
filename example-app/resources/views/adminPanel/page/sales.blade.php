@@ -13,7 +13,7 @@
             <script src="{{asset('../style/pageAdmin/assets/js/dashboard/dash_2.js')}}"></script>
     @show
 @section('content')
-           <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
 
                 <div class="row layout-top-spacing">
@@ -323,9 +323,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                             </div>
                         </div>
                     </div>
@@ -607,7 +607,7 @@
                                                 <td><div class="td-content pricing"><span class="">$56.07</span></div></td>
                                                 <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td><div class="td-content customer-name"><img src="../style/PageAdmin/assets/img/90x90.jpg" alt="avatar"><span>Andy King</span></div></td>
                                                 <td><div class="td-content product-brand text-warning">Nike Sport</div></td>
@@ -621,7 +621,7 @@
                                                 <td><div class="td-content product-invoice">#66894</div></td>
                                                 <td><div class="td-content pricing"><span class="">$126.04</span></div></td>
                                                 <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                                            </tr>                                            
+                                            </tr>
                                             <tr>
                                                 <td><div class="td-content customer-name"><img src="../style/PageAdmin/assets/img/90x90.jpg" alt="avatar"><span>Ryan Collins</span></div></td>
                                                 <td><div class="td-content product-brand text-warning">Sport</div></td>
@@ -649,7 +649,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-table-three">
@@ -715,7 +715,7 @@
                         </div>
                     </div>
 
-                    
+
 
                 </div>
 
@@ -728,5 +728,4 @@
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
                 </div>
             </div>
-        </div>
  @endsection

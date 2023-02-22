@@ -14,10 +14,9 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-<div id="content" class="main-content">
-            <div class="container">
+
+
                 @if ($items == ['null'])
-                        <div class="container">
                             <div class="row layout-top-spacing">
                                 <div id="slider-create" class="col-lg-12 layout-spacing">
                                 <div class="col-lg-12 col-12 layout-spacing">
@@ -52,7 +51,7 @@
 
                                 </div>
                             </div>
-                        </div>
+
                 @else
                     @if ($id == '')
                      <div id="navSection" data-spy="affix" class="nav  sidenav">
@@ -65,12 +64,9 @@
                     </div>
                 @endif
 
-                <div class="container">
+
                     <div class="row layout-top-spacing">
-
-
-
-                                @if ($id == '')
+                        @if ($id == '')
                                     <div id="slider-create" class="col-lg-12 layout-spacing">
                                         <div class="col-lg-12 col-12 layout-spacing">
                                             <div class="statbox widget box box-shadow">
@@ -188,43 +184,42 @@
                                 </div>
                             </div>
                                 @else
-                                  <div id="slider-update" class="col-lg-12 layout-spacing">
-                                        <div class="col-lg-12 col-12 layout-spacing">
-                                            <div class="statbox widget box box-shadow">
-                                                <div class="widget-header">
+                            <div id="slider-update" class="col-lg-12 layout-spacing">
+                                <div class="col-lg-12 col-12 layout-spacing">
+                                    <div class="statbox widget box box-shadow">
+                                        <div class="widget-header">
                                                     <div class="row">
                                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                                             <h4>Обновить слайд</h4>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                    <div class="widget-content widget-content-area">
-                                                                    <img class="rounded d-block w-100" src="{{asset('/storage/'.$items['image'])}}">
-                                                        <form method="post" action="{{route('bd.update',$id)}}"enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                            @method('PUT')
-                                                            <div class="form-group mb-4">
-                                                                <label for="exampleFormControlInput2">Текст №1</label>
-                                                                <input type="text" name="title" class="form-control" id="h-text1" aria-describedby="h-text1" value="{{$items['title']}}"">
-                                                            </div>
-                                                            <div class="form-group mb-4">
-                                                                <label for="exampleFormControlInput2">Текст №2</label>
-                                                                <input type="text" name="subtitle" class="form-control" id="h-text1" aria-describedby="h-text1" value="{{$items['subtitle']}}"">
-                                                            </div>
-                                                            <div class="form-group mb-4 mt-3">
-                                                                <label for="exampleFormControlFile1">Загрузите картинку</label>
-                                                                <input type="file" name="image" value="" class="form-control-file"  id="exampleFormControlFile1">
-                                                            </div>
-                                                            <input type="submit"  class="mt-4 mb-4 btn btn-primary">
-                                                        </form>
-                                                    </div>
-
+                                        <div class="widget-content widget-content-area">
+                                                    <img class="rounded d-block w-100" src="{{asset('/storage/'.$items['image'])}}">
+                                                    <form method="post" action="{{route('bd.update',$id)}}"enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                @method('PUT')
+                                                                <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlInput2">Текст №1</label>
+                                                                    <input type="text" name="title" class="form-control" id="h-text1" aria-describedby="h-text1" value="{{$items['title']}}">
+                                                                </div>
+                                                                <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlInput2">Текст №2</label>
+                                                                    <input type="text" name="subtitle" class="form-control" id="h-text1" aria-describedby="h-text1" value="{{$items['subtitle']}}">
+                                                                </div>
+                                                                <div class="form-group mb-4 mt-3">
+                                                                    <label for="exampleFormControlFile1">Загрузите картинку</label>
+                                                                    <input type="file" name="image" value="" class="form-control-file"  id="exampleFormControlFile1">
+                                                                </div>
+                                                                <input type="submit"  class="mt-4 mb-4 btn btn-primary">
+                                                            </form>
+                                                </div>
+                                    </div>
+                                </div>
                             </div>
-                         </div>
-
-
-                          </div>
+                    </div>
                                 @endif
+
                 @endif
 
 
@@ -238,8 +233,4 @@
 
 
 
-                        </div>
-                </div>
-            </div>
-  </div>
  @endsection

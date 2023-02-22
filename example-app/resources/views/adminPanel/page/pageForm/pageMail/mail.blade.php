@@ -22,7 +22,7 @@
     <script src="{{asset('style/pageAdmin/assets/js/apps/custom-mailbox.js')}}"></script>
    @endsection
 @section('content')
- <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12">
@@ -292,6 +292,6 @@
                                                 </div>
                                             </div>
                                         </div>
-        </div>
+
 
  @endsection

@@ -25,8 +25,7 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-    <div id="content" class="main-content">
-            <div class="container">
+
                     @if ($gallerea!=[])
                      <div id="navSection" data-spy="affix" class="nav  sidenav">
                         <div class="sidenav-content">
@@ -183,16 +182,17 @@
                                                     @foreach ($item['image']  as $key=> $image)
                                                     <div class="mb-3 pics animation all {{$item['id']}}">
                                                         <a href="" data-toggle="modal" data-target="#d{{$key}}"><img class="img-fluid ml-2 mr-2 mainFOTO rounded"  src="{{asset('/storage/'.$image)}}" alt="Card image cap">
-                                                        <div id="d{{$key}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-sm">
-                                                                <div class="modal-content p-1">
-                                                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                                    <h4>Вы точно хотите удалить?</h4>
-                                                                </div>
-                                                                <a href="{{route('adminGalerea.show', $key)}}" class="btn btn-primary mb-2">Да</a>
+                                                            <div id="d{{$key}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm">
+                                                                    <div class="modal-content p-1">
+                                                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                                        <h4>Вы точно хотите удалить?</h4>
+                                                                    </div>
+                                                                    <a href="{{route('adminGalerea.show', $key)}}" class="btn btn-primary mb-2">Да</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                     @endforeach
 
@@ -252,6 +252,4 @@
                             @endif
 
 
-                    </div>
-  </div>
 @endsection

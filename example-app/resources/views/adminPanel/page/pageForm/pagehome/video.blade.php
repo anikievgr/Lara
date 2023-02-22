@@ -2,7 +2,7 @@
 @section('name')
     Видео
 @endsection
-@section('process')
+@section('video')
       active
     @endsection
 @section('scriptAdd')
@@ -25,12 +25,7 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-    <div class="main-container" id="container">
 
-        <!--  END SIDEBAR  -->
-
-        <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content">
             <div class="container">
                 <div class="container">
 
@@ -45,7 +40,7 @@
                     <div class="row layout-top-spacing">
                         <div id="slider-create" class="col-lg-12 layout-spacing" >
                                         <div class="col-lg-12 col-12 layout-spacing">
-                                            <div class="statbox widget box box-shadow"  style="width: 500px">
+                                            <div class="statbox widget box box-shadow"  style="">
 
                                                 <div class="widget-header">
                                                     <div class="row">
@@ -93,8 +88,5 @@
                     </div>
                 </div>
 
-                </div>
-                <!--  END CONTENT AREA  -->
 
-    </div>
  @endsection

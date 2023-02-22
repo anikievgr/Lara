@@ -77,9 +77,10 @@ Route::prefix('admin')->group(function () {
 
     });
 });
+    Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
+    Route::get('/adminContact', 'MainController@adminContact');
 });
-Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
-Route::get('/adminContact', 'MainController@adminContact');
+
 //формы
 Route::post('/form', 'FormController@store')->name('form');
 

@@ -17,31 +17,26 @@
 @section('headerAddLink')
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-    
-    
+
+
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-    <div class="main-container" id="container">
 
-        <!--  END SIDEBAR  -->
-
-        <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content">
             <div class="container">
                 <div class="container">
 
                     <div id="navSection" data-spy="affix" class="nav  sidenav">
                         <div class="sidenav-content">
-                            
+
                             <a href="#tabsSimple" class="active nav-link">Simple</a>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="row layout-top-spacing">
-<div class="col-lg-12 col-12 layout-spacing" >
-                            <div class="statbox widget box box-shadow" style="width: 500px">
+                        <div class="col-lg-12 col-12 layout-spacing" >
+                            <div class="statbox widget box box-shadow" style="">
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -50,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="widget-content widget-content-area simple-pills" >
-                                    
+
                                   <form method="post" action="{{route('text.store')}}" >
                                     @csrf
                                                 <div class="form-group mb-4">
@@ -61,7 +56,7 @@
                                                     <label for="formGroupExampleInput2">Текст</label>
                                                     <textarea style="min-height: 100px" name="text" class="form-control  "  id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
-                                               
+
                                                 <input type="submit"  class="btn btn-primary">
                                             </form>
 
@@ -69,10 +64,10 @@
                                 </div>
                             </div>
                         </div>
-                        
-             
-                            
-                     <div class="row layout-top-spacing">
+
+
+
+
 
                         <div id="tabsSimple" class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
@@ -90,14 +85,14 @@
                                             </li>
                                         @foreach($textT as $item)
                                         <li class="nav-item">
-                                            <a class="nav-link text-truncate" id="home-tab" data-toggle="tab" href="#k{{$item['id']}}" role="tab"style="max-width: 100px;" aria-controls="home" aria-selected="true">{{$item['title']}}</a>
+                                            <a class="nav-link text-truncate" id="home-tab" data-toggle="tab" href="#k{{$item['id']}}" role="tab"style="" aria-controls="home" aria-selected="true">{{$item['title']}}</a>
                                         </li>
                                         @endforeach
-                                     
-                                        
+
+
                                     </ul>
                                     <div class="tab-content" id="simpletabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" style="width: 500px" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="tab-pane fade show active" id="pills-home" style="" role="tabpanel" aria-labelledby="home-tab">
                                              <form method="post" action="{{route('title.update', 1)}}" >
                                                  @csrf
                                                  @method('PUT')
@@ -115,7 +110,7 @@
                                                     <td class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></td>
                                                     </a>
                                                 </div>
-                                            </form>  
+                                            </form>
                                         </div>
                                         <div id="f" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
@@ -128,9 +123,9 @@
                                             </div>
                                         </div>
                                         @foreach ($textT as $item)
-                                            
-                                        
-                                        <div class="tab-pane fade show " id="k{{$item['id']}}" style="width: 500px" role="tabpanel" aria-labelledby="home-tab">
+
+
+                                        <div class="tab-pane fade show " id="k{{$item['id']}}" style="" role="tabpanel" aria-labelledby="home-tab">
                                              <form method="post" action="{{route('text.update', $item['id'])}}" >
                                                  @csrf
                                                  @method('PUT')
@@ -142,15 +137,15 @@
                                                     <label for="formGroupExampleInput2">Текст</label>
                                                      <textarea style="min-height: 100px" name="text" class="form-control  "  id="exampleFormControlTextarea1" rows="3">{{$item['text']}}</textarea>
                                                 </div>
-             
+
                                                  <div class="d-flex justify-content-between">
                                                     <input type="submit"  class="btn btn-primary">
                                                      <a href="" data-toggle="modal" data-target="#h{{$item['id']}}">
                                                     <td class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></td>
                                                     </a>
                                                 </div>
-                                                
-                                            </form>  
+
+                                            </form>
                                         </div>
                                         <div id="h{{$item['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
@@ -163,26 +158,23 @@
                                             </div>
                                         </div>
                                         @endforeach
-                         
-                                       
-                                       
-                                        
-                                       
-                                    </div>
+
+
+
+
+
+
                                 </div>
                             </div>
                         </div>
 
-                        
+
 
                     </div>
-                    
-                     
+
+
                     </div>
                 </div>
-                
-                </div>
-                <!--  END CONTENT AREA  -->
 
-    </div>
+
  @endsection

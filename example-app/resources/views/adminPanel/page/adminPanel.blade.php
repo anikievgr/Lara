@@ -3,9 +3,9 @@
      active
     @endsection
 @section('headerAddLink')
+    <link href="{{asset('style/pageAdmin/assets/css/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
 
-         <link href="{{asset('style/pageAdmin/assets/css/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />
     @show
 @section('scriptAdd')
  <script src="{{asset('style/pageAdmin/plugins/apex/apexcharts.min.js')}}"></script>
@@ -15,7 +15,7 @@
 
 
         <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing">
 

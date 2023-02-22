@@ -32,8 +32,9 @@
         <link href="{{asset('style/pageAdmin/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
     @endsection
 @section('content')
+
       @if( $serch['status'] != 'on')
-            <div id="content" class="main-content">
+
 
             <div class="layout-px-spacing">
 
@@ -184,7 +185,7 @@
 
                             </div>
                         </div>
-                    </div>
+
 
                     <!-- Modal -->
                     @foreach($products as $product)
@@ -246,7 +247,7 @@
 
         </div>
         @else
-            <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
 
                 <div class="row layout-top-spacing" id="cancel-row">
@@ -310,6 +311,6 @@
 
             </div>
 
-        </div>
+
         @endif
 @endsection

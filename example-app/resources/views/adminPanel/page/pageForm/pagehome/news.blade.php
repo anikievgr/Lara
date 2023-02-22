@@ -13,11 +13,11 @@
 @section('headerAddLink')
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-    <div id="content" class="main-content">
-        <div class="container">
+
             <div id="navSection" data-spy="affix" class="nav  sidenav">
                 <div class="sidenav-content">
                     <a href="#create-news" class=" nav-link">Создать запись</a>
@@ -180,6 +180,5 @@
 
                 </div>
             </div>
-        </div>
-    </div>
+
  @endsection

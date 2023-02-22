@@ -14,14 +14,7 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-   <div class="main-container" id="container">
 
-        <!--  END SIDEBAR  -->
-
-        <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content">
-            <div class="container">
-                <div class="container">
 
                     <div id="navSection" data-spy="affix" class="nav  sidenav">
                         <div class="sidenav-content">
@@ -32,8 +25,8 @@
                     </div>
 
                     <div class="row layout-top-spacing">
-<div class="col-lg-12 col-12 layout-spacing" >
-                            <div class="statbox widget box box-shadow" style="width: 500px">
+                        <div class="col-lg-12 col-12 layout-spacing" >
+                            <div class="statbox widget box box-shadow" style="">
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -64,7 +57,7 @@
 
 
 
-                     <div class="row layout-top-spacing">
+
 
                         <div id="tabsSimple" class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
@@ -82,14 +75,14 @@
                                             </li>
                                         @foreach($text as $item)
                                         <li class="nav-item">
-                                            <a class="nav-link text-truncate" id="home-tab" data-toggle="tab" href="#k{{$item['id']}}" role="tab"style="max-width: 100px;" aria-controls="home" aria-selected="true">{{$item['title']}}</a>
+                                            <a class="nav-link text-truncate" id="home-tab" data-toggle="tab" href="#k{{$item['id']}}" role="tab"style="" aria-controls="home" aria-selected="true">{{$item['title']}}</a>
                                         </li>
                                         @endforeach
 
 
                                     </ul>
                                     <div class="tab-content" id="simpletabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" style="width: 500px" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="tab-pane fade show active" id="pills-home" style="" role="tabpanel" aria-labelledby="home-tab">
                                              <form method="post" action="{{route('adminIncubirovane.update', 1)}}" enctype="multipart/form-data">
                                                  @csrf
                                                  @method('PUT')
@@ -128,7 +121,7 @@
                                         @foreach ($text as $item)
 
 
-                                        <div class="tab-pane fade show " id="k{{$item['id']}}" style="width: 500px" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="tab-pane fade show " id="k{{$item['id']}}" style="" role="tabpanel" aria-labelledby="home-tab">
                                              <form method="post" action="{{route('adminIncubirovanetext.update', $item['id'])}}" >
                                                  @csrf
                                                  @method('PUT')
@@ -176,11 +169,5 @@
                     </div>
 
 
-                    </div>
-                </div>
 
-                </div>
-                <!--  END CONTENT AREA  -->
-
-    </div>
 @endsection
