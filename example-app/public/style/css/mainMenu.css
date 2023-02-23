@@ -1,0 +1,43 @@
+.mainMenu{
+
+    overflow: hidden;
+    visibility: hidden;
+    height: 0px;
+    opacity: 0;
+    display: flex;
+    border: 1px solid #888ea8;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    top: 0px;
+    left: 33px;
+    z-index: 3;
+    width: auto;
+    padding: 5px;
+    flex-direction: column;
+    transition-duration: 400ms;
+}
+ .active{
+     opacity: 1;
+     transition-duration: 500ms;
+     top: -70px;
+     visibility: visible;
+    height: 104px;
+
+}
+.mainMenu button{
+    width: 100px;
+    margin: 3px;
+    border: 1px solid #4361ee ;
+    background-color: white;
+    border-radius: 5px;
+    color: #4361ee ;
+    transition-duration: 500ms;
+    z-index: 2;
+}
+
+.mainMenu button:hover{
+    transition-duration: 500ms;
+    color: white;
+    background-color:   #4361ee ;
+}

@@ -68,34 +68,18 @@ class AddUserController extends Controller
     public function show($id)
     {
      $userAdd = Mail::find($id);
-        $numAlpha = 4; $numDigit = 2; $numNonAlpha = 2;
-        $listAlpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $listDigits = '0123456789';
-        $listNonAlpha = ',;:!?.$/*-+&@_+;./*&?$-!,';
-        $password ='';
-        $arr = array(
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-        );
 
-        for ($i = 0; $i < 8; $i++) {
-            $password .= $arr[random_int(0, count($arr) - 1)];
-        }
         $password= 551151;
-        $userAdd['password'] =  Hash::make($password );
-       // dd($userAdd, $userAdd['telephone']);
-
         $user = User::create([
             'name' =>  $userAdd['name'],
             'email' =>  $userAdd['mail'],
             'password' => Hash::make($password),
 
         ]);
+
         $userAdd->delete();
 
+        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
 
 
         return redirect()->back();

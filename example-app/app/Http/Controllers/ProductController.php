@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Services\serch\Search;
+use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use function Pest\Laravel\get;
@@ -22,31 +24,20 @@ class ProductController extends Controller
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];
-        $orders = Order::paginate(10);
+        $orders = Order::with('user')->paginate(10);
 
         $orderTable = [];
 
 
 
-        foreach ($users as $key => $user){
 
-            foreach($user->orders as $key=> $order){
-                $UserOrders[] = $order;
-            }
-
-            $orderTable[] =[
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'order' =>$UserOrders ,
-
-            ];
-
-            $UserOrders = [];
-        }
-        $orders = $orderTable;
-        $serch['status'] = 'off';
-
-        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'serch'));
+        $request = [
+           'name' => 'null',
+            'search' => null,
+          "dateOne" => null,
+          "dateTwo" => null
+        ];
+        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'request'));
 
     }
 
@@ -126,81 +117,16 @@ class ProductController extends Controller
     {
 
     }
-    public function search(Request $request){
-        $orders = [];
-        $serch = [];
-        $serch['status'] = 'on';
-        $chek = strpos($request['serch'], '@');
-       //dd($request->all());
-        if ($request->serch == null ){
-            $users = User::all();
-            if ($request->serchT != null) {
-
-
-                foreach ($users as $user){
-                        foreach ($user->orders->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']) as $order){
-                            $orders[] = $order;
-                        }
-                }
-
-            }else{
-                foreach ($users as $user){
-                    foreach ($user->orders->where('date', '>=', $request['serchO']) as $order){
-                        $orders[] = $order;
-                    }
-                }
-            }
-
-        }else{
-            if (($request->serchO != null) && ($request->serchT == null)){
-                $request->serchT  = date('Y')+1;
-                $request['serchT']  =$request->serchT .'-'.date("m-d");
-
-            }
-        if ($chek == true){
-
-            $d = Order::where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT'])->with(['user' => function($query) use ($request){
-                $query->where('email', 'like', '%'.$request['serch'].'%');
-            }])->get();
-            foreach($d as $dd){
-                if ($dd->user != null) {
-                    $id = $dd->user->id;
-                }
-            }
-
-        }else{
-            $chek =  preg_replace('![A-Z|А-Я]!u','-',$request['serch']);
-            $chek = substr_count($chek, '-');
-            //dd($request['serch']);
-            if ($chek >= 2){
-                $d = Order::where('date', '>=', $request['serchO'])
-                    ->where('date', '<=', $request['serchT'])
-                    ->with(['user' => function($query) use ($request){
-                        $query->where('name', 'like', '%'.$request['serch'].'%');
-                    }])
-                    ->get();
-
-                foreach($d as $dd){
-                    if ($dd->user != null) {
-                        $id = $dd->user->id;
-                    }
-                }
-
-            }
-        }
-            $user = User::find($id);
-            $orders = $user->orders;
-        }
-
-//dd($orders);
-
-        $serch['serch'] =  $request->all();
-
-        $products = [];
-//dd($products);
-        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'serch'));
-
-
-
+    public function search(Request $request, SearchInterface $search){
+       $orders =  $search->serch($request, \auth()->user()->role);
+        $products = Product::paginate(10);
+        $request = [
+            'name' => array_key_first( $request->all()),
+            'search' => $request[array_key_first( $request->all())],
+            "dateOne" =>  $request['dateOne'],
+            "dateTwo" => $request['dateTwo']
+        ];
+//dd($request->all());
+        return view('adminPanel/page/pageForm/pagehome/product', compact( 'orders', 'products', 'request'));
     }
 }

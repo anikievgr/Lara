@@ -18,11 +18,11 @@ class UserObserver
      */
     public function created(User $user)
     {
-
-        $password = Str::random(8);
-        $user->password = Hash::make($password);
-        $user->save();
-        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+//
+//        $password = Str::random(8);
+//        $user->password = Hash::make($password);
+//        $user->save();
+//        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
     }
 
     /**
