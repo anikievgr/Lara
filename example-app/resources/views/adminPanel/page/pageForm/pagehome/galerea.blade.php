@@ -136,7 +136,7 @@
                                                     @foreach ($item->posts as $key=> $image)
 
                                                     <div class="mb-3 pics animation all {{$item['id']}}">
-                                                        <a href="" data-toggle="modal" data-target="#d{{$image['id']}}"><img class="img-fluid ml-2 mr-2 mainFOTO rounded"  src="{{asset('/storage/'.$image['image'])}}" alt="Card image cap">
+                                                        <a href="" data-toggle="modal" data-target="#d{{$image['id']}}"><img class="img-fluid ml-2 mr-2 mainFOTO rounded" style="max-width: 200px"  src="{{asset('/storage/'.$image['image'])}}" alt="Card image cap">
                                                             <div id="d{{$image['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-sm">
                                                                     <div class="modal-content p-1">

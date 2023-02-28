@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="widget-content widget-content-area">
-                                        <img src="{{asset('/storage/'.$updateNews['image'])}}">
+                                        <img src="{{asset('/storage/'.$updateNews['image'])}}" style="max-width: 241px; max-height: 241px;">
                                         <form method="post" action="{{route('openAdminNewsGroup.update', $updateNews['id'])}} "enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')

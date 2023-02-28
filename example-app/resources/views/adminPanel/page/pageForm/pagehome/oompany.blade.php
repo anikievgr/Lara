@@ -100,7 +100,7 @@
                                          </div>
                                      </div>
                                      <div class="widget-content widget-content-area">
-                                         <img class="rounded d-block w-100" src="{{asset('/storage/'.$ocompany[0]['image'])}}">
+                                         <img class="rounded d-block w-100" style="max-width: 730px; " src="{{asset('/storage/'.$ocompany[0]['image'])}}">
                                          <form method="post" action="{{route('company.store')}}" enctype="multipart/form-data">
                                              {{ csrf_field() }}
                                              <div class="form-group mb-4">

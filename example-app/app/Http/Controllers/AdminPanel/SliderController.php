@@ -21,12 +21,11 @@ class SliderController extends Controller
       $id = 'null';
       //dd($id,$items, $fierstItems);
     }else{
-      $fierstItems = $items[0];
       //dd($fierstItems['id']);
       $items = $items->slice(1);
       $id = '';
     }
-      return view('adminPanel/page/pageForm/pagehome/slider',compact('items','fierstItems','id'));
+      return view('adminPanel/page/pageForm/pagehome/slider',compact('items','id'));
     }
     /**
      * Display a listing of the resource.
@@ -37,9 +36,9 @@ class SliderController extends Controller
     {
         $id = $request->input('id');
         $items = Slide::query()->find($id);
-        $fierstItems = [];
+
          //dd($items);
-        return view('adminPanel/page/pageForm/pagehome/slider',compact('items','fierstItems', 'id'));
+        return view('adminPanel/page/pageForm/pagehome/slider',compact('items', 'id'));
     }
 
     /**

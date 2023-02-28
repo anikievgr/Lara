@@ -109,16 +109,10 @@
                                                 </div>
                                                     <div id="carouselExampleControls_1" class="carousel slide"  data-ride="carousel" data-pause="hover">
                                                     <div class="carousel-inner">
-                                                        <a class="carousel-item active" href="{{route('bd.index',['id' => $fierstItems['id']] )}}">
-                                                                <img class="rounded d-block w-100" src="{{asset('/storage/'.$fierstItems['image'])}}">
-                                                                <div class="carousel-caption d-none d-md-block">
-                                                                    <h5 class="text-light ">{{$fierstItems['title']}}</h5>
-                                                                    <p class="text-light">{{$fierstItems['subtitle']}}</p>
-                                                                </div>
-                                                            </a>
+
                                                         @foreach ($items as $item)
-                                                            <a class="carousel-item" href="{{route('bd.index',['id' => $item['id']] )}}">
-                                                            <img class="rounded d-block w-100" src="{{asset('/storage/'.$item['image'])}}" >
+                                                            <a  @class(['carousel-item', 'active' => $loop->first]) href="{{route('bd.index',['id' => $item['id']] )}}">
+                                                            <img class="rounded d-block " style="max-width: 873px"  src="{{asset('/storage/'.$item['image'])}}" >
                                                             <div class="carousel-caption d-none d-md-block">
                                                                     <h5 class="text-light ">{{$item['title']}}</h5>
                                                                     <p class="text-light">{{$item['subtitle']}}</p>
@@ -151,25 +145,16 @@
                                         </div>
                                         <div id="carouselExampleControls" class="carousel slide" data-pause="hover">
                                             <div class="carousel-inner">
-                                                <a class="carousel-item active" href="{{route('bd.delete', $fierstItems['id'])}}">
-                                                        <img class="rounded d-block w-100" src="{{asset('/storage/'.$fierstItems['image'])}}">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                            <h5 class="text-light ">{{$fierstItems['title']}}</h5>
-                                                            <p class="text-light">{{$fierstItems['subtitle']}}</p>
-                                                        </div>
-                                                    </a>
+
                                                 @foreach ($items as $item)
-                                                    <a class="carousel-item" href="{{route('bd.delete', $item['id'])}}">
-                                                    <img class="rounded d-block w-100" src="{{asset('/storage/'.$item['image'])}}" >
+                                                    <a @class(['carousel-item', 'active' => $loop->first]) href="{{route('bd.delete', $item['id'])}}">
+                                                    <img class="rounded d-block " style="max-width: 873px" src="{{asset('/storage/'.$item['image'])}}" >
                                                     <div class="carousel-caption d-none d-md-block">
                                                             <h5 class="text-light ">{{$item['title']}}</h5>
                                                             <p class="text-light">{{$item['subtitle']}}</p>
                                                         </div>
                                                     </a>
                                                 @endforeach
-
-
-
                                             </div>
                                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
