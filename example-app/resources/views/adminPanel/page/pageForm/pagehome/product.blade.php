@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/datatables.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('style/css/mainMenu.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/dt-global_style.css')}}">
-        <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css" rel="stylesheet')}}" type="text/css" />
+        <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css" ')}}"  rel="stylesheet" type="text/css" />
         <link href="{{asset('style/pageAdmin/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
     @endsection
 @section('content')
@@ -91,7 +91,7 @@
                         <div class="widget-content widget-content-area br-6">
 
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
-                                <form method="post"  action="{{route('orderA.search')}}">
+                                <form method="GET"  action="{{route('orderA.search')}}">
                                     @csrf
 
                                     <div class="form-group d-flex justify-content-around  pt-2" >
@@ -154,7 +154,12 @@
                                 </tbody>
                             </table>
                             <div class="w-90">
-                                {{$orders->links()}}
+                                @if($request['search'] == '')
+                                    {{$products->appends(['product' => '', 'dateOne' =>$request['dateOne'], 'dateTwo' => $request['dateTwo']])->links()}}
+                                @else
+                                    {{$products->appends([$request['name'] => $request['search'], 'dateOne' =>$request['dateOne'], 'dateTwo' => $request['dateTwo']])->links()}}
+
+                                @endif
                             </div>
                            </div>
 
@@ -200,9 +205,10 @@
                             </div>
                         </div>
 
-
+                    </div>
                     <!-- Modal -->
                     @foreach($products as $product)
+
                     <div class="modal fade login-modal" id="d{{$product['id']}}" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -259,7 +265,7 @@
 
             </div>
 
-        </div>
+
 
 
 

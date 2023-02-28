@@ -1,4 +1,7 @@
 @extends('../../../shop/app')
+@section('name')
+    Продукты
+@endsection
 @section('product')
     active
 @endsection
@@ -28,7 +31,7 @@
 
 @endsection
 @section('content')
-    <div id="content" class="main-content">
+
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing" id="cancel-row">
@@ -109,5 +112,5 @@
 
         </div>
 
-    </div>
+
 @endsection

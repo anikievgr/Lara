@@ -96,7 +96,7 @@ class TrueOrderController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *Too few arguments to function App\Http\Controllers\ProductController::search(), 2 passed in /var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Controller.php on line 54 and exactly 3 expected
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response

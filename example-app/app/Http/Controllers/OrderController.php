@@ -6,8 +6,10 @@ use App\Mail\User\Massage;
 use App\Mail\User\MassageOrder;
 use App\Models\Mail;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\TrueOrders;
 use App\Models\User;
+use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,15 +21,17 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = User::find(auth()->id());
-        $mainOrders = $user->orders;
-        $serch = [];
-        $serch['serch']['serchO'] = '';
-        $serch['serch']['serchT'] = '';
-        $serch['serch']['serch'] = '';
-        $serch['status'] = 'off';
+        $mainOrders = Order::where('user_id', '=', auth()->id())->paginate(10);
+       // dd($mainOrders);
+
         //dd(1);
-        return view('shop/pageShop/order' , compact('mainOrders', 'serch'));
+        $request = [
+            'name' => 'null',
+            'search' => null,
+            "dateOne" => null,
+            "dateTwo" => null
+        ];
+        return view('shop/pageShop/order' , compact('mainOrders',  'request'));
 
     }
 
@@ -115,47 +119,19 @@ class OrderController extends Controller
     {
         //
     }
-    public function search(Request $request){
-        $orders = [];
-        //dd($request->all());
-        $user = User::find(auth()->id());
-
-        $serch['status'] = 'on';
-        $serch['serch'] = $request->all();
-        //dd($request->all());
-        if ($request->serch == null ){
-
-            if ($request->serchT != null) {
-                $orders = $user->orders->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']);
-
-                //dd($orders);
-
-            }else{
-
-                $orders = $user->orders->where('date', '>=', $request['serchO']);
-                //dd($orders);
-            }
-
-        }else{
-
-            if (($request->serchO == null) && ($request->serchT == null)){
-                $orders = $user->orders->where('product', '=', $request['serch']);
-                //dd($orders);
-            }else{
-            if ($request->serchT == null){
-                $orders = $user->orders->where('product', '=', $request['serch'])->where('date', '>=', $request['serchO']);
-                //dd($orders);
-            }else{
-                $orders = $user->orders->where('product', '=', $request['serch'])->where('date', '>=', $request['serchO'])->where('date', '<=', $request['serchT']);
-                //dd($orders);
-            }
-            }
-
-        }
-
-        $mainOrders = $orders;
+    public function search(Request $request, SearchInterface $search){
+       // dd($request->all());
+        $mainOrders =  $search->serch($request, \auth()->user()->role);
         //dd($mainOrders);
-        return view('shop/pageShop/order' , compact('mainOrders', 'serch'));
+        $request = [
+            'name' => array_key_first( $request->all()),
+            'search' => $request[array_key_first( $request->all())],
+            "dateOne" =>  $request['dateOne'],
+            "dateTwo" => $request['dateTwo']
+        ];
+
+        //dd($mainOrders);
+        return view('shop/pageShop/order' , compact('mainOrders', 'request'));
 
 
 

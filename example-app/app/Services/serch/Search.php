@@ -12,7 +12,7 @@ class Search implements SearchInterface
         $orders = null;
         $keyArray = array_key_first( $request->all());//категория по которой мы ищем
         //dd($request->all());
-        if ($status == 1){
+
             if (!empty($request[$keyArray])){
                 if ($request['dateOne'] == null && $request['dateTwo'] == null){
 
@@ -27,7 +27,7 @@ class Search implements SearchInterface
                             break;
 
                         default: //по почте или имени
-
+                            //dd($request->all());
                             $orders =  Order::with(['user' => function($query) use ($keyArray, $request){
                                 $query->where($keyArray, 'like', $request[$keyArray]);
                             }])
@@ -39,6 +39,7 @@ class Search implements SearchInterface
                     switch ($keyArray){
 
                         case 'product':  //по продукту
+
                             $orders =  Order::where('date', '>=', $request['dateOne'])
                                 ->where('date', '<=', $request['dateTwo'])
                                 ->where($keyArray, 'like', $request[$keyArray])
@@ -57,9 +58,11 @@ class Search implements SearchInterface
                     }
                    //если есть обе даты
                 }elseif ($request['dateOne'] != null && $request['dateTwo'] == null){
+
                     switch ($keyArray){
 
                         case 'product':  //по продукту
+
                             $orders =  Order::where('date', '>=', $request['dateOne'])
                                 ->where('date', '<=', date('Y-m-d'))
                                 ->where($keyArray, 'like', $request[$keyArray])
@@ -81,6 +84,7 @@ class Search implements SearchInterface
                     switch ($keyArray){
 
                         case 'product':  //по продукту
+
                             $orders =  Order::where('date', '<=', $request['dateTwo'])
                                 ->where($keyArray, 'like', $request[$keyArray])
                                 ->paginate(10);
@@ -120,7 +124,7 @@ class Search implements SearchInterface
                 //нет категории
 
             }
-        }
+
 
 
         return $orders;

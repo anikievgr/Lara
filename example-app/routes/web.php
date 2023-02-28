@@ -39,13 +39,13 @@ Route::resource('mailAdd', \App\Http\Controllers\AddUserController::class);
 Route::middleware('auth')->group(function () {
     Route::resource('shop', \App\Http\Controllers\ShopController::class);
     Route::resource('order', \App\Http\Controllers\OrderController::class);
-    Route::post('/searchOrders', '\App\Http\Controllers\OrderController@search')->name('order.search');
+    Route::get('/searchOrders', '\App\Http\Controllers\OrderController@search')->name('order.search');
     Route::resource('trueOrder', \App\Http\Controllers\TrueOrderController::class);
     Route::resource('truemainOrderController', \App\Http\Controllers\TruemainOrderController::class);
     Route::get('/adminPanel','MainController@adminPanel');
     Route::resource('/tableusers',  \App\Http\Controllers\AdminPanel\TableuaserController::class);
     Route::resource('/tableproducts',  \App\Http\Controllers\ProductController::class);
-    Route::post('/searchOrdersA', '\App\Http\Controllers\ProductController@search')->name('orderA.search');
+    Route::get('/searchOrdersA', '\App\Http\Controllers\ProductController@search')->name('orderA.search');
 
 Route::prefix('admin')->group(function () {
     Route::prefix('/pageHome')->group(function () {

@@ -1,4 +1,7 @@
 @extends('../../../shop/app')
+@section('name')
+    Доставленное
+@endsection
 @section('trueOrder')
     active
 @endsection
@@ -28,7 +31,8 @@
 
 @endsection
 @section('content')
-    <div id="content" class="main-content">
+
+
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing" id="cancel-row">
@@ -87,5 +91,5 @@
 
         </div>
 
-    </div>
+
 @endsection

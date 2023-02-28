@@ -79,7 +79,7 @@ class AddUserController extends Controller
 
         $userAdd->delete();
 
-        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+        //\Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
 
 
         return redirect()->back();

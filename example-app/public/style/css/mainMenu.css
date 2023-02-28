@@ -17,7 +17,7 @@
     flex-direction: column;
     transition-duration: 400ms;
 }
- .active{
+ .act{
      opacity: 1;
      transition-duration: 500ms;
      top: -70px;

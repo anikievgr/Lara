@@ -37,6 +37,7 @@ class ProductController extends Controller
           "dateOne" => null,
           "dateTwo" => null
         ];
+
         return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'request'));
 
     }
@@ -117,7 +118,8 @@ class ProductController extends Controller
     {
 
     }
-    public function search(Request $request, SearchInterface $search, $page){
+    public function search(Request $request, SearchInterface $search){
+
        $orders =  $search->serch($request, \auth()->user()->role);
         $products = Product::paginate(10, ['*'], 'order');
         $request = [
