@@ -16,7 +16,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-       
+
     }
 
     /**
@@ -38,26 +38,21 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
          $companyText= Company::find('1');
-        if (array_key_exists('image', $request->all())){
-          
+
+
             Storage::disk('public')->delete($companyText['image']);
             $path = $request->file('image')->store('uploads', 'public');
 
-            $bd = [
-                'title' =>  $request['title'],
-                'text' =>  $request['text'],
-                'image' =>  $path,
-            ];
-            //dd($bd);
-        } else {
-        //dd('0');
-            $bd = [
-                'title' => $request['title'],
-                'titleLtext' => $request['text'],
 
-            ];
-        }
-        $companyText->update($bd);
+       $request =[
+           'image' =>$path,
+           'title' =>$request['title'],
+           'text' =>$request['text'],
+           'text' =>$request['text'],
+           ];
+
+           //dd($request);
+        $companyText->update($request);
          return redirect('ocompany');
     }
 
