@@ -20,11 +20,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::paginate(10, ['*'], 'product');
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];
-        $orders = Order::with('user')->paginate(10);
+        $orders = Order::with('user')->paginate(10, ['*'], 'order');
 
         $orderTable = [];
 
@@ -117,9 +117,9 @@ class ProductController extends Controller
     {
 
     }
-    public function search(Request $request, SearchInterface $search){
+    public function search(Request $request, SearchInterface $search, $page){
        $orders =  $search->serch($request, \auth()->user()->role);
-        $products = Product::paginate(10);
+        $products = Product::paginate(10, ['*'], 'order');
         $request = [
             'name' => array_key_first( $request->all()),
             'search' => $request[array_key_first( $request->all())],

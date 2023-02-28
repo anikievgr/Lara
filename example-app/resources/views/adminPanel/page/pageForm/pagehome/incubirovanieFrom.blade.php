@@ -15,7 +15,7 @@
     @endsection
 @section('content')
 
-
+    <div class="container">
                     <div id="navSection" data-spy="affix" class="nav  sidenav">
                         <div class="sidenav-content">
 
@@ -168,6 +168,6 @@
 
                     </div>
 
-
+    </div>
 
 @endsection

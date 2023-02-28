@@ -14,7 +14,7 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-
+    <div class="container">
 
                 @if ($items == ['null'])
                             <div class="row layout-top-spacing">
@@ -224,7 +224,7 @@
 
 
 
-
+</div>
 
 
 

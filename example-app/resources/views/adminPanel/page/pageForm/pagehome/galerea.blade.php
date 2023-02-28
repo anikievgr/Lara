@@ -35,7 +35,7 @@
                             <a href="#galerey-delete-category" class=" nav-link">Удалить категорию</a>
                         </div>
                     </div>
-
+ <div class="container">
                 <div class="container">
                     <div class="row layout-top-spacing">
                         <div id="galerey-create" class="col-lg-12 layout-spacing">
@@ -205,6 +205,6 @@
                         </div>
 
 
-
+</div>
 
 @endsection

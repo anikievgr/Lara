@@ -73,6 +73,7 @@
                                                         <a href="{{route('image.show',1)}}" class="btn btn-primary mb-2">Да</a>
                                                     </div>
                                                 </div>
+                                                </div>
                                                     </form>
                                                 </div>
                                             </div>
