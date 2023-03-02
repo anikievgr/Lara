@@ -18,10 +18,28 @@ class ProcessController extends Controller
     public function index()
     {
         $process = Process::all();
+
         if($process->count()  == 0){
-            $process = [];
-    }
-              return view('adminPanel/page/pageForm/pagehome/procaess', compact('process'));
+            $processSort = [];
+        }
+        foreach ($process as $sort) {
+            $color = explode(",", $sort['color']);
+            $color =    sprintf("#%02x%02x%02x", $color[0], $color[1], $color[2]);
+            $processSort[$sort['nomerprocess']] = [
+                        'id' => $sort['id'],
+                        'nameprocess' => $sort['nameprocess'],
+                        'color' => $color
+
+            ];
+
+        }
+        ksort($processSort);
+
+
+
+
+
+              return view('adminPanel/page/pageForm/pagehome/procaess', compact('processSort'));
 
     }
 
@@ -32,7 +50,7 @@ class ProcessController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -43,13 +61,16 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-       //dd($request->all());
-        $db = [
+
+        $color = sscanf($request['color'], "#%02x%02x%02x");
+        $color['color'] = sprintf("#%02x%02x%02x", $color[0], $color[1],$color[2]);
+
+        $request = [
             'nameprocess' => $request['nameprocess'],
             'nomerprocess' => $request['nomerprocess'],
-            'color' =>'ssss'
+            'color' => "$color[0], $color[1],$color[2], .8"
         ];
-        Process::create($db);
+        Process::create($request);
           return redirect()->back();
     }
 
@@ -87,10 +108,18 @@ class ProcessController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $item = Process::find($id);
+        $item = Process::find($id);
+        $color = sscanf($request['color'], "#%02x%02x%02x");
 
-        $item->update($request->all());
-            return redirect()->back();
+        $request = [
+
+            'nameprocess' => $request['nameprocess'],
+            'nomerprocess' => $request['nomerprocess'],
+            'color' => "$color[0], $color[1],$color[2], .8"
+        ];
+        //dd($request);
+        $item->update($request);
+        return redirect()->back();
     }
 
     /**

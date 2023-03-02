@@ -12,19 +12,10 @@ use PhpParser\Node\Expr\Cast\Array_;
 class GalleryController extends Controller
 {
     public function gallery(){
-
-      $img =[];
-
-        $gallerea = array();
           $catygories = Category::with('posts')->get();
            $items = $catygories;
 
-//        if ($catygories->count() == 0) {
-//            $gallerea = [];
-//            $items = [];
-//            //dd($gallerea);
-//        }
-     // dd($catygories);
+
       return view('adminPanel/page/pageForm/pagehome/galerea', compact('items', 'catygories'));
     }
     /**
@@ -56,17 +47,11 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-
- //       dd($request->all());
             if (!empty($request['new-categori'])){
-                $title = [
+                $request = [
                     'title' =>   $request['new-categori']
                 ];
-                //dd('n');
-                $newCategori  = $request['new-categori'];
-                //dd($id);
-                $data = Category::create($title);
-
+                $data = Category::create($request);
                 $id = $data['id'];
 
 
@@ -74,7 +59,6 @@ class GalleryController extends Controller
                 $id = $request['select'];
 
             }
-            //dd($id);
             $path = $request->file('image')->store('uploads', 'public');
             $post = [
                 'image' =>   $path,

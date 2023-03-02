@@ -42,43 +42,45 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchOrders', '\App\Http\Controllers\OrderController@search')->name('order.search');
     Route::resource('trueOrder', \App\Http\Controllers\TrueOrderController::class);
     Route::resource('truemainOrderController', \App\Http\Controllers\TruemainOrderController::class);
-    Route::get('/adminPanel','MainController@adminPanel');
-    Route::resource('/tableusers',  \App\Http\Controllers\AdminPanel\TableuaserController::class);
-    Route::resource('/tableproducts',  \App\Http\Controllers\ProductController::class);
-    Route::get('/searchOrdersA', '\App\Http\Controllers\ProductController@search')->name('orderA.search');
 
-Route::prefix('admin')->group(function () {
-    Route::prefix('/pageHome')->group(function () {
-        Route::resource('/adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
-        Route::get('/openAdminSlider', 'App\Http\Controllers\AdminPanel\SliderController@slider')->name('adminSlider');
-        Route::prefix('adminSlider')->group(function () {
-            Route::get('bd/delete{id}', 'App\Http\Controllers\AdminPanel\SliderController@delete')->name('bd.delete');
-            Route::resource('bd', 'App\Http\Controllers\AdminPanel\SliderController')->except([
-                'create', 'show', 'edit','destroy'
-            ]);
+    Route::middleware('checkRole')->group(function () {
+        Route::get('/adminPanel', 'MainController@adminPanel');
+        Route::resource('/tableusers', \App\Http\Controllers\AdminPanel\TableuaserController::class);
+        Route::resource('/tableproducts', \App\Http\Controllers\ProductController::class);
+        Route::get('/searchOrdersA', '\App\Http\Controllers\ProductController@search')->name('orderA.search');
+        Route::prefix('admin')->group(function () {
+            Route::prefix('/pageHome')->group(function () {
+                Route::resource('/adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
+                Route::get('/openAdminSlider', 'App\Http\Controllers\AdminPanel\SliderController@slider')->name('adminSlider');
+                Route::prefix('adminSlider')->group(function () {
+                    Route::get('bd/delete{id}', 'App\Http\Controllers\AdminPanel\SliderController@delete')->name('bd.delete');
+                    Route::resource('bd', 'App\Http\Controllers\AdminPanel\SliderController')->except([
+                        'create', 'show', 'edit', 'destroy'
+                    ]);
 
 
+                });
+
+                Route::get('/openAdminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController@gallery');
+                Route::get('adminGalleryGroup/delete{id}', 'App\Http\Controllers\AdminPanel\GalleryController@deleteCategory')->name('adminGalleryGroup.deleteCategory');
+                Route::prefix('adminGalleryGroup')->group(function () {
+                    Route::resource('adminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController')->except([
+                        'create', 'edit', 'destroy'
+                    ]);
+                });
+                Route::get('/openAdminNews', 'App\Http\Controllers\AdminPanel\NewsController@news');
+                Route::get('/openAdminNews/updatePages{id}', 'App\Http\Controllers\AdminPanel\NewsController@updatePages')->name('NewsController.updatePages');
+                Route::prefix('openAdminNewsGroup')->group(function () {
+                    Route::resource('openAdminNewsGroup', 'App\Http\Controllers\AdminPanel\NewsController')->except([
+                        'create', 'edit'
+                    ]);
+                });
+
+            });
         });
-
-        Route::get('/openAdminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController@gallery');
-        Route::get('adminGalleryGroup/delete{id}', 'App\Http\Controllers\AdminPanel\GalleryController@deleteCategory')->name('adminGalleryGroup.deleteCategory');
-        Route::prefix('adminGalleryGroup')->group(function () {
-            Route::resource('adminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController')->except([
-                'create', 'edit','destroy'
-            ]);
-        });
-        Route::get('/openAdminNews', 'App\Http\Controllers\AdminPanel\NewsController@news');
-        Route::get('/openAdminNews/updatePages{id}', 'App\Http\Controllers\AdminPanel\NewsController@updatePages')->name('NewsController.updatePages');
-        Route::prefix('openAdminNewsGroup')->group(function () {
-            Route::resource('openAdminNewsGroup', 'App\Http\Controllers\AdminPanel\NewsController')->except([
-                'create', 'edit'
-            ]);
-        });
-
+        Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
+        Route::get('/adminContact', 'MainController@adminContact');
     });
-});
-    Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
-    Route::get('/adminContact', 'MainController@adminContact');
 });
 
 //формы

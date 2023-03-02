@@ -37,22 +37,16 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+         $path = null;
          $companyText= Company::find('1');
-
-
-            Storage::disk('public')->delete($companyText['image']);
-            $path = $request->file('image')->store('uploads', 'public');
-
-
-       $request =[
-           'image' =>$path,
-           'title' =>$request['title'],
-           'text' =>$request['text'],
-           'text' =>$request['text'],
-           ];
-
-           //dd($request);
-        $companyText->update($request);
+         Storage::disk('public')->delete($companyText['image']);
+         $path = $request->file('image')->store('uploads', 'public');
+         $request =[
+               'image' =>$path,
+               'title' =>$request['title'],
+               'text' =>$request['text'],
+         ];
+         $companyText->update($request);
          return redirect('ocompany');
     }
 

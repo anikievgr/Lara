@@ -18,11 +18,10 @@ class StatisticController extends Controller
     {
         $procent = Statisic::all();
         $ocompany = Company::all();
-       // dd($ocompany[0]['image']);
         if ($procent->count() == 0) {
             $procent = [];
         }
-        
+
         return view('adminPanel/page/pageForm/pagehome/oompany', compact('procent', 'ocompany'));
 
     }
@@ -50,9 +49,9 @@ class StatisticController extends Controller
         $item = Statisic::find(2);
         $db = 100 - $request['procent'];
         $db = ['procent' => $db];
-         $item->update($db);
-         return redirect()->back();
-        
+        $item->update($db);
+        return redirect()->back();
+
     }
 
     /**
@@ -63,7 +62,7 @@ class StatisticController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

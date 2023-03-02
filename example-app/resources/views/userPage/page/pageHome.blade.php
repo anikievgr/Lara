@@ -37,8 +37,8 @@
     </div><!-- /.revolution -->
                 @endif
       @if ($titleText != [] & $textBox != [])
-          
-              
+
+
     <div class="container inner">
         <div class="headline text-center">
             <h2>{{$titleText[0]['title']}}</h2>
@@ -52,10 +52,10 @@
         </div>
         <div class="divide30"></div>
         <div class="row services">
-            
+
           @foreach ($textBox as $item)
-                
-           
+
+
             <div class="col-sm-6">
                 <div class="service">
                     <h4 style="text-align: center;">{{$item['title']}}</h4>
@@ -65,7 +65,7 @@
             @endforeach
         </div>
     </div>
-@endif  
+@endif
     <!-- /.light-wrapper -->
 @if($gImage != [])
     <div class="inverse-wrapper inner bp0">
@@ -121,7 +121,7 @@
                                 </div>
                             @endforeach
                         @endforeach
-                   
+
 
 
 
@@ -139,8 +139,8 @@
 @endif
 
     @if ($video != [])
-        
-   
+
+
     <div class="outer-wrap inverse-wrapper">
         <div id="video-wrap" class="video-wrap">
             <video preload="metadata" playsinline autoplay muted loop id="video-office">
@@ -168,14 +168,14 @@
                             </div>
                             <div class="timeline">
                                 @foreach ($news->chunk(2) as $twoNews)
-                                    
-                              
+
+
                                 <div class="row">
                                     @foreach ($twoNews as $oneNews)
-                                        
+
                                     <div class="col-sm-6 timeline-item {{$oneNews['lr']}}">
                                         <div class="arrow"></div>
-                                      
+
                                         <div class="post-content">
                                             <div class="row">
                                                   <div class="col-sm-3 col-md-5">
@@ -208,7 +208,7 @@
                     </div>
     @endif
                     <!-- /.light-wrapper -->
-      @if($ocompany['title'] != 0)  
+      @if($ocompany['title'] != 0)
                 <div class="white-wrapper">
                     <div class="col-image">
                         <div class="bg-wrapper col-md-6">
@@ -257,7 +257,7 @@
                                         });
                                     };
                                 </script>
-                                
+
                                 <!--/column -->
                             </div>
                             <!--/.row -->
@@ -269,9 +269,9 @@
                 </div>
         @endif
 
-        @if ($processSort != []) 
-            
-       
+        @if ($processSort != [])
+
+
     <div class="light-wrapper">
         <div class="container inner">
             <div class="section-title text-center">
@@ -279,14 +279,14 @@
                 <p class="lead">Наш процесс разведения потрясающих индюшек</p>
             </div>
             <div class="thin3">
-                <div class="row circle-wrapper">
+                <div class="row circle-wrapper justify-content-center">
                     @foreach($processSort as $key => $process)
                     <div class="col-sm-6 col-md-3 " >
-                        <div class="circle blue-bg">
+                        <div class="circle " style="background-color: rgb({{$process['color']}}) !important; border-radius: 100%;">
                             <div class="text">{{$key}}. {{$process['nameprocess']}}</div>
                         </div>
                     </div>
-                    @endforeach 
+                    @endforeach
                 </div>
                 <!--/.row -->
                 <div class="divide30"></div>

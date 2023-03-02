@@ -3,6 +3,8 @@
 namespace App\Services\serch;
 
 use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Search implements SearchInterface
 {
@@ -22,18 +24,24 @@ class Search implements SearchInterface
 
                         case 'product':  //по продукту
 
-                            $orders =  Order::where($keyArray, 'like', $request[$keyArray])
+                            $orders =  Order::where($keyArray, 'like', '%'.$request[$keyArray].'%')
                                 ->paginate(10);
                             break;
 
                         default: //по почте или имени
-                            //dd($request->all());
-                            $orders =  Order::with(['user' => function($query) use ($keyArray, $request){
-                                $query->where($keyArray, 'like', $request[$keyArray]);
-                            }])
+                           // dd($request->all(),$keyArray,$request[$keyArray]);
+                            $orders = DB::table('orders')
+                                ->join('users', 'orders.user_id', '=', 'users.id')
+                                ->select('orders.*', 'users.*')
+                                ->where($keyArray, 'like', '%'.$request[$keyArray].'%')
                                 ->paginate(10);
+                            dd($orders);
+
+
+
                             break;
                     }
+                    dd($orders);
                     //нет дат
                 }elseif ($request['dateOne'] != null && $request['dateTwo'] != null){
                     switch ($keyArray){
@@ -42,7 +50,7 @@ class Search implements SearchInterface
 
                             $orders =  Order::where('date', '>=', $request['dateOne'])
                                 ->where('date', '<=', $request['dateTwo'])
-                                ->where($keyArray, 'like', $request[$keyArray])
+                                ->where($keyArray, 'like', '%'.$request[$keyArray].'%')
                                 ->paginate(10);
                             break;
 
@@ -65,7 +73,7 @@ class Search implements SearchInterface
 
                             $orders =  Order::where('date', '>=', $request['dateOne'])
                                 ->where('date', '<=', date('Y-m-d'))
-                                ->where($keyArray, 'like', $request[$keyArray])
+                                ->where($keyArray, 'like', '%'.$request[$keyArray].'%')
                                 ->paginate(10);
                             break;
 
@@ -86,7 +94,7 @@ class Search implements SearchInterface
                         case 'product':  //по продукту
 
                             $orders =  Order::where('date', '<=', $request['dateTwo'])
-                                ->where($keyArray, 'like', $request[$keyArray])
+                                ->where($keyArray, 'like', '%'.$request[$keyArray].'%')
                                 ->paginate(10);
                             break;
 
@@ -110,13 +118,13 @@ class Search implements SearchInterface
                                 ->paginate(10);
                     //если есть обе даты
                 }elseif ($request['dateOne'] != null && $request['dateTwo'] == null){
-                    $orders =  Order::where('date', '>=', $request['dateOne'])
+                    $orders =  Order::where('date', '>=', '%'.$request['dateOne'].'%')
                                 ->where('date', '<=', date('Y-m-d'))
                                 ->paginate(10);
 
                     //если нет 2ой даты
                 }elseif ($request['dateOne'] == null && $request['dateTwo'] != null){
-                    $orders =  Order::where('date', '<=', $request['dateTwo'])
+                    $orders =  Order::where('date', '<=', '%'.$request['dateTwo'].'%')
                         ->paginate(10);
 
                     //если нет первой даты
@@ -126,7 +134,7 @@ class Search implements SearchInterface
             }
 
 
-
+dd($orders);
         return $orders;
     }
 }

@@ -36,10 +36,6 @@ class IncubirovaneTextController extends Controller
      */
     public function store(Request $request)
     {
-        $itme = $request->all();
-
-        $text= TextIncubirovane::all();
-
         TextIncubirovane::create($request->all());
 
            return redirect()->back();
@@ -79,11 +75,7 @@ class IncubirovaneTextController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $itme = $request->all();
-
         $text= textIncubirovane::find($id);
-
-
         $text->update($request->all());
            return redirect()->back();
 

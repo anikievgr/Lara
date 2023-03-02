@@ -18,7 +18,7 @@ class FirstTitleTetxController extends Controller
     {
         $text = TitlePageHome::all();
         $textT = TextPageHome::all();
-          return view('adminPanel/page/pageForm/pagehome/text', compact('text', 'textT'));
+        return view('adminPanel/page/pageForm/pagehome/text', compact('text', 'textT'));
     }
 
     /**
@@ -80,7 +80,7 @@ class FirstTitleTetxController extends Controller
     public function update(Request $request, $id)
     {
              $text = TitlePageHome::find(1);
-            
+
         $text->update($request->all());
         return redirect()->back();
     }

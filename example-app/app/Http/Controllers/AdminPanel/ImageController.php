@@ -79,27 +79,21 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $itme = $request->all();
+        $path = null;
         $image= Image::find($id);
-        if (array_key_exists('image', $itme)){
-            
+        if (array_key_exists('image', $request->all())){
             Storage::disk('public')->delete($image['image']);
             $path = $request->file('image')->store('uploads', 'public');
 
-            $bd = [
-                'title' =>  $request['title'],
-                'text' =>  $request['text'],
-                'image' =>  $path,
-            ];
-            //dd($bd);
-        }else{
-        $bd = [
+
+        }
+        $request = [
             'title' =>  $request['title'],
             'text' =>  $request['text'],
-       
+            'image' =>  $path,
         ];
-    }
-        $image -> update(  $bd);
+
+        $image -> update(  $request);
           return redirect()->back();
     }
 

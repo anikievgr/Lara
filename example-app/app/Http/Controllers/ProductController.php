@@ -24,7 +24,8 @@ class ProductController extends Controller
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];
-        $orders = Order::with('user')->paginate(10, ['*'], 'order');
+       $orders = Order::with('user')->paginate(10, ['*'], 'order');
+        //$orders = Order::with('user')->get();
 
         $orderTable = [];
 

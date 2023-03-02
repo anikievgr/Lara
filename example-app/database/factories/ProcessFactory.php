@@ -21,7 +21,7 @@ class ProcessFactory extends Factory
         return [
             'nameprocess' => $this->faker->text(10),
             'nomerprocess' => $this->faker->randomDigitNotNull(),
-            'color' => 'NULL'
+            'color' => $this->faker->rgbaCssColor()
 
         ];
     }

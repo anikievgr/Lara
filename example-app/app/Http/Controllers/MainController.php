@@ -49,10 +49,11 @@ class MainController extends Controller
                     'color' => $sort['color']
 
                 ];
+
             }
             ksort($processSort);
         }
-        //dd($processSort);
+
         $ocompany = Company::find(1);
 
         if($ocompany['title'] == ''){

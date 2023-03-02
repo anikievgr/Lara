@@ -82,27 +82,18 @@ class IncubirovaneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $itme = $request->all();
-
         $header= HeaderIncubirovane::find($id);
-        if (array_key_exists('image', $itme)){
+        $path = null;
+        if (array_key_exists('image', $request->all())){
             Storage::disk('public')->delete($header['image']);
             $path = $request->file('image')->store('uploads', 'public');
-
-            $bd = [
-                'title' =>  $request['title'],
-                'image' =>  $path,
-            ];
-            //dd($bd);
-        }else{
-        $bd = [
+        }
+        $request = [
             'title' =>  $request['title'],
-
-
+            'image' =>  $path,
         ];
-    }
-        $header->update($bd);
-           return redirect()->back();
+        $header->update($request);
+        return redirect()->back();
     }
 
     /**

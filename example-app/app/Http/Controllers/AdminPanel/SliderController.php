@@ -62,14 +62,12 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $path = $request->file('image')->store('uploads', 'public');
-        //return view('form', ['path' => $path]);
-        //$items = $request->input('title');
-        $items = [
+        $request = [
             'title' => $request->input('title'),
             'subtitle' => $request->input('subtitle'),
             'image' => $path,
         ];
-        Slide::create($items);
+        Slide::create($request);
         return redirect()->back();
     }
 
@@ -111,12 +109,8 @@ class SliderController extends Controller
             Storage::disk('public')->delete($items['image']);
             $path = $request->file('image')->store('uploads', 'public');
             $itemUpdate['image'] = $path;
-            //dd($itemUpdate);
-
-
-           // dd($itemUpdate,'y');
         }
-         $items -> update(  $itemUpdate);
+         $items -> update( $itemUpdate);
          return Redirect::route('adminSlider');
     }
 
