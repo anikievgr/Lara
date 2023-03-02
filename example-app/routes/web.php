@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,4 +95,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+Route::middleware('auth')->group(function () {
+    //users pages
+
+    Route::middleware('checkRole')->group(function () {
+        //admin pages
+        Route::prefix('pageHome')->group(function () {
+                Route::resource('slider', \App\Http\Controllers\Adminpanel\PageHome\SliderController::class);
+        });
+    });
+});
 require __DIR__.'/auth.php';

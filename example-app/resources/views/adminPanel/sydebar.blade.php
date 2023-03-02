@@ -91,7 +91,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="forms" data-parent="#accordionExample">
                     <li class = @section('sliderForm')@show>
-                        <a href="/admin/pageHome/openAdminSlider">Слайдер</a>
+                        <a href="{{route('slider.index')}}">Слайдер</a>
                     </li>
                     <li class = @section('galerea')@show>
                         <a href="/admin/pageHome/openAdminGalerea"> Галерея</a>

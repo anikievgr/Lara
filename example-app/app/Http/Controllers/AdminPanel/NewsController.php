@@ -19,10 +19,8 @@ class NewsController extends Controller
         $news = News::all();
         if ($news->count() == 0) {
             $news = 'null';
-           // dd($news);
         }
         $updateNews = 'null';
-        //dd($news);
         return view('adminPanel/page/pageForm/pagehome/news',compact('news','updateNews'));
     }
     public  function updatePages($id){

@@ -10,6 +10,8 @@ use App\Services\News\CreateNewNews;
 use App\Services\News\NewNews;
 use App\Services\serch\Search;
 use App\Services\serch\SearchInterface;
+use App\Services\StandardValidation\StandardValidation;
+use App\Services\StandardValidation\StandardValidationInterface;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(databaseInreface::class, database::class);
         $this->app->bind(CreatNewSlideFich::class, CreatNewSlide::class);
         $this->app->bind(SearchInterface::class, Search::class);
+        $this->app->bind(StandardValidationInterface::class, StandardValidation::class);
             $this->app->register('App\Providers\FakerServiceProvider');
 
     }
