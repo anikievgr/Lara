@@ -31,7 +31,7 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-
+    @if ( count($news) != 0)
             <div id="navSection" data-spy="affix" class="nav  sidenav">
                 <div class="sidenav-content">
                     <a href="#news-create" class=" nav-link">Создать запись</a>
@@ -40,6 +40,7 @@
 
                 </div>
             </div>
+    @endif
             <div class="container">
                 <div class="container">
                     <div class="row layout-top-spacing">

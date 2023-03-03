@@ -23,7 +23,6 @@ Route::get('/sales','MainController@adminSales');
 Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
-Route::resource('process', 'App\Http\Controllers\AdminPanel\ProcessController');
 Route::resource('title', 'App\Http\Controllers\AdminPanel\FirstTitleTetxController');
 Route::resource('text', 'App\Http\Controllers\AdminPanel\TetxController');
 Route::resource('video', 'App\Http\Controllers\AdminPanel\VideoController');
@@ -92,6 +91,7 @@ Route::middleware('auth')->group(function () {
                     Route::post('company/updateСoverage', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@updateСoverage")->name('company.updateСoverage');
                     Route::post('company/update', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@update")->name('company.update');
                 });
+                Route::resource('process', \App\Http\Controllers\AdminPanel\PageHome\ProcessController::class);
         });
     });
 });
