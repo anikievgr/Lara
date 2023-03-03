@@ -53,7 +53,7 @@
                             <div class="widget-content widget-content-area">
 
 
-                                <form method="post" action="{{route('slider.update', $slide['id'])}})}} "enctype="multipart/form-data">
+                                <form method="post" action="{{route('slider.update', $slide['id'])}}"enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     @method('PUT')
                                     <div class="form-group mb-4">

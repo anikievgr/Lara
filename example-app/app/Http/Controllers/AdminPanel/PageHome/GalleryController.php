@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Adminpanel\PageHome;
+namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StandardValidation;
-use App\Models\Slide;
-use App\Services\StandardValidation\StandardValidationInterface;
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class SliderController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +17,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-
-        $slides = Slide::all();
-        return view('adminPanel/page/pageHome/slider/slider', compact('slides'));
+        $gallery = Category::with('posts')->get();
+        return view('adminPanel/page/pageHome/gallery', compact('gallery'));
     }
 
     /**
@@ -39,11 +37,24 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, StandardValidationInterface $validation )
+    public function store(Request $request)
     {
-        $newSlide = $validation->validation($request);
-         Slide::create($newSlide);
-        return redirect()->back();
+
+        if($request['select'] == 'buutonAddCategory'){
+            $newSlide =  $request->validate([
+                'new-category' => 'required|max:50',
+                'image' => 'required',
+
+            ]);
+        }else{
+            $newSlide =  $request->validate([
+                'select' => 'required',
+                'image' => 'required',
+            ]);
+        }
+        dd($request->all(),$newSlide);
+        $newSlide['image'] = $request->file('image')->store('uploads', 'public');;
+        dd($newSlide);
     }
 
     /**
@@ -54,8 +65,13 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        $slide = Slide::find($id);
-        return view('adminPanel/page/pageHome/slider/slideUpdate', compact('slide'));
+        $gallery = Category::with('posts')->find($id);
+        foreach($gallery->posts as $key=> $image){
+            Storage::disk('public')->delete($image['image']);
+            $image->delete();
+        }
+        $gallery->delete();
+        return redirect()->back();
     }
 
     /**
@@ -66,7 +82,7 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -78,16 +94,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $slide= Slide::find($id);
-        $slideUpdate =   $request->all();
-        if(array_key_exists('image', $request->all())){
-            Storage::disk('public')->delete($slide['image']);
-            $path = $request->file('image')->store('uploads', 'public');
-            $slideUpdate['image'] = $path;
-        }
-        $slide->update($slideUpdate);
-        return redirect()->route('slider.index');
+        //
     }
 
     /**
@@ -98,9 +105,10 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        $slide = Slide::query()->find($id);
-        Storage::disk('public')->delete($slide['image']);
-        $slide->delete();
+
+        $post = Post::query()->find($id);
+        Storage::disk('public')->delete($post['image']);
+        $post->delete();
         return redirect()->back();
     }
 }

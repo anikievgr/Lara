@@ -34,7 +34,7 @@
             @if(count($slides) != 0)
                 <div id="navSection" data-spy="affix" class="nav  sidenav">
                 <div class="sidenav-content">
-                    <a href="#slider-create" class=" nav-link active">Создать слайд</a>
+                    <a href="#slider-create" class=" nav-link ">Создать слайд</a>
                     <a href="#slider-update" class=" nav-link">Обновить</a>
                     <a href="#slider-delete" class=" nav-link">Удалить</a>
                 </div>
@@ -129,7 +129,7 @@
                                     @endforeach
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleControls_1" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="carousel-control-prev-icon" aria-news.bladehidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                                 <a class="carousel-control-next" href="#carouselExampleControls_1" role="button" data-slide="next">
@@ -143,7 +143,7 @@
                     <!--end обновить слайд-->
 
                     <!--start удалить слайд-->
-                    <div id="slider-update" class="col-lg-12 layout-spacing">
+                    <div id="slider-delete" class="col-lg-12 layout-spacing">
                         <div class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
                                 <div class="widget-header">
@@ -182,17 +182,27 @@
                     <!--end удалить слайд-->
                 <!--start модалки-->
                     @foreach ($slides as $slide)
-                        <div id="d{{$slide['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content p-1">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Вы точно хотите удалить?</h4>
+
+                        <div class="modal fade" id="d{{$slide['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Удаление</h5>
+
                                     </div>
-                                    <form action="{{ route('slider.destroy', $slide['id']) }}" method="POST">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-primary">Да</button>
-                                    </form>
+                                    <div class="modal-body">
+                                        <p class="modal-text">Вы точно хотите удалить? Удаленные данные невозможно будет востановить.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                           Нет
+                                        </button>
+                                        <form action="{{ route('slider.destroy', $slide['id']) }}" method="POST">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-primary">Да</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

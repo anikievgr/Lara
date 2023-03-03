@@ -94,10 +94,10 @@
                         <a href="{{route('slider.index')}}">Слайдер</a>
                     </li>
                     <li class = @section('galerea')@show>
-                        <a href="/admin/pageHome/openAdminGalerea"> Галерея</a>
+                        <a href="{{route('gallery.index')}}"> Галерея</a>
                     </li>
                     <li class = @section('news')@show>
-                        <a href="/admin/pageHome/openAdminNews"> Новости</a>
+                        <a href="{{route('news.index')}}"> Новости</a>
                     </li>
 
                     <li class = @section('contact')@show>

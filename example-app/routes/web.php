@@ -50,12 +50,6 @@ Route::middleware('auth')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::prefix('/pageHome')->group(function () {
                 Route::resource('/adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
-                Route::get('/openAdminSlider', 'App\Http\Controllers\AdminPanel\SliderController@slider')->name('adminSlider');
-                Route::prefix('adminSlider')->group(function () {
-                    Route::get('bd/delete{id}', 'App\Http\Controllers\AdminPanel\SliderController@delete')->name('bd.delete');
-                    Route::resource('bd', 'App\Http\Controllers\AdminPanel\SliderController')->except([
-                        'create', 'show', 'edit', 'destroy'
-                    ]);
 
 
                 });
@@ -79,8 +73,9 @@ Route::middleware('auth')->group(function () {
         });
         Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
         Route::get('/adminContact', 'MainController@adminContact');
-    });
+
 });
+
 
 //формы
 Route::post('/form', 'FormController@store')->name('form');
@@ -103,7 +98,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('checkRole')->group(function () {
         //admin pages
         Route::prefix('pageHome')->group(function () {
-                Route::resource('slider', \App\Http\Controllers\Adminpanel\PageHome\SliderController::class);
+                Route::resource('slider', \App\Http\Controllers\AdminPanel\PageHome\SliderController::class);
+                Route::resource('gallery', \App\Http\Controllers\AdminPanel\PageHome\GalleryController::class);
+                Route::resource('news', \App\Http\Controllers\AdminPanel\PageHome\NewsController::class);
         });
     });
 });
