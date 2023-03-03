@@ -24,7 +24,6 @@
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/components/custom-counter.css')}}" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
-
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     @section('headerAddLink')

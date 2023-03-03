@@ -99,16 +99,9 @@
                     <li class = @section('news')@show>
                         <a href="{{route('news.index')}}"> Новости</a>
                     </li>
-
-                    <li class = @section('contact')@show>
-                        <a href="adminContact"> Контакты</a>
-                    </li>
-
-
                     <li class = @section('ocompany')@show>
-                        <a href="{{route('ocompany.index')}}"> О компании</a>
+                        <a href="{{route('company.index')}}"> О компании</a>
                     </li>
-
                     <li class = @section('process')@show>
                         <a href="{{route('process.index')}}"> Процессы </a>
                     </li>

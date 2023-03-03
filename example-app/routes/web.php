@@ -23,8 +23,6 @@ Route::get('/sales','MainController@adminSales');
 Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
-Route::resource('ocompany', 'App\Http\Controllers\AdminPanel\StatisticController');
-Route::resource('company', 'App\Http\Controllers\AdminPanel\CompanyController');
 Route::resource('process', 'App\Http\Controllers\AdminPanel\ProcessController');
 Route::resource('title', 'App\Http\Controllers\AdminPanel\FirstTitleTetxController');
 Route::resource('text', 'App\Http\Controllers\AdminPanel\TetxController');
@@ -54,20 +52,8 @@ Route::middleware('auth')->group(function () {
 
                 });
 
-                Route::get('/openAdminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController@gallery');
-                Route::get('adminGalleryGroup/delete{id}', 'App\Http\Controllers\AdminPanel\GalleryController@deleteCategory')->name('adminGalleryGroup.deleteCategory');
-                Route::prefix('adminGalleryGroup')->group(function () {
-                    Route::resource('adminGalerea', 'App\Http\Controllers\AdminPanel\GalleryController')->except([
-                        'create', 'edit', 'destroy'
-                    ]);
-                });
-                Route::get('/openAdminNews', 'App\Http\Controllers\AdminPanel\NewsController@news');
-                Route::get('/openAdminNews/updatePages{id}', 'App\Http\Controllers\AdminPanel\NewsController@updatePages')->name('NewsController.updatePages');
-                Route::prefix('openAdminNewsGroup')->group(function () {
-                    Route::resource('openAdminNewsGroup', 'App\Http\Controllers\AdminPanel\NewsController')->except([
-                        'create', 'edit'
-                    ]);
-                });
+
+
 
             });
         });
@@ -101,6 +87,11 @@ Route::middleware('auth')->group(function () {
                 Route::resource('slider', \App\Http\Controllers\AdminPanel\PageHome\SliderController::class);
                 Route::resource('gallery', \App\Http\Controllers\AdminPanel\PageHome\GalleryController::class);
                 Route::resource('news', \App\Http\Controllers\AdminPanel\PageHome\NewsController::class);
+                Route::prefix('ocompany')->group(function () {
+                    Route::get('company', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@index")->name('company.index');
+                    Route::post('company/updateСoverage', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@updateСoverage")->name('company.updateСoverage');
+                    Route::post('company/update', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@update")->name('company.update');
+                });
         });
     });
 });

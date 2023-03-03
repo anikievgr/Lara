@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Adminpanel\PageHome;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SliderRequest;
 use App\Http\Requests\StandardValidation;
 use App\Models\Slide;
-use App\Services\StandardValidation\StandardValidationInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,10 +39,11 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, StandardValidationInterface $validation )
+    public function store(SliderRequest $request)
     {
-        $newSlide = $validation->validation($request);
-         Slide::create($newSlide);
+        $slide = $request->all();
+        $slide['image'] = $request->file('image')->store('uploads', 'public');
+         Slide::create($slide);
         return redirect()->back();
     }
 
