@@ -130,34 +130,7 @@
 
                                             @endforeach
 
-                                              <!--start модалки-->
-                                              @foreach ($processSort as $key => $item)
 
-                                                  <div class="modal fade" id="f{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                      <div class="modal-dialog" role="document">
-                                                          <div class="modal-content">
-                                                              <div class="modal-header">
-                                                                  <h5 class="modal-title" id="exampleModalLabel">Удаление</h5>
-
-                                                              </div>
-                                                              <div class="modal-body">
-                                                                  <p class="modal-text">Вы точно хотите удалить? Удаленные данные невозможно будет востановить.</p>
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                  <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-                                                                      Нет
-                                                                  </button>
-                                                                  <form action="{{ route('process.destroy', $item['id']) }}" method="POST">
-                                                                      {{ method_field('DELETE') }}
-                                                                      {{ csrf_field() }}
-                                                                      <button class="btn btn-primary">Да</button>
-                                                                  </form>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              @endforeach
-                                              <!--start модалки-->
 
 
 
@@ -167,6 +140,34 @@
                             </div>
                         </div>
                     <!--end обновить, удалить процесс -->
+                    <!--start модалки-->
+                        @foreach ($processSort as $key => $item)
+
+                        <div class="modal fade" id="f{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Удаление</h5>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="modal-text">Вы точно хотите удалить? Удаленные данные невозможно будет востановить.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                            Нет
+                                        </button>
+                                        <form action="{{ route('process.destroy', $item['id']) }}" method="POST">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-primary">Да</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                     <!--start модалки-->
                     @endif
                 </div>
             </div>

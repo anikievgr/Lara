@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,6 @@ Route::get('/sales','MainController@adminSales');
 Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
-Route::resource('title', 'App\Http\Controllers\AdminPanel\FirstTitleTetxController');
-Route::resource('text', 'App\Http\Controllers\AdminPanel\TetxController');
 Route::resource('video', 'App\Http\Controllers\AdminPanel\VideoController');
 Route::resource('image', 'App\Http\Controllers\AdminPanel\ImageController');
 
@@ -86,12 +85,21 @@ Route::middleware('auth')->group(function () {
                 Route::resource('slider', \App\Http\Controllers\AdminPanel\PageHome\SliderController::class);
                 Route::resource('gallery', \App\Http\Controllers\AdminPanel\PageHome\GalleryController::class);
                 Route::resource('news', \App\Http\Controllers\AdminPanel\PageHome\NewsController::class);
-                Route::prefix('ocompany')->group(function () {
+                Route::prefix('aboutСompany')->group(function () {
                     Route::get('company', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@index")->name('company.index');
                     Route::post('company/updateСoverage', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@updateСoverage")->name('company.updateСoverage');
                     Route::post('company/update', "\App\Http\Controllers\AdminPanel\PageHome\CompanyController@update")->name('company.update');
                 });
                 Route::resource('process', \App\Http\Controllers\AdminPanel\PageHome\ProcessController::class);
+                Route::prefix('textPageHome')->group(function () {
+                    Route::get('text', [App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class, 'index'])->name('text.index' );
+                    Route::match(['get', 'post'],'createNewText', [App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class, 'createNewText'])->name('text.createNewText');
+                    Route::post('updateTitle', [App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class, 'updateTitle'])->name('text.updateTitle');
+                    Route::match(['get', 'post'],'updateText/{id}', [App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'updateText'])->name('text.updateText');
+                    Route::match(['get', 'post'],'deleteText/{id}',[App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'deleteText'])->name('text.deleteText');
+                    Route::get('deleteTitle',[App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'deleteTitle'])->name('text.deleteTitle');
+                });
+
         });
     });
 });

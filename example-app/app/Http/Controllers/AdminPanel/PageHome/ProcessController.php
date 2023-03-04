@@ -19,6 +19,7 @@ class ProcessController extends Controller
     {
         $process = Process::all();
         foreach ($process as $sort) {
+
             $color = explode(",", $sort['color']);
             $color =    sprintf("#%02x%02x%02x", $color[0], $color[1], $color[2]);
             $processSort[$sort['nomerprocess']] = [

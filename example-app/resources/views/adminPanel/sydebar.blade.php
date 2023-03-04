@@ -106,7 +106,7 @@
                         <a href="{{route('process.index')}}"> Процессы </a>
                     </li>
                     <li class = @section('title')@show>
-                        <a href="{{route('title.index')}}"> Текст </a>
+                        <a href="{{route('text.index')}}"> Текст </a>
                     </li>
                     <li class = @section('video')@show>
                         <a href="{{route('video.index')}}"> Видео </a>
