@@ -24,7 +24,7 @@ Route::get('/sales','MainController@adminSales');
 Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
-Route::resource('video', 'App\Http\Controllers\AdminPanel\VideoController');
+
 Route::resource('image', 'App\Http\Controllers\AdminPanel\ImageController');
 
 Route::resource('adminIncubirovanetext', 'App\Http\Controllers\AdminPanel\IncubirovaneTextController');
@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
                     Route::match(['get', 'post'],'deleteText/{id}',[App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'deleteText'])->name('text.deleteText');
                     Route::get('deleteTitle',[App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'deleteTitle'])->name('text.deleteTitle');
                 });
-
+                Route::resource('video', App\Http\Controllers\AdminPanel\PageHome\VideoController::class);
         });
     });
 });

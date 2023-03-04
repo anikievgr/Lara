@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanel;
+namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TextRequest;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use function redirect;
+use function view;
 
 class VideoController extends Controller
 {
@@ -16,7 +19,7 @@ class VideoController extends Controller
     public function index()
     {
         $video = Video::all();
-        return view('adminPanel/page/pageForm/pagehome/video', compact('video'));
+        return view('adminPanel/page/pageHome/video', compact('video'));
     }
 
     /**
@@ -37,7 +40,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -48,13 +51,7 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-       $text = Video::find(1);
-        $db = [
-            'title' => '',
-            'text' => ''
-        ];
-        $text->update($db);
-        return redirect()->back();
+
     }
 
     /**
@@ -75,10 +72,10 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TextRequest $request, $id)
     {
         $item = Video::find($id);
-   
+
         $item->update($request->all());
             return redirect()->back();
     }
@@ -91,6 +88,12 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $text = Video::find(1);
+        $db = [
+            'title' => '',
+            'text' => ''
+        ];
+        $text->update($db);
+        return redirect()->back();
     }
 }
