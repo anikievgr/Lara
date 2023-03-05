@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Adminpanel;
+namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImagePageHomeRequest;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-                $image = Image::all();
-        return view('adminPanel/page/pageForm/pagehome/gImage', compact('image'));
+        $image = Image::all();
+        return view('adminPanel/page/pageHome/Image', compact('image'));
     }
 
     /**
@@ -49,14 +50,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $text = Image::find(1);
-        $db = [
-            'title' => '',
-            'text' => '',
-            'image' => ''
-        ];
-        $text->update($db);
-        return redirect()->back();
+
     }
 
     /**
@@ -77,15 +71,13 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImagePageHomeRequest $request, $id)
     {
         $path = null;
         $image= Image::find($id);
         if (array_key_exists('image', $request->all())){
             Storage::disk('public')->delete($image['image']);
             $path = $request->file('image')->store('uploads', 'public');
-
-
         }
         $request = [
             'title' =>  $request['title'],
@@ -105,6 +97,13 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $text = Image::find(1);
+        $db = [
+            'title' => '',
+            'text' => '',
+            'image' => ''
+        ];
+        $text->update($db);
+        return redirect()->back();
     }
 }

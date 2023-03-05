@@ -25,7 +25,7 @@ Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
 
-Route::resource('image', 'App\Http\Controllers\AdminPanel\ImageController');
+
 
 Route::resource('adminIncubirovanetext', 'App\Http\Controllers\AdminPanel\IncubirovaneTextController');
 Route::resource('mailAdd', \App\Http\Controllers\AddUserController::class);
@@ -100,6 +100,7 @@ Route::middleware('auth')->group(function () {
                     Route::get('deleteTitle',[App\Http\Controllers\AdminPanel\PageHome\TextPageHomeController::class,'deleteTitle'])->name('text.deleteTitle');
                 });
                 Route::resource('video', App\Http\Controllers\AdminPanel\PageHome\VideoController::class);
+                Route::resource('image', App\Http\Controllers\AdminPanel\PageHome\ImageController::class);
         });
     });
 });

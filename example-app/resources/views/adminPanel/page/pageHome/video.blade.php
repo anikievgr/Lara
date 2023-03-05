@@ -12,7 +12,6 @@
  <script src="{{asset('style/pageAdmin/assets/js/scrollspyNav.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/flatpickr/flatpickr.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/noUiSlider/nouislider.min.js')}}"></script>
-
     <script src="{{asset('style/pageAdmin/plugins/flatpickr/custom-flatpickr.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/noUiSlider/custom-nouiSlider.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
@@ -20,6 +19,7 @@
 @section('headerAddLink')
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/assets/css/elements/alert.css')}}">
 
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
