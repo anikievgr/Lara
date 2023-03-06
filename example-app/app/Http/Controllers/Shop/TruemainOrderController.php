@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shop;
 
-use App\Mail\User\Massage;
-use App\Models\Mail;
-use App\Models\News;
-use App\Models\User;
-use App\Observers\UserObserver;
-use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\Controller;
+use App\Models\TrueOrders;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-class AddUserController extends Controller
+class TruemainOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +15,7 @@ class AddUserController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -43,47 +36,20 @@ class AddUserController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request['id'];
-        $userAdd = Mail::find($id);
-
-        $numAlpha = 4; $numDigit = 2; $numNonAlpha = 2;
-        $listAlpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $listDigits = '0123456789';
-        $listNonAlpha = ',;:!?.$/*-+&@_+;./*&?$-!,';
-        $password  = str_shuffle(
-            substr(str_shuffle($listAlpha), 0, $numAlpha) .
-            substr(str_shuffle($listDigits), 0, $numDigit) .
-            substr(str_shuffle($listNonAlpha), 0, $numNonAlpha)
-        );
-
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-     $userAdd = Mail::find($id);
-
-        $password= 551151;
-        $user = User::create([
-            'name' =>  $userAdd['name'],
-            'email' =>  $userAdd['mail'],
-            'password' => Hash::make($password),
-
-        ]);
-
-        $userAdd->delete();
-
-        //\Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
-
-
+        $order = TrueOrders::find($id);
+        $order->delete();
         return redirect()->back();
-
     }
 
     /**

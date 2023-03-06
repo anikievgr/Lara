@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminPanel;
 
-use App\Models\TrueOrders;
+use App\Http\Controllers\Controller;
+use App\Models\Mail;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class TruemainOrderController extends Controller
+class AddUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,7 @@ class TruemainOrderController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,20 +38,47 @@ class TruemainOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request['id'];
+        $userAdd = Mail::find($id);
+
+        $numAlpha = 4; $numDigit = 2; $numNonAlpha = 2;
+        $listAlpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $listDigits = '0123456789';
+        $listNonAlpha = ',;:!?.$/*-+&@_+;./*&?$-!,';
+        $password  = str_shuffle(
+            substr(str_shuffle($listAlpha), 0, $numAlpha) .
+            substr(str_shuffle($listDigits), 0, $numDigit) .
+            substr(str_shuffle($listNonAlpha), 0, $numNonAlpha)
+        );
+
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
-        $order = TrueOrders::find($id);
-        $order->delete();
+     $userAdd = Mail::find($id);
+
+        $password= 551151;
+        $user = User::create([
+            'name' =>  $userAdd['name'],
+            'email' =>  $userAdd['mail'],
+            'password' => Hash::make($password),
+
+        ]);
+
+        $userAdd->delete();
+
+        //\Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+
+
         return redirect()->back();
+
     }
 
     /**

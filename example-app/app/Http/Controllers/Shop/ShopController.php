@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shop;
 
-use App\Models\Mail;
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-use function GuzzleHttp\Promise\all;
-
-class MailController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +17,9 @@ class MailController extends Controller
      */
     public function index()
     {
-        $mail = Mail::all();
-        if ($mail->count() == 0) {
-            $mail = [];
-        }
+        $products = Product::all();
 
-
-       return view('adminPanel/page/pageForm/pageMail/mail', compact('mail'));
+        return  view('shop/pageShop/products', compact('products'));
     }
 
     /**
@@ -43,23 +40,7 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-       //
-        if ($request['theme'] == 'Sales'){
-            $request['theme'] = 'Сотрудничество';
-        }else{
-            $request['theme'] = 'Поддежка';
-        }
 
-        $item = [
-            'name' => $request['name'],
-            'mail' => $request['mail'],
-            'telephone' => $request['telephone'],
-            'theme' => $request['theme'],
-            'text' => $request['text']
-        ];
-        //dd($item);
-        Mail::create($item);
-          return redirect()->back();
     }
 
     /**
@@ -70,11 +51,7 @@ class MailController extends Controller
      */
     public function show($id)
     {
-
-        if($id == 'all'){
-            Mail::truncate();
-            return redirect('mail');
-        }
+        //
     }
 
     /**
@@ -97,7 +74,23 @@ class MailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = Product::find($id);
+        $user = User::find(auth()->id());
+         $ored = [
+            'price' => $product['price'],
+             'quantity' => $request['quantity'],
+             'user_id' =>$user['id'],
+             'product' => $product['product'],
+             'status' => '0',
+             'date' => date('Y-m-d')
+
+        ];
+
+         Order::create($ored);
+       // dd($ored);
+        return redirect()->action([OrderController::class, 'index']);
+
     }
 
     /**

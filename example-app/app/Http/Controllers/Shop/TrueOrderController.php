@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shop;
 
-use App\Mail\User\Massage;
+use App\Http\Controllers\Controller;
 use App\Mail\User\MassageOrder;
-use App\Models\Mail;
 use App\Models\Order;
-use App\Models\Product;
 use App\Models\TrueOrders;
 use App\Models\User;
-use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class TrueOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,17 +18,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $mainOrders = Order::where('user_id', '=', auth()->id())->paginate(10);
-       // dd($mainOrders);
+        $user = User::find(auth()->id());
+        $mainOrders = $user->trueOrders;
+        $order = TrueOrders::all();
+        if (count($mainOrders)>= 10){
+            $delete = $mainOrders[9];
+            $order->delete($delete['id']);
 
-        //dd(1);
-        $request = [
-            'name' => 'null',
-            'search' => null,
-            "dateOne" => null,
-            "dateTwo" => null
-        ];
-        return view('shop/pageShop/order' , compact('mainOrders',  'request'));
+        }
+        $mainOrders = $user->trueOrders;
+        return view('shop/pageShop/trueorder' , compact('mainOrders'));
 
     }
 
@@ -99,7 +95,7 @@ class OrderController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *Too few arguments to function App\Http\Controllers\ProductController::search(), 2 passed in /var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Controller.php on line 54 and exactly 3 expected
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -118,23 +114,5 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function search(Request $request, SearchInterface $search){
-       // dd($request->all());
-        $mainOrders =  $search->serch($request, \auth()->user()->role);
-        //dd($mainOrders);
-        $request = [
-            'name' => array_key_first( $request->all()),
-            'search' => $request[array_key_first( $request->all())],
-            "dateOne" =>  $request['dateOne'],
-            "dateTwo" => $request['dateTwo']
-        ];
-
-        //dd($mainOrders);
-        return view('shop/pageShop/order' , compact('mainOrders', 'request'));
-
-
-
-
     }
 }

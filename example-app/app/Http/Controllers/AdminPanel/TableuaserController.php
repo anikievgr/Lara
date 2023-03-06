@@ -18,7 +18,7 @@ class TableuaserController extends Controller
     {
         $users = User::all();
        // dd($user);
-        return view('adminPanel/page/pageForm/pageMail/users',compact('users'));
+        return view('adminPanel/page/users',compact('users'));
 
     }
 

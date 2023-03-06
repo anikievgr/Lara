@@ -30,12 +30,12 @@
                     <li class=
                     @section('Analytics')
                         @show>
-                        <a href="/adminPanel"> Analytics </a>
+                        <a href="{{route('analytics.index')}}"> Analytics </a>
                     </li>
                     <li class=
                     @section('Sales')
                         @show>
-                        <a href="/sales"> Sales </a>
+                        <a href= {{route('sales.index')}}> Sales </a>
                     </li>
                 </ul>
             </li>

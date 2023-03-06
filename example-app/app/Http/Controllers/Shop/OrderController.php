@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shop;
 
+use App\Http\Controllers\Controller;
+use App\Mail\User\MassageOrder;
 use App\Models\Order;
-use App\Models\Product;
+use App\Models\TrueOrders;
 use App\Models\User;
-use App\Services\serch\Search;
 use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use function Pest\Laravel\get;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,26 +19,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10, ['*'], 'product');
-        $users = User::all();
-        //unset($users[0]);
-        $UserOrders = [];
-       $orders = Order::with('user')->paginate(10, ['*'], 'order');
-        //$orders = Order::with('user')->get();
+        $mainOrders = Order::where('user_id', '=', auth()->id())->paginate(10);
+       // dd($mainOrders);
 
-        $orderTable = [];
-
-
-
-
+        //dd(1);
         $request = [
-           'name' => 'null',
+            'name' => 'null',
             'search' => null,
-          "dateOne" => null,
-          "dateTwo" => null
+            "dateOne" => null,
+            "dateTwo" => null
         ];
-
-        return view('adminPanel/page/pageForm/pagehome/product', compact('products', 'orders', 'request'));
+        return view('shop/pageShop/order' , compact('mainOrders',  'request'));
 
     }
 
@@ -61,8 +51,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
-        return  redirect()->back();
+        //
     }
 
     /**
@@ -73,13 +62,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        if ($id == 'all') {
-            Product::query()->delete();
-        } else {
-            $product = Product::find($id);
-            $product->delete();
-
-        }
+        $order = Order::find($id);
+        $order-> delete();
         return redirect()->back();
     }
 
@@ -91,6 +75,23 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $order = Order::find($id);
+        $user = User::find($order['user_id']);
+        //dd($user);
+        $bd = [
+            'product'=>$order['product'],
+            'price'=>$order['price'],
+            'quantity'=>$order['quantity'],
+            'user_id'=>$order['user_id'],
+
+        ];
+        //dd($bd);
+         $order->update($bd);
+         TrueOrders::create($bd);
+        $order->delete();
+        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new MassageOrder($bd));
+
+        return redirect()->back();
 
     }
 
@@ -104,9 +105,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-        $product = Product::find($id);
-        $product->update($request->all());
-        return redirect()->back();
     }
 
     /**
@@ -117,19 +115,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
     public function search(Request $request, SearchInterface $search){
-
-       $orders =  $search->serch($request, \auth()->user()->role);
-        $products = Product::paginate(10, ['*'], 'order');
+       // dd($request->all());
+        $mainOrders =  $search->serch($request, \auth()->user()->role);
+        //dd($mainOrders);
         $request = [
             'name' => array_key_first( $request->all()),
             'search' => $request[array_key_first( $request->all())],
             "dateOne" =>  $request['dateOne'],
             "dateTwo" => $request['dateTwo']
         ];
-//dd($request->all());
-        return view('adminPanel/page/pageForm/pagehome/product', compact( 'orders', 'products', 'request'));
+
+        //dd($mainOrders);
+        return view('shop/pageShop/order' , compact('mainOrders', 'request'));
     }
 }

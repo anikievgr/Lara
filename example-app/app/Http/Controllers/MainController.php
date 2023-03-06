@@ -124,39 +124,7 @@ class MainController extends Controller
         return view('userPage/page/incubirovanie', compact('title', 'text'));
     }
     //администраторская панель
-    public function loginToTheAdminPanel()
-    {
-        return view('adminPanel/page/loginTo');
-    }
-    public function adminPanel()
-    {
-       $userID = auth()->id();
-        return view('adminPanel/page/adminPanel', compact('userID'));
-    }
 
-    public function adminSales()
-    {
-        return view('adminPanel/page/sales');
-    }
-     public function adminChat()
-    {
-        return view('adminPanel/page/chat');
-    }
-    public function adminMail()
-    {
-        return view('adminPanel/page/mail');
-    }
-     public function adminSlider()
-    {
-        return view('adminPanel/page/pageForm/pageHome/pageHomeForm');
-    }
-         public function adminIncubirovane()
-    {
-        return view('adminPanel/page/pageForm/pageHome/incubirovanieFrom');
-    }
-           public function adminContact()
-    {
-        return view('adminPanel/page/pageForm/pageHome/ContactFrom');
-    }
+
 
 }
