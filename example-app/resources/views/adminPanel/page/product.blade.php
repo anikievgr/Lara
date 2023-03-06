@@ -106,13 +106,13 @@
                                             </div>
 
 
-                                            <input type="text" name="{{$request['name']}}" class="form-control mainInput" placeholder="Выберите категорию" value="{{$request['search']}}"  aria-label="Username">
+                                            <input type="text" name="search" class="form-control mainInput" placeholder="Выберите категорию" value="{{$request['search']}}"  aria-label="Username">
                                         </div>
 
                                         <label for="inputDate" class="align-self-center pb-3  mr-3">C </label>
-                                        <input type="date" name="dateOne" class="form-control" value="{{$request['dateOne']}}" style="width: 17%; ">
+                                        <input type="date" name="dateFirst" class="form-control" value="{{$request['dateOne']}}" style="width: 17%; ">
                                         <label for="inputDate" class="align-self-center  pb-3  mr-3">ДО </label>
-                                        <input type="date" name="dateTwo" class="form-control" value="{{$request['dateTwo']}}" style="width: 17%; ">
+                                        <input type="date" name="dateSecond" class="form-control" value="{{$request['dateTwo']}}" style="width: 17%; ">
                                         <button type="submit" class="log_out" style="width: 45.4px; height: 45.4px; margin-top: -0px">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                                         </button>
@@ -135,12 +135,12 @@
 
 
                                     <tr>
-                                        <td>{{$order->user['name']}}</td>
-                                        <td>{{$order->user['email']}}</td>
-                                        <td>{{ $order['product']}}</td>
-                                        <td>{{$order['quantity']}} шт.</td>
+                                        <td>{{$order->name}}</td>
+                                        <td>{{$order->email}}</td>
+                                        <td>{{ $order->product}}</td>
+                                        <td>{{$order->quantity}} шт.</td>
                                         <td>
-                                            <a href="{{route('order.edit',$order->user['id'])}}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-fast-forward"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg></a>
+                                            <a href="{{route('order.edit',$order->id)}}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-fast-forward"><polygon points="13 19 22 12 13 5 13 19"></polygon><polygon points="2 19 11 12 2 5 2 19"></polygon></svg></a>
                                         </td>
 
                                     </tr>

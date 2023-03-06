@@ -22,12 +22,8 @@ class ProductController extends Controller
         $users = User::all();
         //unset($users[0]);
         $UserOrders = [];
-       $orders = Order::with('user')->paginate(10, ['*'], 'order');
-        //$orders = Order::with('user')->get();
-
-        $orderTable = [];
-
-
+       $orders = Order::with('user')->join( 'users','users.id', '=', 'orders.user_id', )
+           ->paginate(10, ['*'], 'order');
 
 
         $request = [
@@ -124,10 +120,10 @@ class ProductController extends Controller
         $request = [
             'name' => array_key_first( $request->all()),
             'search' => $request[array_key_first( $request->all())],
-            "dateOne" =>  $request['dateOne'],
-            "dateTwo" => $request['dateTwo']
+            "dateOne" =>  $request['dateFirst'],
+            "dateTwo" => $request['dateSecond']
         ];
-//dd($request->all());
-        return view('adminPanel/page/pageForm/pagehome/product', compact( 'orders', 'products', 'request'));
+
+        return view('adminPanel/page/product', compact( 'orders', 'products', 'request'));
     }
 }
