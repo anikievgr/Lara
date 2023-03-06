@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <!--end создать процесс -->
-                    @if ( count($processSort) != 0)
+
                         <!--start обновить, удалить процесс -->
                         <div id="deletedAppdate" class="col-lg-12 col-12 layout-spacing">
                                 <div class="statbox widget box box-shadow">
@@ -168,7 +168,7 @@
                         </div>
                     @endforeach
                      <!--start модалки-->
-                    @endif
+
                 </div>
             </div>
 

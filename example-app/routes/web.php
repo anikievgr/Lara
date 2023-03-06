@@ -24,10 +24,6 @@ Route::get('/sales','MainController@adminSales');
 Route::get('/chat','MainController@adminChat');
 Route::get('/mail','MainController@adminMail');
 Route::resource('mail', MailController::class);
-
-
-
-Route::resource('adminIncubirovanetext', 'App\Http\Controllers\AdminPanel\IncubirovaneTextController');
 Route::resource('mailAdd', \App\Http\Controllers\AddUserController::class);
 
 //Form
@@ -44,20 +40,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('/tableproducts', \App\Http\Controllers\ProductController::class);
         Route::get('/searchOrdersA', '\App\Http\Controllers\ProductController@search')->name('orderA.search');
         Route::prefix('admin')->group(function () {
-            Route::prefix('/pageHome')->group(function () {
-                Route::resource('/adminIncubirovane', 'App\Http\Controllers\AdminPanel\IncubirovaneController');
 
-
-                });
-
-
-
-
-            });
         });
         Route::get('/admin/pageHome/adminIncubirovanie', 'MainController@adminIncubirovane');
         Route::get('/adminContact', 'MainController@adminContact');
-
+    });
 });
 
 
@@ -102,6 +89,18 @@ Route::middleware('auth')->group(function () {
                 Route::resource('video', App\Http\Controllers\AdminPanel\PageHome\VideoController::class);
                 Route::resource('image', App\Http\Controllers\AdminPanel\PageHome\ImageController::class);
         });
+        Route::prefix('pageIncubirovanie')->group(function () {
+            Route::resource('header', App\Http\Controllers\AdminPanel\PageIncubirovanie\HaderController::class);
+            Route::prefix('textIncubirovanie')->group(function () {
+                Route::get('textI', [App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class, 'index'])->name('textI.index' );
+                Route::match(['get', 'post'],'createNewText', [App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class, 'createNewText'])->name('textI.createNewText');
+                Route::post('updateTitle', [App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class, 'updateTitle'])->name('textI.updateTitle');
+                Route::match(['get', 'post'],'updateText/{id}', [App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class,'updateText'])->name('textI.updateText');
+                Route::match(['get', 'post'],'deleteText/{id}',[App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class,'deleteText'])->name('textI.deleteText');
+                Route::get('deleteTitle',[App\Http\Controllers\AdminPanel\PageIncubirovanie\TextController::class,'deleteTitle'])->name('textI.deleteTitle');
+            });
+        });
+
     });
 });
 require __DIR__.'/auth.php';

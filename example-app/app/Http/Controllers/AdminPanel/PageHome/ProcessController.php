@@ -18,6 +18,7 @@ class ProcessController extends Controller
     public function index()
     {
         $process = Process::all();
+        $processSort = [];
         foreach ($process as $sort) {
 
             $color = explode(",", $sort['color']);
@@ -30,7 +31,10 @@ class ProcessController extends Controller
             ];
 
         }
-        ksort($processSort);
+        if (count($process) != 0){
+            ksort($processSort);
+        }
+
         return view('adminPanel/page/pageHome/process', compact('processSort'));
     }
 

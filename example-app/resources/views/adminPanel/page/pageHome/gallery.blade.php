@@ -27,7 +27,6 @@
     @endsection
 @section('content')
 
-                @if(count($gallery) != 0)
                      <div id="navSection" data-spy="affix" class="nav  sidenav">
                         <div class="sidenav-content">
                             <a href="#galerey-create" class=" nav-link ">Сохранить фотографию</a>
@@ -35,7 +34,7 @@
                             <a href="#galerey-delete_category" class=" nav-link">Удалить категорию</a>
                         </div>
                     </div>
-                @endif
+
                     <div class="container">
                         <div class="container">
                             <div class="row layout-top-spacing">
@@ -91,7 +90,7 @@
                                     </div>
                                 </div>
                                 <!--end  довавить-->
-                                @if(count($gallery) != 0)
+
                                     <!--start  удалить картинку-->
                                     <div id="galerey-delete_category" class="col-lg-12 col-12 layout-spacing">
                                         <div class="statbox widget box box-shadow">
@@ -147,6 +146,7 @@
                                         </div>
                                     </div>
                                     <!--end  удалить картинку-->
+
                                     <!--start  удалить картинку-->
                                     <div id="galerey-delete" class="col-lg-12 col-12 layout-spacing">
                                         <div class="statbox widget box box-shadow">
@@ -224,7 +224,6 @@
                                             </div>
 
                                     @endforeach
-                                @endif
 
 
 

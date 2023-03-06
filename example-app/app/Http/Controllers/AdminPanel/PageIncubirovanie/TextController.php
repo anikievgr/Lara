@@ -1,36 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanel\PageHome;
+namespace App\Http\Controllers\AdminPanel\PageIncubirovanie;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
+use App\Models\HeaderIncubirovane;
+use App\Models\TextIncubirovane;
 use App\Models\TextPageHome;
 use App\Models\TitlePageHome;
 use Illuminate\Http\Request;
 
-class TextPageHomeController extends Controller
+class TextController extends Controller
 {
     public function index()
     {
-        $title = TitlePageHome::all();
-        $textT = TextPageHome::all();
-
-        return view('adminPanel/page/pageHome/text', compact('title', 'textT'));
+        $title = HeaderIncubirovane::all();
+        $text = TextIncubirovane::all();
+        return view('adminPanel/page/pageIncubirovanie/text', compact('title', 'text'));
     }
     public function createNewText(TextRequest $request)
     {
-        TextPageHome::create($request->all());
+        TextIncubirovane::create($request->all());
         return redirect()->back();
     }
     public function updateTitle(Request $request)
     {
-        $title = TitlePageHome::find(1);
+        $title = HeaderIncubirovane::find(1);
         $title->update($request->all());
         return redirect()->back();
     }
     public function updateText(Request $request, $id)
     {
-        $text = TextPageHome::find($id);
+        $text = TextIncubirovane::find($id);
         $db = [
             'title' => $request['title'],
             'text' => $request['text']
@@ -40,7 +41,7 @@ class TextPageHomeController extends Controller
     }
     public function deleteTitle()
     {
-        $text = TitlePageHome::find(1);
+        $text = HeaderIncubirovane::find(1);
         $title = [
             'title' => '',
             'text' => ''
@@ -50,7 +51,7 @@ class TextPageHomeController extends Controller
     }
     public function deleteText($id)
     {
-        $text = TextPageHome::find($id);
+        $text = TextIncubirovane::find($id);
         $text->delete();
         return redirect()->back();
     }

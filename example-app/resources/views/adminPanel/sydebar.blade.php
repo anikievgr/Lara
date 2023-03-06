@@ -129,8 +129,11 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled" id="incubirovane" data-parent="#accordionExample">
-                    <li class = @section('incubitovanie')@show>
-                        <a href="{{route('adminIncubirovane.index')}}"> Инкубирование</a>
+                    <li class = @section('incubitovanieHeader')@show>
+                        <a href="{{route('header.index')}}"> Header</a>
+                    </li>
+                    <li class = @section('incubitovanieText')@show>
+                        <a href="{{route('textI.index')}}"> Текст</a>
                     </li>
                 </ul>
 

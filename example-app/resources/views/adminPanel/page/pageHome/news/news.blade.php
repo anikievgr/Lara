@@ -31,7 +31,6 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @endsection
 @section('content')
-    @if ( count($news) != 0)
             <div id="navSection" data-spy="affix" class="nav  sidenav">
                 <div class="sidenav-content">
                     <a href="#news-create" class=" nav-link">Создать запись</a>
@@ -40,7 +39,7 @@
 
                 </div>
             </div>
-    @endif
+
             <div class="container">
                 <div class="container">
                     <div class="row layout-top-spacing">
@@ -103,7 +102,7 @@
 
                         </div>
                         <!--end создать новость-->
-                        @if(count($news) != 0)
+
                             <!--start редактировать новость -->
                             <div id="news-update" class="col-lg-12 layout-spacing">
                                 <div class="col-lg-12 col-12 layout-spacing">
@@ -204,7 +203,7 @@
                                 </div>
                             @endforeach
                             <!--start модалки-->
-                        @endif
+
 
                     </div>
                 </div>

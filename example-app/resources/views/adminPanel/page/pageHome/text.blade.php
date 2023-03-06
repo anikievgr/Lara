@@ -73,7 +73,6 @@
                         <!--end создать запись-->
 
 
-
                         <!--start обновить/удалить запись-->
                         <div id="ud" class="col-lg-12 col-12 layout-spacing">
                             <div class="statbox widget box box-shadow">
@@ -86,9 +85,11 @@
                                 </div>
                                 <div class="widget-content widget-content-area simple-tab">
                                     <ul class="nav nav-tabs  mb-3 mt-3" id="simpletab" role="tablist">
+                                        @if(count($title))
                                         <li class="nav-item">
                                                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Заголовок</a>
                                             </li>
+                                        @endif
                                         @foreach($textT as $item)
                                         <li class="nav-item">
                                             <a class="nav-link text-truncate" id="home-tab" data-toggle="tab" href="#k{{$item['id']}}" role="tab"style="" aria-controls="home" aria-selected="true">{{$item['title']}}</a>
@@ -97,17 +98,19 @@
 
 
                                     </ul>
+
                                     <div class="tab-content" id="simpletabContent">
+                                        @if(count($title))
                                         <div class="tab-pane fade show active" id="pills-home" style="" role="tabpanel" aria-labelledby="home-tab">
                                              <form method="post" action="{{route('text.updateTitle')}}" >
                                                  @csrf
                                                 <div class="form-group mb-4">
                                                     <label for="formGroupExampleInput " >Заголовок</label>
-                                                    <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{$text[0]['title']}}">
+                                                    <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{$title[0]['title']}}">
                                                 </div>
                                                <div class="form-group mb-4">
                                                     <label for="formGroupExampleInput " >Подзаголовок</label>
-                                                    <input name="text" type="text" class="form-control" id="formGroupExampleInput" value="{{$text[0]['text']}}">
+                                                    <input name="text" type="text" class="form-control" id="formGroupExampleInput" value="{{$title[0]['text']}}">
                                                </div>
                                                     <div class="d-flex justify-content-between">
                                                         <input type="submit"  class="btn btn-primary">
@@ -117,7 +120,8 @@
                                                     </div>
                                             </form>
                                         </div>
-                                        @foreach ($textT as $item)
+                                        @endif
+                                            @foreach ($textT as $item)
                                             <div class="tab-pane fade show " id="k{{$item['id']}}" style="" role="tabpanel" aria-labelledby="home-tab">
                                                 <form method="post" action="{{route('text.updateText', $item['id'])}}" >
                                                     @csrf

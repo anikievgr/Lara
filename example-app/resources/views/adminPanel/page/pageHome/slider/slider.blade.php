@@ -31,7 +31,6 @@
     <div class="container">
         <div class="container">
             <!--start навигация-->
-            @if(count($slides) != 0)
                 <div id="navSection" data-spy="affix" class="nav  sidenav">
                 <div class="sidenav-content">
                     <a href="#slider-create" class=" nav-link ">Создать слайд</a>
@@ -39,7 +38,6 @@
                     <a href="#slider-delete" class=" nav-link">Удалить</a>
                 </div>
             </div>
-            @endif
             <!--end Навигация-->
 
             <div class="row layout-top-spacing">
@@ -103,7 +101,7 @@
                 </div>
             <!--end создать слайд-->
 
-            @if(count($slides) != 0)
+
                 <!--start обновить слайд-->
                     <div id="slider-update" class="col-lg-12 layout-spacing">
                     <div class="col-lg-12 col-12 layout-spacing">
@@ -208,7 +206,7 @@
                         </div>
                     @endforeach
                 <!--start модалки-->
-            @endif
+
         </div>
 
         </div>

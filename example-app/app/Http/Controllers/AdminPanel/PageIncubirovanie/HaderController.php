@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Adminpanel;
+namespace App\Http\Controllers\AdminPanel\PageIncubirovanie;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HaderIncubirovanieRequest;
+use App\Models\HeaderIncubirovane;
+use App\Models\Image;
 use App\Models\TextIncubirovane;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class IncubirovaneTextController extends Controller
+class HaderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +19,8 @@ class IncubirovaneTextController extends Controller
      */
     public function index()
     {
-        //
+        $image = HeaderIncubirovane::all();
+        return view('adminPanel/page/pageIncubirovanie/header', compact('image'));
     }
 
     /**
@@ -36,9 +41,7 @@ class IncubirovaneTextController extends Controller
      */
     public function store(Request $request)
     {
-        TextIncubirovane::create($request->all());
-
-           return redirect()->back();
+        //
     }
 
     /**
@@ -49,10 +52,7 @@ class IncubirovaneTextController extends Controller
      */
     public function show($id)
     {
-         $text = textIncubirovane::find($id);
-
-        $text->delete();
-        return redirect()->back();
+        //
     }
 
     /**
@@ -73,12 +73,20 @@ class IncubirovaneTextController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(HaderIncubirovanieRequest $request, $id)
     {
-        $text= textIncubirovane::find($id);
-        $text->update($request->all());
-           return redirect()->back();
-
+        $header= HeaderIncubirovane::find($id);
+        $path = null;
+        if (array_key_exists('image', $request->all())){
+            Storage::disk('public')->delete($header['image']);
+            $path = $request->file('image')->store('uploads', 'public');
+        }
+        $request = [
+            'title' =>  $request['title'],
+            'image' =>  $path,
+        ];
+        $header->update($request);
+        return redirect()->back();
     }
 
     /**
@@ -89,6 +97,13 @@ class IncubirovaneTextController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $items = HeaderIncubirovane::query()->find($id);
+        Storage::disk('public')->delete($items['image']);
+        $bd = [
+            'title' => '',
+            'image' => '',
+        ];
+        $items->update($bd);
+        return redirect()->back();
     }
 }
