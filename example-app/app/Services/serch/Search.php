@@ -58,7 +58,7 @@ class Search implements SearchInterface
             })
             ->paginate(10);
 
-        //dd($orders,$request->all());
+            //dd($orders,$request->all());
         return $orders;
     }
     public function delivered($request, $status)
