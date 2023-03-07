@@ -4,14 +4,10 @@
         Продукты
     @endsection
 @section('scriptAdd')
-
         <script src="{{asset('style/pageAdmin/plugins/table/datatable/datatables.js')}}"></script>
-        <script src="{{asset('style/js/mainMenu.js')}}"></script>
-
     @endsection
 @section('headerAddLink')
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/datatables.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('style/css/mainMenu.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/dt-global_style.css')}}">
         <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css" ')}}"  rel="stylesheet" type="text/css" />
         <link href="{{asset('style/pageAdmin/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
@@ -81,13 +77,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mainMenu">
-
-                                <button id="mainButtonmenuPost" type="button">По почте ...</button>
-                                <button id="mainButtonmenuPrice" type="button">По имени ...</button>
-                                <button id="mainButtonmenuOrder" type="button">По заказу ...</button>
-
-                        </div>
                         <div class="widget-content widget-content-area br-6">
 
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
@@ -99,10 +88,7 @@
                                         <div class="input-group mb-4" style="width: 40%;">
                                             <div class="input-group-prepend" >
                                                 <span class="input-group-text" id="basic-addon5">
-                                                    <button type="button" id="mainMenu" class="border-0">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up "><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                                                    </button>
-                                                </span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>                                                </span>
                                             </div>
 
 
