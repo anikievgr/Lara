@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('order', \App\Http\Controllers\Shop\OrderController::class);
     Route::get('/searchOrders', [\App\Http\Controllers\Shop\OrderController::class, 'search'])->name('order.search');
     Route::resource('trueOrder', \App\Http\Controllers\Shop\TrueOrderController::class);
+
+
     Route::middleware('checkRole')->group(function () {
         //admin pages
         Route::get('analytics', [App\Http\Controllers\AdminPanel\AnaliticsController::class, 'index'])->name('analytics.index');
@@ -50,6 +52,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('tableusers', \App\Http\Controllers\AdminPanel\TableuaserController::class);
         Route::resource('/tableproducts', \App\Http\Controllers\AdminPanel\ProductController::class);
         Route::get('/searchOrdersA', [\App\Http\Controllers\AdminPanel\ProductController::class,'search'])->name('orderA.search');
+        Route::prefix('deliveredOrders')->group(function () {
+            Route::get('index', [\App\Http\Controllers\AdminPanel\TruemainOrderController::class, 'index'])->name('deliveredOrders.index');
+            Route::get('search', [\App\Http\Controllers\AdminPanel\TruemainOrderController::class, 'search'])->name('deliveredOrders.search');
+        });
         Route::prefix('pageHome')->group(function () {
                 Route::resource('slider', \App\Http\Controllers\AdminPanel\PageHome\SliderController::class);
                 Route::resource('gallery', \App\Http\Controllers\AdminPanel\PageHome\GalleryController::class);

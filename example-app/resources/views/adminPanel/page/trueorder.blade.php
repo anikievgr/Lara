@@ -53,7 +53,7 @@
                                 <th>Заказы</th>
                                 <th>Количество</th>
                                 <th>Цена за одну</th>
-                                <th class="no-content">Удалить</th>
+                                <th>Цена за все</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,8 +61,8 @@
                                 <tr>
                                     <td>{{$product['product']}}</td>
                                     <td>{{$product['quantity']}}</td>
-                                    <td>{{$product['price']}} рублей</td>
-                                    <td><a href="" data-toggle="modal" data-target="#d{{$product['id']}} "> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></td>
+                                    <td>{{$product['price']}} р.</td>
+                                    <td>{{$product['price'] * $product['quantity']}} р.</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -73,20 +73,7 @@
                 <!-- Button trigger modal -->
 
 
-                <!-- Modal -->
-                @foreach($mainOrders as $product)
-                    <div id="d{{$product['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content p-1">
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Вы точно хотите удалить поле?</h4>
-                                </div>
-                                <a href="{{route('truemainOrderController.show',$product['id'])}}" class="btn btn-primary mb-2">Да</a>
-                            </div>
-                        </div>
-                    </div>
 
-                @endforeach
             </div>
 
         </div>

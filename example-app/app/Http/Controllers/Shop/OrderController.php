@@ -75,6 +75,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
+
         $order = Order::find($id);
         $user = User::find($order['user_id']);
         //dd($user);
@@ -83,10 +84,10 @@ class OrderController extends Controller
             'price'=>$order['price'],
             'quantity'=>$order['quantity'],
             'user_id'=>$order['user_id'],
+            'date'=>date('Y-m-d'),
 
         ];
-        //dd($bd);
-         $order->update($bd);
+       // dd($bd);
          TrueOrders::create($bd);
         $order->delete();
         \Illuminate\Support\Facades\Mail::to($user['email'])->send(new MassageOrder($bd));
@@ -119,7 +120,7 @@ class OrderController extends Controller
     }
     public function search(Request $request, SearchInterface $search){
        // dd($request->all());
-        $mainOrders =  $search->serch($request, \auth()->user()->role);
+        $mainOrders =  $search->searchUser($request, \auth()->user()->role);
         //dd($mainOrders);
         $request = [
             'name' => array_key_first( $request->all()),

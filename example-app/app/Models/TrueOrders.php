@@ -10,6 +10,10 @@ class TrueOrders extends Model
     protected $fillable =[ 'product',
         'price',
         'quantity',
-        'user_id'];
+        'user_id',
+        'date'];
     use HasFactory;
+    public function user(){
+        return $this->belongsTo(User::class,    'user_id', 'id' );
+    }
 }

@@ -23,6 +23,7 @@ class ProductController extends Controller
         //unset($users[0]);
         $UserOrders = [];
        $orders = Order::with('user')->join( 'users','users.id', '=', 'orders.user_id', )
+           ->select('orders.id as orderID', 'orders.product', 'orders.quantity','orders.price','orders.date', 'users.name','users.email')
            ->paginate(10, ['*'], 'order');
 
 
@@ -115,7 +116,7 @@ class ProductController extends Controller
     }
     public function search(Request $request, SearchInterface $search){
 
-       $orders =  $search->serch($request, \auth()->user()->role);
+       $orders =  $search->search($request, \auth()->user()->role);
         $products = Product::paginate(10, ['*'], 'order');
         $request = [
             'name' => array_key_first( $request->all()),

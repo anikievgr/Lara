@@ -11,9 +11,8 @@ use Illuminate\Support\Facades\DB;
 class Search implements SearchInterface
 {
 
-    public function serch($request, $status)
+    public function search($request, $status)
     {
-
         $orders = DB::table('orders')
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('orders.user_id', '=', 'users.id');
@@ -35,7 +34,58 @@ class Search implements SearchInterface
             })
             ->paginate(10);
 
+       // dd($orders,$request->all());
+        return $orders;
+    }
+    public function searchUser($request, $status)
+    {
+
+        $orders = DB::table('orders')
+            ->join('users', function (JoinClause $join) use ($request) {
+                $join->on('orders.user_id', '=', 'users.id');
+            })
+            ->when($request['search'] != null, function ($query) use ($request) {
+                return $query
+                    ->where(function ($q) use ($request) {
+                        $q->where('product', 'Like', '%'.$request['search'] .'%');
+                    });
+            })
+            ->when($request['dateFirst'] != null, function ($query) use ($request) {
+                return $query->where('date', '>=', $request['dateFirst']);
+            })
+            ->when($request['dateSecond'] != null, function ($query) use ($request) {
+                return $query->where('date', '<=', $request['dateSecond']);
+            })
+            ->paginate(10);
+
         //dd($orders,$request->all());
         return $orders;
     }
+    public function delivered($request, $status)
+    {
+        $orders = DB::table('true_orders')
+            ->join('users', function (JoinClause $join) use ($request) {
+                $join->on('true_orders.user_id', '=', 'users.id');
+            })
+            ->when($request['search'] != null, function ($query) use ($request) {
+                return $query
+                    ->where(function ($q) use ($request) {
+                        $q->where('product', 'Like', '%'.$request['search'] .'%')
+                            ->orWhere('name', 'Like', '%'.$request['search'] .'%')
+                            ->orWhere('email', 'Like', '%'.$request['search'] .'%');
+                    });
+
+            })
+            ->when($request['dateFirst'] != null, function ($query) use ($request) {
+                return $query->where('date', '>=', $request['dateFirst']);
+            })
+            ->when($request['dateSecond'] != null, function ($query) use ($request) {
+                return $query->where('date', '<=', $request['dateSecond']);
+            })
+            ->paginate(10);
+
+        //dd($orders,$request->all());
+        return $orders;
+    }
+
 }

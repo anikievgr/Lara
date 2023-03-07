@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->integer('user_id')->references('id')->on('users');
+            $table->string('date');
         });
     }
 

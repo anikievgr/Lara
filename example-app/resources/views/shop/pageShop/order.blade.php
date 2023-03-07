@@ -45,7 +45,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                                                 </span>
                                         </div>
-                                        <input type="text" name="product" class="form-control mainInput" placeholder="Поиск по заказу" value="{{$request['search']}}"  aria-label="Username">
+                                        <input type="text" name="search" class="form-control mainInput" placeholder="Поиск по заказу" value="{{$request['search']}}"  aria-label="Username">
                                     </div>
                                     <label for="inputDate" class="align-self-center pb-3  mr-3">C </label>
                                     <input type="date" name="dateOne" class="form-control" value="{{$request['dateOne']}}" style="width: 17%; ">
@@ -63,16 +63,16 @@
                                 <th>Мои заказы</th>
                                 <th>Количество</th>
                                 <th>Цена за одну</th>
-                                <th class="no-content">Удалить</th>
+                                <th>Цена за все</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($mainOrders as $product)
                                 <tr>
-                                    <td>{{$product['product']}}</td>
-                                    <td>{{$product['quantity']}}</td>
-                                    <td>{{$product['price']}} рублей</td>
-                                    <td><a href="" data-toggle="modal" data-target="#d{{$product['id']}} "> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></td>
+                                    <td>{{ $product->product}}</td>
+                                    <td>{{$product->quantity}} шт.</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->price * $product->quantity}}р.</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -92,13 +92,13 @@
 
                 <!-- Modal -->
                 @foreach($mainOrders as $product)
-                    <div id="d{{$product['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div id="d{{$product->id}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content p-1">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                     <h4>Вы точно хотите удалить заказ?</h4>
                                 </div>
-                                <a href="{{route('order.show',$product['id'])}}" class="btn btn-primary mb-2">Да</a>
+                                <a href="{{route('order.show',$product->id)}}" class="btn btn-primary mb-2">Да</a>
                             </div>
                         </div>
                     </div>
