@@ -64,6 +64,8 @@
                                     <th>Почта заказчика</th>
                                     <th>Продукты/описание</th>
                                     <th class="no-content">Количество</th>
+                                    <th class="no-content">Цена за шт.</th>
+                                    <th class="no-content">Цена за заказ</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -73,6 +75,8 @@
                                         <td>{{$order->email}}</td>
                                         <td>{{ $order->product}}</td>
                                         <td>{{$order->quantity}} шт.</td>
+                                        <td>{{$order->price}} p.</td>
+                                        <td>{{$order->price * $order->quantity}} p.</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
