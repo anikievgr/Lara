@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImagePageHomeRequest;
-use App\Services\Models\Image;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

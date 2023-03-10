@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\Company;
-use App\Services\Models\Statisic;
+use App\Models\Company;
+use App\Models\Statisic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

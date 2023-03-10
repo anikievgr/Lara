@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TextIncubirovane extends Model
+class HeaderIncubirovane extends Model
 {
-    protected $fillable = ['title', 'text' ];
+     protected $fillable = ['title', 'image' ];
     use HasFactory;
 }

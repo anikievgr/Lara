@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\TextPageHome;
+use App\Models\TextPageHome;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

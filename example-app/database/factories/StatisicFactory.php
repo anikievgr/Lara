@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Statisic;
+use App\Models\Statisic;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\Statisic>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Statisic>
  */
 class StatisicFactory extends Factory
 {

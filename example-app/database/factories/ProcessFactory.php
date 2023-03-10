@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Process;
+use App\Models\Process;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\Process>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Process>
  */
 class ProcessFactory extends Factory
 {
@@ -21,7 +21,7 @@ class ProcessFactory extends Factory
         return [
             'nameprocess' => $this->faker->text(10),
             'nomerprocess' => $this->faker->randomDigitNotNull(),
-            'color' => $this->faker->rgbaCssColor()
+            'color' =>  rand(0, 255).','. rand(0, 255).',' .rand(0, 255).','. .8
 
         ];
     }

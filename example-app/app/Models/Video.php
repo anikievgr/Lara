@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Video extends Model
 {
+      protected $fillable = ['title', 'text'];
     use HasFactory;
-    protected $fillable = ['image', 'categoty_id'];
 }

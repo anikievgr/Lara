@@ -63,7 +63,6 @@ class Search implements SearchInterface
     public function delivered($request, $status)
     {
         $orders = DB::table('true_orders')
-            ->select('orders.id as orderID', 'orders.product', 'orders.quantity','orders.price','orders.date', 'users.name','users.email')
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('true_orders.user_id', '=', 'users.id');
             })
@@ -90,7 +89,6 @@ class Search implements SearchInterface
     public function deliveredUser($request, $status)
     {
         $orders = DB::table('true_orders')
-            ->select('orders.id as orderID', 'orders.product', 'orders.quantity','orders.price','orders.date', 'users.name','users.email')
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('true_orders.user_id', '=', 'users.id');
             })

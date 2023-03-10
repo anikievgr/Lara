@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\adminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\Order;
-use App\Services\Models\User;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TableuaserController extends Controller

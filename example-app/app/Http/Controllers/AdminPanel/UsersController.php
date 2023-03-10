@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller

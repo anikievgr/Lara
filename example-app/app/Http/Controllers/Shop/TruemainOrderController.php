@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\TrueOrders;
+use App\Models\TrueOrders;
 use Illuminate\Http\Request;
 
 class TruemainOrderController extends Controller

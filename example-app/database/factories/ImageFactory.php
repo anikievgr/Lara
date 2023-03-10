@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Image;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\Image>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
  */
 class ImageFactory extends Factory
 {

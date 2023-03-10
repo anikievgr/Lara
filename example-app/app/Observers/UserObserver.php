@@ -3,31 +3,33 @@
 namespace App\Observers;
 
 use App\Mail\User\Massage;
-use App\Services\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserObserver
 {
-    /**
+    /**$user
      * Handle the User "created" event.
      *
-     * @param  \App\Services\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function created(User $user)
     {
-
-        $password = Str::random(8);
-        $user->password = Hash::make($password);
-        $user->save();
-        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+        $role = $user->toArray();
+        if (!array_key_exists('role', $role)){
+            $password = Str::random(8);
+            $user->password = Hash::make($password);
+            $user->save();
+            \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+        }
     }
 
     /**
      * Handle the User "updated" event.
      *
-     * @param  \App\Services\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function updated(User $user)
@@ -38,7 +40,7 @@ class UserObserver
     /**
      * Handle the User "deleted" event.
      *
-     * @param  \App\Services\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function deleted(User $user)
@@ -49,7 +51,7 @@ class UserObserver
     /**
      * Handle the User "restored" event.
      *
-     * @param  \App\Services\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function restored(User $user)
@@ -60,7 +62,7 @@ class UserObserver
     /**
      * Handle the User "force deleted" event.
      *
-     * @param  \App\Services\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function forceDeleted(User $user)

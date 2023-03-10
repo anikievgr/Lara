@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\Order;
-use App\Services\Models\Product;
-use App\Services\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 

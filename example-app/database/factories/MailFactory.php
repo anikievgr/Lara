@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Mail;
+use App\Models\Mail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\Mail>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mail>
  */
 class MailFactory extends Factory
 {

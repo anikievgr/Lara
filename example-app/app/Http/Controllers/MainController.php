@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\Models\Category;
-use App\Services\Models\Company;
-use App\Services\Models\HeaderIncubirovane;
-use App\Services\Models\Image;
-use App\Services\Models\News;
-use App\Services\Models\Process;
-use App\Services\Models\Slide;
-use App\Services\Models\Statisic;
-use App\Services\Models\TextIncubirovane;
-use App\Services\Models\TextPageHome;
-use App\Services\Models\TitlePageHome;
-use App\Services\Models\Video;
+use App\Models\Category;
+use App\Models\Company;
+use App\Models\HeaderIncubirovane;
+use App\Models\Image;
+use App\Models\News;
+use App\Models\Process;
+use App\Models\Slide;
+use App\Models\Statisic;
+use App\Models\TextIncubirovane;
+use App\Models\TextPageHome;
+use App\Models\TitlePageHome;
+use App\Models\Video;
 
 class MainController extends Controller
 {
@@ -47,10 +47,7 @@ class MainController extends Controller
     }
     public function incubirovanie(){
         $title = HeaderIncubirovane::all();
-           $text = TextIncubirovane::all();
-          if ($title[0]['image'] == '') {
-            $title = [];
-        }
+        $text = TextIncubirovane::all();
         return view('userPage/page/incubirovanie', compact('title', 'text'));
     }
      // администраторская панель

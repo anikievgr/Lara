@@ -189,7 +189,7 @@
 
                                     <div class="row">
                                         @foreach ($twoNews as $oneNews)
-                                            <div class="col-sm-6 timeline-item {{$oneNews['lr']}}">
+                                            <div  class="col-sm-6 timeline-item  @if(!$loop->first) right @endif">
                                                 <div class="arrow"></div>
 
                                                 <div class="post-content">
@@ -215,6 +215,7 @@
                                                 <!-- /.post-content -->
                                             </div>
                                             <!-- /column -->
+
                                         @endforeach
                                     </div>
                                     <!-- /.row -->
@@ -230,7 +231,7 @@
                 <!--end news-->
 
                 <!--start   About company-->
-                @if($ocompany[0]['image'] = null && $ocompany[0]['title'] = null  && $ocompany[0]['titleLtext'] = null )
+                @if(($ocompany[0]['image'] != null) && ($ocompany[0]['title'] != null)  && ($ocompany[0]['titleLtext'] != null) )
                     <div class="white-wrapper">
                         <div class="col-image">
                             <div class="bg-wrapper col-md-6">
@@ -303,11 +304,11 @@
                                 <p class="lead">Наш процесс разведения потрясающих индюшек</p>
                             </div>
                             <div class="thin3">
-                                <div class="row circle-wrapper justify-content-center">
+                                <div class="row circle-wrapper " style="display: flex; justify-content: center;flex-wrap: wrap">
                                     @foreach($processSort as $key => $process)
                                         <div class="col-sm-6 col-md-3 ">
                                             <div class="circle "
-                                                 style="background-color: {{$process['color']}} !important; border-radius: 100%;">
+                                                 style="background-color: rgba({{$process['color']}}) !important; border-radius: 100%;">
                                                 <div class="text">{{$key}}. {{$process['nameprocess']}}</div>
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\CreatNewSlideFich;
-use App\Services\Models\Slide;
+use App\Models\Slide;
 
 class CreatNewSlide implements CreatNewSlideFich
 {

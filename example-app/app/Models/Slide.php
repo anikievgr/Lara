@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Services\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Slide extends Model
 {
-    protected $fillable = ['product','price'];
     use HasFactory;
+    protected $table = 'Table_slides';
+    protected $guarded = [];
+
 }

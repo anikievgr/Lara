@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Image extends Model
 {
-      protected $fillable = ['title','titleLtext', 'image' ];
+       protected $fillable = ['title', 'text', 'image'];
     use HasFactory;
 }

@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Slide;
+use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\=Slide>
  */
 class SlideFactory extends Factory
 {

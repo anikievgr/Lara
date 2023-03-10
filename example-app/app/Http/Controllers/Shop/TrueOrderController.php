@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Mail\User\MassageOrder;
-use App\Services\Models\Order;
-use App\Services\Models\TrueOrders;
-use App\Services\Models\User;
+use App\Models\Order;
+use App\Models\TrueOrders;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TrueOrderController extends Controller

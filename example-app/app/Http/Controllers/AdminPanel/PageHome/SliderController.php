@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Adminpanel\PageHome;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
 use App\Http\Requests\StandardValidation;
-use App\Services\Models\Slide;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

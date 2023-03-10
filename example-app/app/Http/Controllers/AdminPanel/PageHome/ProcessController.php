@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProcessRequest;
-use App\Services\Models\Process;
+use App\Models\Process;
 use Illuminate\Http\Request;
 
 class ProcessController extends Controller

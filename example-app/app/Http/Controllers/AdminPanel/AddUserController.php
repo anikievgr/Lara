@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Services\Models\Mail;
-use App\Services\Models\User;
+use App\Models\Mail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -71,10 +71,7 @@ class AddUserController extends Controller
             'password' => Hash::make($password),
 
         ]);
-
         $userAdd->delete();
-
-        //\Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
 
 
         return redirect()->back();

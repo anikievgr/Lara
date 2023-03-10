@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageIncubirovanie;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HaderIncubirovanieRequest;
-use App\Services\Models\HeaderIncubirovane;
+use App\Models\HeaderIncubirovane;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

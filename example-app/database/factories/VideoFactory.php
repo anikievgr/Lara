@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Services\Models\Video;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

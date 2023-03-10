@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
-use App\Services\Models\Video;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use function redirect;
 use function view;
