@@ -53,7 +53,7 @@ class MainController extends Controller
         }
         return view('userPage/page/incubirovanie', compact('title', 'text'));
     }
-     //администраторская панель
+     // администраторская панель
 
 
 
