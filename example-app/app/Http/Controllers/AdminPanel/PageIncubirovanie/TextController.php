@@ -4,10 +4,8 @@ namespace App\Http\Controllers\AdminPanel\PageIncubirovanie;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
-use App\Models\HeaderIncubirovane;
-use App\Models\TextIncubirovane;
-use App\Models\TextPageHome;
-use App\Models\TitlePageHome;
+use App\Services\Models\HeaderIncubirovane;
+use App\Services\Models\TextIncubirovane;
 use Illuminate\Http\Request;
 
 class TextController extends Controller

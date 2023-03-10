@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Post;
+use App\Services\Models\Category;
+use App\Services\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,17 +44,21 @@ class GalleryController extends Controller
             $newSlide =  $request->validate([
                 'new-category' => 'required|max:50',
                 'image' => 'required',
-
             ]);
+            $category = Category::create(['title' => $newSlide['new-category']]);
+            $category = $category['id'];
         }else{
             $newSlide =  $request->validate([
                 'select' => 'required',
                 'image' => 'required',
             ]);
+            $category =$request['select'];
         }
-        dd($request->all(),$newSlide);
-        $newSlide['image'] = $request->file('image')->store('uploads', 'public');;
-        dd($newSlide);
+        Post::create([
+            'image' => $request->file('image')->store('uploads', 'public'),
+            'categoty_id' => $category
+        ]);
+        return redirect()->back();
     }
 
     /**

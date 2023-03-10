@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mail;
-use App\Models\User;
+use App\Services\Models\Mail;
+use App\Services\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

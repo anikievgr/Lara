@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Process;
+use App\Services\Models\Process;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Process>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\Process>
  */
 class ProcessFactory extends Factory
 {

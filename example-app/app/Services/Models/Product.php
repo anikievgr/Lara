@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TitlePageHome extends Model
+class Product extends Model
 {
-      protected $fillable = ['title', 'text'];
+    protected $fillable = ['product','price'];
     use HasFactory;
 }

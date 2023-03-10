@@ -2,7 +2,7 @@
 
 namespace App\Services\News;
 
-use App\Models\News;
+use App\Services\Models\News;
 
 class NewNews implements CreateNewNews
 {

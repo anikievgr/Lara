@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\News;
+use App\Services\Models\News;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\News>
  */
 class NewsFactory extends Factory
 {

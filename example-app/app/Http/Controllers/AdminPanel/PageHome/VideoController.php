@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
-use App\Models\Video;
+use App\Services\Models\Video;
 use Illuminate\Http\Request;
 use function redirect;
 use function view;
@@ -90,8 +90,8 @@ class VideoController extends Controller
     {
         $text = Video::find(1);
         $db = [
-            'title' => '',
-            'text' => ''
+            'title' => null,
+            'text' => null
         ];
         $text->update($db);
         return redirect()->back();

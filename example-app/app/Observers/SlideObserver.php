@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Slide;
+use App\Services\Models\Slide;
 use Illuminate\Support\Facades\Storage;
 
 class SlideObserver
@@ -10,7 +10,7 @@ class SlideObserver
     /**
      * Handle the Slide "created" event.
      *
-     * @param  \App\Models\Slide  $slide
+     * @param  \App\Services\Models\Slide  $slide
      * @return void
      */
     public function created(Slide $slide)
@@ -21,7 +21,7 @@ class SlideObserver
     /**
      * Handle the Slide "updated" event.
      *
-     * @param  \App\Models\Slide  $slide
+     * @param  \App\Services\Models\Slide  $slide
      * @return void
      */
     public function updated(Slide $slide)
@@ -32,7 +32,7 @@ class SlideObserver
     /**
      * Handle the Slide "deleted" event.
      *
-     * @param  \App\Models\Slide  $slide
+     * @param  \App\Services\Models\Slide  $slide
      * @return void
      */
     public function deleted(Slide $slide)
@@ -48,7 +48,7 @@ class SlideObserver
     /**
      * Handle the Slide "restored" event.
      *
-     * @param  \App\Models\Slide  $slide
+     * @param  \App\Services\Models\Slide  $slide
      * @return void
      */
     public function restored(Slide $slide)
@@ -59,7 +59,7 @@ class SlideObserver
     /**
      * Handle the Slide "force deleted" event.
      *
-     * @param  \App\Models\Slide  $slide
+     * @param  \App\Services\Models\Slide  $slide
      * @return void
      */
     public function forceDeleted(Slide $slide)

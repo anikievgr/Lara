@@ -4,9 +4,8 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProcessRequest;
-use App\Models\Process;
+use App\Services\Models\Process;
 use Illuminate\Http\Request;
-use function GuzzleHttp\Promise\all;
 
 class ProcessController extends Controller
 {

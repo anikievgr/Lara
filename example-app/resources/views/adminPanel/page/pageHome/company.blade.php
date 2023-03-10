@@ -98,7 +98,12 @@
                                                 </div>
                                             </div>
                                             <div class="widget-content widget-content-area">
-                                                <img class="rounded d-block w-100" width="100%" src="{{asset('/storage/'.$company[0]['image'])}}">
+                                                @if(!empty($company) )
+                                                    <p>Нет картинки</p>
+                                                    @else
+                                                    <img class="rounded d-block w-100" width="100%" src="{{asset('/storage/'.$company[0]['image'])}}">
+                                                @endif
+
                                                 <form method="post" action="{{route('company.update')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="form-group mb-4">

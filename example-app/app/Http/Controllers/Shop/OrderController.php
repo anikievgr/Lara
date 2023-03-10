@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Mail\User\MassageOrder;
-use App\Models\Order;
-use App\Models\TrueOrders;
-use App\Models\User;
+use App\Services\Models\Order;
+use App\Services\Models\TrueOrders;
 use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 
@@ -76,9 +75,7 @@ class OrderController extends Controller
     public function edit($id)
     {
 
-        $order = Order::find($id);
-        $user = User::find($order['user_id']);
-        //dd($user);
+        $order = Order::with('user')->find($id);
         $bd = [
             'product'=>$order['product'],
             'price'=>$order['price'],
@@ -87,11 +84,9 @@ class OrderController extends Controller
             'date'=>date('Y-m-d'),
 
         ];
-       // dd($bd);
+        \Illuminate\Support\Facades\Mail::to($order->user->email)->send(new MassageOrder($bd));
          TrueOrders::create($bd);
         $order->delete();
-        \Illuminate\Support\Facades\Mail::to($user['email'])->send(new MassageOrder($bd));
-
         return redirect()->back();
 
     }
@@ -120,8 +115,7 @@ class OrderController extends Controller
     }
     public function search(Request $request, SearchInterface $search){
        // dd($request->all());
-        $mainOrders =  $search->searchUser($request, \auth()->user()->role);
-        //dd($mainOrders);
+        $orders =  $search->deliveredUser($request, \auth()->user()->role);
         $request = [
             'name' => array_key_first( $request->all()),
             'search' => $request[array_key_first( $request->all())],
@@ -130,6 +124,6 @@ class OrderController extends Controller
         ];
 
         //dd($mainOrders);
-        return view('shop/pageShop/order' , compact('mainOrders', 'request'));
+        return view('shop/pageShop/deliveredOrders' , compact('orders', 'request'));
     }
 }

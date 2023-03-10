@@ -48,11 +48,4 @@
         </ul>
 
     </nav>
-    <form method="POST" action="{{ route('logout') }}" class="pl-25">
-        @csrf
-
-        <button type="submit" class="btn btn-primary h-1">
-            {{ __('Выход') }}
-        </button>
-    </form>
 </div>

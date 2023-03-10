@@ -4,8 +4,8 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
-use App\Models\TextPageHome;
-use App\Models\TitlePageHome;
+use App\Services\Models\TextPageHome;
+use App\Services\Models\TitlePageHome;
 use Illuminate\Http\Request;
 
 class TextPageHomeController extends Controller

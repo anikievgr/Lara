@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Slide;
-use App\Models\TextPageHome;
-use App\Models\Video;
+use App\Services\Models\TextPageHome;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

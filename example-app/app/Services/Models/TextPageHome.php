@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class TextPageHome extends Model
 {
-    protected $fillable = ['title','image','text'];
+     protected $fillable = ['title', 'text'];
     use HasFactory;
-
 }

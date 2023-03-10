@@ -7,4 +7,5 @@ interface SearchInterface
     public function search($request, $status);
     public function searchUser($request, $status);
     public function delivered($request, $status);
+    public function deliveredUser($request, $status);
 }

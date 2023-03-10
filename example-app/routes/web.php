@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('shop', \App\Http\Controllers\Shop\ShopController::class);
     Route::resource('order', \App\Http\Controllers\Shop\OrderController::class);
-    Route::get('/searchOrders', [\App\Http\Controllers\Shop\OrderController::class, 'search'])->name('order.search');
+    Route::get('searchOrders', [\App\Http\Controllers\Shop\OrderController::class, 'search'])->name('order.search');
     Route::resource('trueOrder', \App\Http\Controllers\Shop\TrueOrderController::class);
 
 

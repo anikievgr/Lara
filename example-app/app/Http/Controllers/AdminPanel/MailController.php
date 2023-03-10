@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mail;
+use App\Services\Models\Mail;
 use Illuminate\Http\Request;
 
 class MailController extends Controller

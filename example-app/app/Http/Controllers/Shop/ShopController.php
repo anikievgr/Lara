@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
+use App\Services\Models\Order;
+use App\Services\Models\Product;
+use App\Services\Models\User;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller

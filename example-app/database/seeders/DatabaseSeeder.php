@@ -3,23 +3,23 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Category;
-use App\Models\Company;
-use App\Models\HeaderIncubirovane;
-use App\Models\Image;
-use App\Models\Mail;
-use App\Models\News;
-use App\Models\Order;
-use App\Models\Post;
-use App\Models\Process;
-use App\Models\Product;
-use App\Models\Slide;
-use App\Models\Statisic;
-use App\Models\TextIncubirovane;
-use App\Models\TextPageHome;
-use App\Models\TitlePageHome;
-use App\Models\User;
-use App\Models\Video;
+use App\Services\Models\Category;
+use App\Services\Models\Company;
+use App\Services\Models\HeaderIncubirovane;
+use App\Services\Models\Image;
+use App\Services\Models\Mail;
+use App\Services\Models\News;
+use App\Services\Models\Order;
+use App\Services\Models\Post;
+use App\Services\Models\Process;
+use App\Services\Models\Product;
+use App\Services\Models\Slide;
+use App\Services\Models\Statisic;
+use App\Services\Models\TextIncubirovane;
+use App\Services\Models\TextPageHome;
+use App\Services\Models\TitlePageHome;
+use App\Services\Models\User;
+use App\Services\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Statisic extends Model
+class Video extends Model
 {
-     protected $fillable = ['procent'];
+      protected $fillable = ['title', 'text'];
     use HasFactory;
 }

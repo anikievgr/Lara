@@ -1,8 +1,10 @@
-@extends('../../../adminPanel/app')
-@section('deliveredOrders')  <li class='menu active' > @endsection
-    @section('name')
-        Доставленные заказы
-    @endsection
+@extends('../../../shop/app')
+@section('name')
+    Доставленное
+@endsection
+@section('trueOrder')
+    active
+@endsection
 @section('scriptAdd')
         <script src="{{asset('style/pageAdmin/plugins/table/datatable/datatables.js')}}"></script>
     @endsection
@@ -32,7 +34,7 @@
                         <div class="widget-content widget-content-area br-6">
 
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
-                                <form method="GET"  action="{{route('deliveredOrders.search')}}">
+                                <form method="GET"  action="{{route('order.search')}}">
                                     @csrf
 
                                     <div class="form-group d-flex justify-content-around  pt-2" >
@@ -60,8 +62,6 @@
                                 </form>
                                 <thead>
                                 <tr>
-                                    <th>Заказчик</th>
-                                    <th>Почта заказчика</th>
                                     <th>Продукты/описание</th>
                                     <th class="no-content">Количество</th>
                                     <th class="no-content">Цена за шт.</th>
@@ -71,8 +71,6 @@
                                 <tbody>
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td>{{$order->name}}</td>
-                                        <td>{{$order->email}}</td>
                                         <td>{{ $order->product}}</td>
                                         <td>{{$order->quantity}} шт.</td>
                                         <td>{{$order->price}} p.</td>
@@ -81,13 +79,12 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
                             <div class="w-90">
-                  
                                 @if($request['search'] == '')
                                     {{$orders->appends(['product' => '', 'dateOne' =>$request['dateOne'], 'dateTwo' => $request['dateTwo']])->links()}}
                                 @else
                                     {{$orders->appends([$request['name'] => $request['search'], 'dateOne' =>$request['dateOne'], 'dateTwo' => $request['dateTwo']])->links()}}
-
                                 @endif
                             </div>
                            </div>

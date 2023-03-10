@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\HeaderIncubirovane;
+use App\Services\Models\HeaderIncubirovane;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HeaderIncubirovane>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Services\Models\HeaderIncubirovane>
  */
 class HeaderIncubirovaneFactory extends Factory
 {

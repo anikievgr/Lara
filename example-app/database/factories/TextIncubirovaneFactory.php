@@ -3,8 +3,7 @@
 namespace Database\Factories;
 
 
-use App\Models\TextIncubirovane;
-
+use App\Services\Models\TextIncubirovane;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

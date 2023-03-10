@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Mail\User\MassageOrder;
-use App\Models\Order;
-use App\Models\TrueOrders;
-use App\Models\User;
+use App\Services\Models\Order;
+use App\Services\Models\TrueOrders;
+use App\Services\Models\User;
 use Illuminate\Http\Request;
 
 class TrueOrderController extends Controller
@@ -18,16 +18,15 @@ class TrueOrderController extends Controller
      */
     public function index()
     {
-        $user = User::find(auth()->id());
-        $mainOrders = $user->trueOrders;
-        $order = TrueOrders::all();
-        if (count($mainOrders)>= 10){
-            $delete = $mainOrders[9];
-            $order->delete($delete['id']);
-
-        }
-        $mainOrders = $user->trueOrders;
-        return view('shop/pageShop/trueorder' , compact('mainOrders'));
+        $orders = User::with('trueOrders')->find(auth()->id());
+        $orders =    $orders->trueOrders()->paginate(10, ['*'], 'product');
+        $request = [
+            'name' => 'null',
+            'search' => null,
+            "dateOne" => null,
+            "dateTwo" => null
+        ];
+        return view('shop/pageShop/deliveredOrders' , compact('orders','request'));
 
     }
 

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 
-use App\Models\TitlePageHome;
+use App\Services\Models\TitlePageHome;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

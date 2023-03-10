@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\adminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\User;
+use App\Services\Models\Order;
+use App\Services\Models\User;
 use Illuminate\Http\Request;
 
 class TableuaserController extends Controller
@@ -18,7 +18,7 @@ class TableuaserController extends Controller
     {
         $users = User::all();
        // dd($user);
-        return view('adminPanel/page/users',compact('users'));
+        return view('adminPanel/page/users', ['users' => $users]);
 
     }
 

@@ -1,116 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Company;
-use App\Models\HeaderIncubirovane;
-use App\Models\Image;
-use App\Models\News;
-use App\Models\Process;
-use App\Models\Slide;
-use App\Models\Statisic;
-use App\Models\TextIncubirovane;
-use App\Models\TextPageHome;
-use App\Models\TitlePageHome;
-use App\Models\Video;
-use Illuminate\Http\Request;
+use App\Services\Models\Category;
+use App\Services\Models\Company;
+use App\Services\Models\HeaderIncubirovane;
+use App\Services\Models\Image;
+use App\Services\Models\News;
+use App\Services\Models\Process;
+use App\Services\Models\Slide;
+use App\Services\Models\Statisic;
+use App\Services\Models\TextIncubirovane;
+use App\Services\Models\TextPageHome;
+use App\Services\Models\TitlePageHome;
+use App\Services\Models\Video;
 
 class MainController extends Controller
 {
     public function pageHome(){
-
-        $gImage = Image::all();
-          if ($gImage[0]['title'] == '') {
-            $gImage = [];
-        }
-
-        $video = Video::all();
-          if ($video[0]['title'] == '') {
-            $video = [];
-        }
-         $textBox = TextPageHome::all();
-        if ($textBox->count() == 0) {
-            $textBox = [];
-        }
+        $processSort = [];
+        $slides = Slide::all();
+        $textBox = TextPageHome::all();
         $titleText = TitlePageHome::all();
-        if ($titleText[0]['title'] == '') {
-            $titleText = [];
-        }
+        $gImage = Image::all();
+        $gallerea = Category::with('posts')->get();
+        $video = Video::all();
+        $ocompany = Company::all();
         $procent = Statisic::all();
         $process = Process::all();
-        $processSort = [];
+
         if ($process->count() == 0) {
             $processSort = [];
         } else {
             foreach ($process as $sort) {
                 $processSort[$sort['nomerprocess']] = [
-
                     'nameprocess' => $sort['nameprocess'],
                     'color' => $sort['color']
-
                 ];
-
             }
             ksort($processSort);
         }
-
-        $ocompany = Company::find(1);
-
-        if($ocompany['title'] == ''){
-            $ocompany['title'] = 0;
-        }
-        if ($procent->count() == 0) {
-            $procent = [];
-        }
-        $items = Slide::all();
-           $img =[];
-           $i = 0;
         $news = News::all();
-        if ($news->count() == 0) {
-            $news = [];
-        } else {
-            foreach ($news as $key => $lrNews) {
-            if($i == 1){
-                    $news[$key]['lr'] = 'right';
-                    $i = 0;
-
-            }else{
-               $news[$key]['lr'] = ' ';
-                 $i++;
-            }
-
-            }
-
-            //  $news = $news->chunk(2);
-             // dd($news);
-        }
-
-        $gallerea = array();
-          $catygories = Category::all();
-           $it = $catygories;
-             //dd($gallerea);
-        if ($catygories->count() == 0) {
-            $gallerea = [];
-            $it = [];
-            //dd($gallerea);
-        }else{
-
-        foreach ($catygories as $key => $catygories){
-
-            foreach($catygories->posts as $key=> $image){
-
-                $img[$image['id']] = $image['image'];
-            }
-
-            $gallerea[$catygories['title']]['id'] = $catygories['id'];
-            $gallerea[$catygories['title']]['id'] = $catygories['id'];
-            $gallerea[$catygories['title']]['image'] = $img;
-            $img = [];
-        }
-
-    //dd($gallerea);
-    }
-        return view('userPage/page/pageHome',compact('video', 'items', 'gallerea','news', 'procent', 'ocompany', 'processSort', 'titleText', 'textBox', 'gImage' ));
+        return view('userPage/page/pageHome',compact('video', 'slides', 'gallerea','news', 'procent', 'ocompany', 'processSort', 'titleText', 'textBox', 'gImage' ));
     }
     public function contacti(){
         return view('userPage/page/contact');

@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slide extends Model
+class HeaderIncubirovane extends Model
 {
+     protected $fillable = ['title', 'image' ];
     use HasFactory;
-    protected $table = 'Table_slides';
-    protected $guarded = [];  
-
 }

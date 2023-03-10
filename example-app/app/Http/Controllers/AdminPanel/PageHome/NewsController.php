@@ -4,9 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
-use App\Http\Requests\SliderRequest;
-use App\Models\News;
-use App\Services\StandardValidation\StandardValidationInterface;
+use App\Services\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
