@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TableuaserController extends Controller
 {
@@ -16,7 +17,7 @@ class TableuaserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = DB::table('users')->paginate(10);
        // dd($user);
         return view('adminPanel/page/users', ['users' => $users]);
 

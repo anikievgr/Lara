@@ -16,7 +16,7 @@
     <script src="{{asset('style/pageAdmin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
     @endsection
 @section('headerAddLink')
-
+        <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/plugins/table/datatable/dt-global_style.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/assets/css/forms/theme-checkbox-radio.css')}}">
         <link href="{{asset('style/pageAdmin/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('style/pageAdmin/assets/css/apps/contacts.css')}}" rel="stylesheet" type="text/css" />
@@ -52,32 +52,32 @@
                                 <div class="item-content">
                                     <div class="user-profile">
                                         <div class="user-meta-info">
-                                            <p class="user-name" data-name="Linda Nelson">{{$user['name']}}</p>
+                                            <p class="user-name" data-name="Linda Nelson">{{$user->name}}</p>
 
                                         </div>
                                     </div>
                                     <div class="user-email">
                                         <p class="info-title">Email: </p>
-                                        <p class="usr-email-addr" data-email="linda@mail.com">{{$user['email']}}</p>
+                                        <p class="usr-email-addr" data-email="linda@mail.com">{{$user->email}}</p>
                                     </div>
 
-                                    @if($user['role'] != 1)
-                                        <div class="action-btn"  data-toggle="modal" data-target="#d{{$user['id']}}">
+                                    @if($user->role != 1)
+                                        <div class="action-btn"  data-toggle="modal" data-target="#d{{$user->id}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-minus delete"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line></svg>
                                         </div>
                                     @else
-                                        <div class="action-btn"  data-toggle="modal" data-target="#d{{$user['id']}}">
+                                        <div class="action-btn"  data-toggle="modal" data-target="#d{{$user->id}}">
                                         </div>
                                     @endif
                                 </div>
                             </div>
-                                <div id="d{{$user['id']}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div id="d{{$user->id}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-sm">
                                         <div class="modal-content p-1">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                                 <h4>Вы точно хотите удалить пользователя?</h4>
                                             </div>
-                                            <a href="{{route('tableusers.show',$user['id'])}}" class="btn btn-primary mb-2">Да</a>
+                                            <a href="{{route('tableusers.show',$user->id)}}" class="btn btn-primary mb-2">Да</a>
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>

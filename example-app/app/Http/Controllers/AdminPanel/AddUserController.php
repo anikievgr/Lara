@@ -64,11 +64,11 @@ class AddUserController extends Controller
     {
      $userAdd = Mail::find($id);
 
-        $password= 551151;
+
         $user = User::create([
             'name' =>  $userAdd['name'],
             'email' =>  $userAdd['mail'],
-            'password' => Hash::make($password),
+            'password' => '',
 
         ]);
         $userAdd->delete();
