@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\HeaderIncubirovane;
 use App\Models\Image;
 use App\Models\Mail;
+use App\Models\Map;
 use App\Models\News;
 use App\Models\Order;
 use App\Models\Post;
@@ -60,6 +61,7 @@ class DatabaseSeeder extends Seeder
 
         Product::factory(20)->create();
         Order::factory(20)->create();
+        Map::factory(1)->create();
 
     }
 }

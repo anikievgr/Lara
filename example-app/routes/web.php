@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('sales', [App\Http\Controllers\AdminPanel\SalesController::class, 'index'])->name('sales.index');
         Route::get('chat', [App\Http\Controllers\AdminPanel\ChatController::class, 'index'])->name('chat.index');
         Route::resource('mail', \App\Http\Controllers\AdminPanel\MailController::class);
+        Route::resource('maps', \App\Http\Controllers\AdminPanel\Contackty\MapController::class);
         Route::resource('addUser', \App\Http\Controllers\AdminPanel\AddUserController::class);
         Route::resource('tableusers', \App\Http\Controllers\AdminPanel\TableuaserController::class);
         Route::resource('/tableproducts', \App\Http\Controllers\AdminPanel\ProductController::class);

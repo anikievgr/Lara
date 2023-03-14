@@ -58,12 +58,11 @@ class ProcessController extends Controller
     {
         $color = sscanf($request['color'], "#%02x%02x%02x");
         $color['color'] = sprintf("#%02x%02x%02x", $color[0], $color[1],$color[2]);
-        $request = [
+        Process::create([
             'nameprocess' => $request['nameprocess'],
             'nomerprocess' => $request['nomerprocess'],
             'color' => "$color[0], $color[1],$color[2], .8"
-        ];
-        Process::create($request);
+        ]);
         return redirect()->back();
     }
 

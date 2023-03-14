@@ -98,7 +98,7 @@
                                                 </div>
                                             </div>
                                             <div class="widget-content widget-content-area">
-                                                @if(!empty($company) )
+                                                @if(!empty($company[0]['image']) )
                                                     <p>Нет картинки</p>
                                                     @else
                                                     <img class="rounded d-block w-100" width="100%" src="{{asset('/storage/'.$company[0]['image'])}}">

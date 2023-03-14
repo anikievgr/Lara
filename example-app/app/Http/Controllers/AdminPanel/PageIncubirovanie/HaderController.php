@@ -80,10 +80,14 @@ class HaderController extends Controller
             $path = $request->file('image')->store('uploads', 'public');
         }
         $request = [
-            'title' =>  $request['title'],
-            'image' =>  $path,
+
         ];
-        $header->update($request);
+        $header->update(
+            [
+                'title' =>  $request['title'],
+                'image' =>  $path,
+            ]
+        );
         return redirect()->back();
     }
 

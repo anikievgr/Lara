@@ -89,11 +89,10 @@ class VideoController extends Controller
     public function destroy($id)
     {
         $text = Video::find(1);
-        $db = [
+        $text->update([
             'title' => null,
             'text' => null
-        ];
-        $text->update($db);
+        ]);
         return redirect()->back();
     }
 }

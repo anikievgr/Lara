@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\HeaderIncubirovane;
 use App\Models\Image;
+use App\Models\Map;
 use App\Models\News;
 use App\Models\Process;
 use App\Models\Slide;
@@ -43,7 +44,8 @@ class MainController extends Controller
         return view('userPage/page/pageHome',compact('video', 'slides', 'gallerea','news', 'procent', 'ocompany', 'processSort', 'titleText', 'textBox', 'gImage' ));
     }
     public function contacti(){
-        return view('userPage/page/contact');
+        $map = Map::find(1);
+        return view('userPage/page/contact', compact('map'));
     }
     public function incubirovanie(){
         $title = HeaderIncubirovane::all();

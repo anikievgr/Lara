@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanel\PageHome;
+namespace App\Http\Controllers\AdminPanel\Contackty;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ImagePageHomeRequest;
-use App\Models\Image;
+use App\Http\Requests\MapRequest;
+use App\Models\Map;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class ImageController extends Controller
+class MapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $image = Image::all();
-        return view('adminPanel/page/pageHome/image', compact('image'));
+        $map = Map::find(1);
+        return view('adminPanel/page/contacty/maps', compact('map'));
     }
 
     /**
@@ -50,7 +49,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -59,10 +58,7 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -71,20 +67,13 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ImagePageHomeRequest $request, $id)
+    public function update(MapRequest $request, $id)
     {
-        $path = null;
-        $image= Image::find($id);
-        if (array_key_exists('image', $request->all())){
-            Storage::disk('public')->delete($image['image']);
-            $path = $request->file('image')->store('uploads', 'public');
-        }
-        $image -> update(  [
-            'title' =>  $request['title'],
-            'text' =>  $request['text'],
-            'image' =>  $path,
+        $map = Map::find(1);
+        $map->update([
+            'href' => $request['href']
         ]);
-          return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -95,13 +84,10 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        $text = Image::find(1);
-        $db = [
-            'title' => '',
-            'text' => '',
-            'image' => ''
-        ];
-        $text->update($db);
+        $map = Map::find(1);
+        $map->update([
+            'href' => null
+        ]);
         return redirect()->back();
     }
 }

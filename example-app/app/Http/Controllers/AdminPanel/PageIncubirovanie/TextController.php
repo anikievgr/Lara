@@ -30,21 +30,20 @@ class TextController extends Controller
     public function updateText(Request $request, $id)
     {
         $text = TextIncubirovane::find($id);
-        $db = [
+        $text -> update([
             'title' => $request['title'],
             'text' => $request['text']
-        ];
-        $text -> update($db);
+        ]);
         return redirect()->back();
     }
     public function deleteTitle()
     {
         $text = HeaderIncubirovane::find(1);
-        $title = [
+
+        $text->update([
             'title' => '',
             'text' => ''
-        ];
-        $text->update($title);
+        ]);
         return redirect()->back();
     }
     public function deleteText($id)
