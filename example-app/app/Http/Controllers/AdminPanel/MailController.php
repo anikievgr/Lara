@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MailRequest;
 use App\Models\Mail;
 use Illuminate\Http\Request;
 
@@ -38,23 +39,20 @@ class MailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MailRequest $request)
     {
-       //
         if ($request['theme'] == 'Sales'){
             $request['theme'] = 'Сотрудничество';
         }else{
             $request['theme'] = 'Поддежка';
         }
-
-        $item = [
+        Mail::create([
             'name' => $request['name'],
             'mail' => $request['mail'],
             'telephone' => $request['telephone'],
             'theme' => $request['theme'],
             'text' => $request['text']
-        ];
-        Mail::create($item);
+        ]);
           return redirect()->back();
     }
 

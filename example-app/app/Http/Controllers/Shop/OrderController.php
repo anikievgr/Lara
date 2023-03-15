@@ -115,6 +115,19 @@ class OrderController extends Controller
     }
     public function search(Request $request, SearchInterface $search){
        // dd($request->all());
+        $mainOrders =  $search->searchUser($request, \auth()->user()->role);
+        $request = [
+            'name' => array_key_first( $request->all()),
+            'search' => $request[array_key_first( $request->all())],
+            "dateOne" =>  $request['dateOne'],
+            "dateTwo" => $request['dateTwo']
+        ];
+
+        //dd($mainOrders);
+        return view('shop/pageShop/order' , compact('mainOrders', 'request'));
+    }
+    public function deliveredOrder(Request $request, SearchInterface $search){
+
         $orders =  $search->deliveredUser($request, \auth()->user()->role);
         $request = [
             'name' => array_key_first( $request->all()),

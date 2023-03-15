@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('mail');
             $table->string('telephone' );
             $table->string('theme');
-            $table->longText('text');
+            $table->longText('text')->nullable();
         });
     }
 

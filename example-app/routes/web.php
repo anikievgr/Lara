@@ -32,13 +32,14 @@ Route::get('/contact','MainController@contacti');
 //});
 
 
-
+Route::resource('mail', \App\Http\Controllers\AdminPanel\MailController::class);
 Route::middleware('auth')->group(function () {
     //users pages
 
     Route::resource('shop', \App\Http\Controllers\Shop\ShopController::class);
     Route::resource('order', \App\Http\Controllers\Shop\OrderController::class);
     Route::get('searchOrders', [\App\Http\Controllers\Shop\OrderController::class, 'search'])->name('order.search');
+    Route::get('deliveredOrderSearch', [\App\Http\Controllers\Shop\OrderController::class, 'deliveredOrder'])->name('deliveredOrder.search');
     Route::resource('trueOrder', \App\Http\Controllers\Shop\TrueOrderController::class);
 
 
@@ -47,7 +48,6 @@ Route::middleware('auth')->group(function () {
         Route::get('analytics', [App\Http\Controllers\AdminPanel\AnaliticsController::class, 'index'])->name('analytics.index');
         Route::get('sales', [App\Http\Controllers\AdminPanel\SalesController::class, 'index'])->name('sales.index');
         Route::get('chat', [App\Http\Controllers\AdminPanel\ChatController::class, 'index'])->name('chat.index');
-        Route::resource('mail', \App\Http\Controllers\AdminPanel\MailController::class);
         Route::resource('maps', \App\Http\Controllers\AdminPanel\Contackty\MapController::class);
         Route::resource('addUser', \App\Http\Controllers\AdminPanel\AddUserController::class);
         Route::resource('tableusers', \App\Http\Controllers\AdminPanel\TableuaserController::class);

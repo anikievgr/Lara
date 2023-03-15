@@ -33,7 +33,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <img class="rounded d-block w-100" src="{{asset('/storage/'.$image[0]['image'])}}">
+                            @if($image[0]['image'] != '')
+                                <img class="rounded d-block w-100" src="{{asset('/storage/'.$image[0]['image'])}}">
+                            @else
+                                <p class="w-25 m-auto">Нет картинки</p>
+                            @endif
+
                             <div class="widget-content widget-content-area">
                                     <form method="post" action="{{route('image.update', 1)}} "enctype="multipart/form-data" >
                                         {{ csrf_field() }}

@@ -8,12 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel = "shortcut icon" href = "style/images/favicon-1.svg" sizes="any" >
-   
+
          <title> @section('title')Branko - О нас   @show</title>
- 
-   
+
+
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('style/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/assets/css/elements/alert.css')}}">
+
+        <link href="{{asset('style/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('style/css/plugins.css')}}" rel="stylesheet">
     <link href="{{asset('style/userPage/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('style/userPage/css/color/blue.css')}}" rel="stylesheet">
@@ -27,7 +29,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     @show
-   
+
 </head>
 <body>
 <div id="preloader"><div id="status"><div class="spinner"></div></div></div>

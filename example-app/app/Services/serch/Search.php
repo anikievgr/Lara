@@ -37,12 +37,12 @@ class Search implements SearchInterface
     }
     public function searchUser($request, $status)
     {
-
         $orders = DB::table('orders')
             ->select('orders.id as orderID', 'orders.product', 'orders.quantity','orders.price','orders.date', 'users.name','users.email')
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('orders.user_id', '=', 'users.id');
             })
+            ->when('users.id', '=', auth()->id())
             ->when($request['search'] != null, function ($query) use ($request) {
                 return $query
                     ->where(function ($q) use ($request) {
@@ -66,7 +66,7 @@ class Search implements SearchInterface
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('true_orders.user_id', '=', 'users.id');
             })
-            ->when($request['search'] != null, function ($query) use ($request) {
+            ->where($request['search'] != null, function ($query) use ($request) {
                 return $query
                     ->where(function ($q) use ($request) {
                         $q->where('product', 'Like', '%'.$request['search'] .'%')
@@ -92,6 +92,7 @@ class Search implements SearchInterface
             ->join('users', function (JoinClause $join) use ($request) {
                 $join->on('true_orders.user_id', '=', 'users.id');
             })
+            ->where('users.id', '=', auth()->id())
             ->when($request['search'] != null, function ($query) use ($request) {
                 return $query
                     ->where(function ($q) use ($request) {

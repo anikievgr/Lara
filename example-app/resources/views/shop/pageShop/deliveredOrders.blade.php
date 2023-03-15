@@ -34,7 +34,7 @@
                         <div class="widget-content widget-content-area br-6">
 
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
-                                <form method="GET"  action="{{route('order.search')}}">
+                                <form method="GET"  action="{{route('deliveredOrder.search')}}">
                                     @csrf
 
                                     <div class="form-group d-flex justify-content-around  pt-2" >

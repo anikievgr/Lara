@@ -48,11 +48,13 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="form-field">
-                                            <label>
-                                                <input type="text" name="name" placeholder="Ваше имя"
-                                                       required="required">
+                                        <div class="form-field ">
+                                            <label class="">
+                                                <input type="text" @if($errors->has('name')) style="border: 1px solid red" @endif class="" name="name" placeholder="Ваше имя"
+                                                       required="required " value="{{old('name')}}">
                                                 <i class="icon-user"></i></label>
+
+
                                         </div>
                                         <!--/.form-field -->
                                     </div>
@@ -60,8 +62,8 @@
                                     <div class="col-sm-6">
                                         <div class="form-field">
                                             <label>
-                                                <input type="email" name="mail" placeholder="Электронная почта"
-                                                       required="required">
+                                                <input @if($errors->has('mail')) style="border: 1px solid red" @endif type="email" name="mail" placeholder="Электронная почта"
+                                                       required="required" value="{{old('mail')}}">
                                                 <i class="icon-mail-alt"></i></label>
                                         </div>
                                         <!--/.form-field -->
@@ -70,19 +72,19 @@
                                     <div class="col-sm-6">
                                         <div class="form-field">
                                             <label>
-                                                <input type="tel" name="telephone" placeholder="Телефон">
+                                                <input  @if($errors->has('telephone')) style="border: 1px solid red" @endif type="tel" name="telephone" placeholder="Телефон" value="{{old('telephone')}}">
                                                 <i class="icon-phone"></i></label>
                                         </div>
                                         <!--/.form-field -->
                                     </div>
                                     <!--/column -->
                                     <div class="col-sm-6">
-                                        <div class="form-field">
-                                            <label class="custom-select">
-                                                <select name="theme" required="required">
+                                        <div class="form-field" >
+                                            <label class="custom-select"  >
+                                                <select name="theme" required="required" @if($errors->has('theme')) style="border: 1px solid red" @endif>
                                                     <option value="">Выберите тему</option>
-                                                    <option value="Sales">Сотруднечиство</option>
-                                                    <option value="Marketing">Поддержка</option>
+                                                    <option @if(old('theme') == 'Sales') selected @endif value="Sales">Сотруднечиство</option>
+                                                    <option @if(old('theme') == 'Marketing') selected @endif  value="Marketing">Поддержка</option>
                                                 </select>
                                                 <i class="icon-ok"></i><span><!-- fake select handler --></span>
                                             </label>
@@ -92,8 +94,10 @@
                                     <!--/column -->
                                 </div>
                                 <!--/.row -->
-                                <textarea name="text" placeholder="Напишите Ваше сообщение сюда..."></textarea>
-
+                                <textarea name="text" placeholder="Напишите Ваше сообщение сюда...">{{old('text')}}</textarea>
+                                @if($errors->has('text') || $errors->has('theme') || $errors->has('mail') || $errors->has('telephone') || $errors->has('name') )
+                                    <div class="alert alert-light-danger border-0 mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>Ошибка! </strong> Убедитесь, что все поля заполнены</div>
+                                @endif
                                 <!--/.radio-set -->
                                 <input type="submit" class="btn" value="Отправить" data-error="Fix errors"
                                        data-processing="Sending..." data-success="Thank you!">

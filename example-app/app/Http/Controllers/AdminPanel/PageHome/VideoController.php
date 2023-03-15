@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminPanel\PageHome;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TextRequest;
+use App\Http\Requests\VideoRequest;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use function redirect;
@@ -40,7 +41,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd(1);
     }
 
     /**
@@ -72,7 +73,7 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TextRequest $request, $id)
+    public function update(VideoRequest $request, $id)
     {
         $item = Video::find($id);
 

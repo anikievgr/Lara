@@ -79,7 +79,8 @@
                 <!--end text-->
 
                 <!--start image-->
-                @if(!empty($gImage[0]))
+
+                @if($gImage[0]['title'] != '')
                     <div class="inverse-wrapper inner bp0">
                         <div class="container">
                             <div class="thin text-center">
@@ -155,13 +156,12 @@
                 <!--end gallerea-->
 
                 <!--start video-->
-                @if ($video[0] =   null )
+                @if ($video[0]['title'] !=   null )
 
                     <div class="outer-wrap inverse-wrapper">
                         <div id="video-wrap" class="video-wrap">
                             <video preload="metadata" playsinline autoplay muted loop id="video-office">
                                 <source src="style/userPage/video/video.mp4" type="video/mp4">
-                                <source src="style/userPage/video/video.webm" type="video/webm">
                             </video>
                             <div class="content-overlay container">
                                 <div class="headline text-center">

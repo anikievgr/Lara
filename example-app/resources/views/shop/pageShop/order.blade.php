@@ -91,19 +91,7 @@
 
 
                 <!-- Modal -->
-                @foreach($mainOrders as $product)
-                    <div id="d{{$product->id}}" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content p-1">
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Вы точно хотите удалить заказ?</h4>
-                                </div>
-                                <a href="{{route('order.show',$product->id)}}" class="btn btn-primary mb-2">Да</a>
-                            </div>
-                        </div>
-                    </div>
 
-                @endforeach
             </div>
 
         </div>

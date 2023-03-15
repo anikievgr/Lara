@@ -15,8 +15,17 @@
     <script src="{{asset('style/pageAdmin/plugins/flatpickr/custom-flatpickr.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/noUiSlider/custom-nouiSlider.js')}}"></script>
     <script src="{{asset('style/pageAdmin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
+ <script src="{{asset('style/pageAdmin/plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+ <script>
+     //First upload
+     var firstUpload = new FileUploadWithPreview('myFirstImage')
+     //Second upload
+     var secondUpload = new FileUploadWithPreview('mySecondImage')
+
+ </script>
     @endsection
 @section('headerAddLink')
+    <link href="{{asset('style/pageAdmin/plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('style/pageAdmin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('style/pageAdmin/assets/css/elements/alert.css')}}">
@@ -39,9 +48,9 @@
                                         </div>
                                     </div>
                                     <div class="widget-content widget-content-area">
-                                        <form method="post" action="{{route('video.update', 1)}} "enctype="multipart/form-data" >
+                                        <form method="POST" action="{{route('video.update', 1)}} " enctype="multipart/form-data" >
                                             {{ csrf_field() }}
-                                              @method('PUT')
+                                            @method('PUT')
                                             <div class="form-group mb-4">
                                                 <label for="exampleFormControlInput2">Заголовок</label>
                                                 <input type="text" name="title" class="form-control" id="h-text1" aria-describedby="h-text1" @if($video[0]['title'] == '' && $video[0]['text'] == '') value="{{old('title')}}"  @else value="{{$video[0]['title']}}" @endif >
@@ -56,6 +65,13 @@
                                             @if($errors->has('text'))
                                                 <div class="alert alert-light-danger border-0 mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>Ошибка! </strong>Обязательно нужен текст</div>
                                             @endif
+{{--                                            <div class="form-group mb-4 mt-3">--}}
+{{--                                                <label for="exampleFormControlFile1"></label>--}}
+{{--                                                <input type="file" name="video" class="form-control-file" id="exampleFormControlFile1">--}}
+{{--                                            </div>--}}
+{{--                                            @if($errors->has('video'))--}}
+{{--                                                <div class="alert alert-light-danger border-0 mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>Ошибка! </strong>Обязательно загрузите видео</div>--}}
+{{--                                            @endif--}}
                                             <div class="d-flex justify-content-between">
                                                 <input type="submit"  class="btn btn-primary">
                                                 <a href="" data-toggle="modal" data-target="#f">
