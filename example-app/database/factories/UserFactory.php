@@ -22,7 +22,6 @@ class UserFactory extends Factory
         return [
             'name' => 'Глеб Аникиев',
             'email' => env('ADMIN_EMAIL'),
-            'email_verified_at' => now(),
             'password' => Hash::make(env('ADMIN_PASSWORD')), // password
             'role' => '1',
         ];

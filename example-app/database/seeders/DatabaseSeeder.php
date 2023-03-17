@@ -50,18 +50,11 @@ class DatabaseSeeder extends Seeder
         Category::factory(4)->create();
         Post::factory(7)->create();
         User::factory(1)->create();
-        for($i = 0; $i<=3; $i++){
-            DB::table('users')->insert([
-                'name' => "Пользователь №$i",
-                'email' =>  Str::random(10).'@gmail.com' ,
-                'email_verified_at' => now(),
-                'password' =>Hash::make('551151'), // password
-            ]);
-        }
+
 
         Product::factory(20)->create();
         Order::factory(20)->create();
         Map::factory(1)->create();
-
+//        $this->call(UserDBSeeder::class);
     }
 }

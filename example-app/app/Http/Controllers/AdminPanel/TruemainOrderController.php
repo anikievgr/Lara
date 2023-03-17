@@ -19,7 +19,6 @@ class TruemainOrderController extends Controller
         $orders = TrueOrders::with('user')->join( 'users','users.id', '=', 'true_orders.user_id', )
             ->select('true_orders.id as orderID', 'true_orders.product', 'true_orders.quantity','true_orders.price','true_orders.date', 'users.name','users.email')
             ->paginate(10, ['*'], 'orders');
-    //dd($orders);
 
         $request = [
             'name' => 'null',

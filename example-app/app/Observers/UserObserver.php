@@ -6,6 +6,7 @@ use App\Mail\User\Massage;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {
@@ -22,7 +23,7 @@ class UserObserver
             $password = Str::random(8);
             $user->password = Hash::make($password);
             $user->save();
-            \Illuminate\Support\Facades\Mail::to($user['email'])->send(new Massage($password));
+            Mail::to($user['email'])->send(new Massage($password));
         }
     }
 

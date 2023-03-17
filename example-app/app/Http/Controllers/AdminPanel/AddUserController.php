@@ -65,7 +65,7 @@ class AddUserController extends Controller
      $userAdd = Mail::find($id);
 
 
-        $user = User::create([
+         User::create([
             'name' =>  $userAdd['name'],
             'email' =>  $userAdd['mail'],
             'password' => '',

@@ -19,6 +19,7 @@ class UsersController extends Controller
         if($users->count()  == 0){
             $users = [];
         }
+        dd(123);
         //dd($users);
         return view('adminPanel/page/pageForm/pageMail/tableUser', compact('users'));
 

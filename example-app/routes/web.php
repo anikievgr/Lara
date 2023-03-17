@@ -23,13 +23,13 @@ Route::get('/contact','MainController@contacti');
 //формы
 //Route::post('/form', 'FormController@store')->name('form');
 //
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
-//
-//Route::middleware('auth')->group(function () {
-//
-//});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+
+});
 
 
 Route::resource('mail', \App\Http\Controllers\AdminPanel\MailController::class);
@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('checkRole')->group(function () {
         //admin pages
+        Route::get('orders/search', [\App\Http\Controllers\AdminPanel\OrdersController::class, 'search'])->name('ordersA.search');
+        Route::resource('/orders', \App\Http\Controllers\AdminPanel\OrdersController::class);
+
+
         Route::get('analytics', [App\Http\Controllers\AdminPanel\AnaliticsController::class, 'index'])->name('analytics.index');
         Route::get('sales', [App\Http\Controllers\AdminPanel\SalesController::class, 'index'])->name('sales.index');
         Route::get('chat', [App\Http\Controllers\AdminPanel\ChatController::class, 'index'])->name('chat.index');

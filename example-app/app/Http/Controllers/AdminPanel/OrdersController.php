@@ -4,43 +4,41 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
 use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $products = Product::paginate(10, ['*'], 'product');
-       $orders = Order::with('user')
-           ->join( 'users','users.id', '=', 'orders.user_id', )
-           ->select(
-               'orders.id as orderID',
-               'orders.product',
-               'orders.quantity',
-               'orders.price',
-               'orders.date',
-               'users.name',
-               'users.email')
-           ->paginate(10, ['*'], 'order');
+        $orders = Order::with('user')
+            ->join( 'users','users.id', '=', 'orders.user_id', )
+            ->select(
+                'orders.id as orderID',
+                'orders.product',
+                'orders.quantity',
+                'orders.status',
+                'orders.price',
+                'orders.date',
+                'users.name',
+                'users.email')
+            ->paginate(10, ['*'], 'order');
 
 
         $request = [
-           'name' => 'null',
+            'name' => 'null',
             'search' => null,
-          "dateOne" => null,
-          "dateTwo" => null
+            "dateOne" => null,
+            "dateTwo" => null,
+            "delivered" => 'on',
+            "notDelivered" =>  'on',
         ];
-
-        return view('adminPanel/page/product', compact('products', 'orders', 'request'));
-
+        return view('adminPanel/page/orders', compact( 'orders', 'request'));
     }
 
     /**
@@ -61,8 +59,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
-        return  redirect()->back();
+        //
     }
 
     /**
@@ -73,14 +70,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        if ($id == 'all') {
-            Product::query()->delete();
-        } else {
-            $product = Product::find($id);
-            $product->delete();
-
-        }
-        return redirect()->back();
+        //
     }
 
     /**
@@ -91,7 +81,6 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
     }
 
     /**
@@ -104,8 +93,10 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-        $product = Product::find($id);
-        $product->update($request->all());
+        $order = Order::find($id);
+        $order->update([
+            "status" => $request['select']
+        ]);
         return redirect()->back();
     }
 
@@ -120,15 +111,15 @@ class ProductController extends Controller
 
     }
     public function search(Request $request, SearchInterface $search){
-
-       $orders =  $search->search($request, \auth()->user()->role);
-        $products = Product::paginate(10, ['*'], 'order');
+        $orders =  $search->search($request, \auth()->user()->role);
         $request = [
             'name' => array_key_first( $request->all()),
             'search' => $request[array_key_first( $request->all())],
             "dateOne" =>  $request['dateFirst'],
-            "dateTwo" => $request['dateSecond']
+            "delivered" => $request['delivered'],
+            "notDelivered" =>  $request['notDelivered'],
         ];
-        return view('adminPanel/page/product', compact( 'orders', 'products', 'request'));
+
+        return view('adminPanel/page/orders', compact( 'orders',  'request'));
     }
 }
