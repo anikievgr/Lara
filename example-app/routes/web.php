@@ -26,10 +26,8 @@ Route::get('/contact','MainController@contacti');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-
-});
+Route::get('textC/s/{id}', [\App\Http\Controllers\TestController::class, 'ss'])->name('textC.ss');
+Route::resource('textC', \App\Http\Controllers\TestController::class);
 
 
 Route::resource('mail', \App\Http\Controllers\AdminPanel\MailController::class);
@@ -46,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('checkRole')->group(function () {
         //admin pages
         Route::get('orders/search', [\App\Http\Controllers\AdminPanel\OrdersController::class, 'search'])->name('ordersA.search');
+
         Route::resource('/orders', \App\Http\Controllers\AdminPanel\OrdersController::class);
 
 

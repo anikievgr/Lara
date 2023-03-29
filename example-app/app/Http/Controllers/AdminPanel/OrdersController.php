@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Services\serch\SearchInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -29,7 +30,7 @@ class OrdersController extends Controller
                 'users.email')
             ->paginate(10, ['*'], 'order');
 
-
+        $orderLim = DB::table('orders')->skip(0)->take(4)->get();
         $request = [
             'name' => 'null',
             'search' => null,
@@ -38,7 +39,7 @@ class OrdersController extends Controller
             "delivered" => 'on',
             "notDelivered" =>  'on',
         ];
-        return view('adminPanel/page/orders', compact( 'orders', 'request'));
+        return view('adminPanel/page/orders', compact( 'orders', 'request', 'orderLim'));
     }
 
     /**
@@ -122,4 +123,5 @@ class OrdersController extends Controller
 
         return view('adminPanel/page/orders', compact( 'orders',  'request'));
     }
+
 }
